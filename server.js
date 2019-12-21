@@ -87,6 +87,13 @@ app.use(function (err, req, res, next) {
 
 // ==== Starting Server =====
 
+io.on('connection', function (socket) {
+	console.log('a user connected');
+	socket.on('disconnect', function () {
+	  console.log('user disconnected');
+	});
+  });
+
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
