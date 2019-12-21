@@ -16,6 +16,22 @@ const path = require('path');
 const app = express()
 const routes = require("./controllers");
 const PORT = process.env.PORT || 8080
+const io = require('socket.io')();
+
+io.on('connection', (client) => {
+  client.on('subscribeToTimer', (interval) => {
+    console.log('client is subscribing to timer with interval ', interval);
+    setInterval(() => {
+      client.emit('timer', new Date());
+    }, interval);
+  });
+});
+
+const socketPort = 8000;
+io.listen(socketPort);
+console.log('listening on port ', socketPort);
+
+
 
 // ===== Middleware ====
 app.use(morgan('dev'))

@@ -5,16 +5,23 @@ import LoginForm from './pages/LoginForm'
 import SignupForm from './pages/SignupForm'
 import Home from './pages/Home'
 import { NavBar } from './components'
+import { subscribeToTimer } from './api';
+
 
 class App extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
+
 		this.state = {
 			loggedIn: false,
-			user: null
+			user: null,
+			timestamp: "No timestamp yet"
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
+		subscribeToTimer((err, timestamp) => this.setState({
+			timestamp
+		}));
 	};
 
 	componentDidMount() {
@@ -65,6 +72,11 @@ class App extends Component {
 		return (
 			<div className="">
 
+				<div className="App">
+					<p className="App-intro">
+						This is the timer value: {this.state.timestamp}
+					</p>
+				</div>
 				{/* Navbar on every page */}
 				<NavBar
 					_logout={this._logout}
