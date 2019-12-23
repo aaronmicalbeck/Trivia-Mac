@@ -4,6 +4,11 @@ import { Route } from 'react-router-dom'
 import LoginForm from './pages/LoginForm'
 import SignupForm from './pages/SignupForm'
 import Home from './pages/Home'
+import Profile from './pages/Profile'
+import Lobby from './pages/Lobby'
+import Leaderboard from './pages/Leaderboard'
+import Game from './pages/Game'
+import QuestionSubmission from './pages/QuestionSubmission'
 import { NavBar } from './components'
 import { subscribeToTimer } from './api';
 
@@ -100,6 +105,26 @@ class App extends Component {
 				<Route
 					exact path="/signup"
 					component={SignupForm}
+				/>
+				<Route
+					exact path="/profile"
+					component={Profile}
+				/>
+				<Route
+					exact path="/lobby"
+					component={Lobby}
+				/>
+				<Route
+					exact path="/game"
+					component={Game}
+				/>
+				<Route
+					exact path="/leaderboard"
+					component={Leaderboard}
+				/>
+				<Route
+					exact path="/questionSubmission"
+					component={QuestionSubmission}
 				/>
 			</div>
 		)
