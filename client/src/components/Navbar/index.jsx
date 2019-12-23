@@ -35,6 +35,31 @@ function NavBarComponent({ loggedIn, _logout }) {
                             Sign Up
 						</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/profile" className="nav-link">
+                            Profile
+						</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/lobby" className="nav-link">
+                            Lobby
+						</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/game" className="nav-link">
+                            Game
+						</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/leaderboard" className="nav-link">
+                            Leaderboard
+						</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/questionSubmission" className="nav-link">
+                            Question Submission
+						</Link>
+                    </li>
                 </ul>
             }
         </nav>

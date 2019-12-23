@@ -87,7 +87,7 @@ app.use(function (err, req, res, next) {
 
 // ==== Starting Server =====
 
-io.on('connection', function (socket) {
+io.on('connect', function (socket) {
 	console.log('a user connected');
 	socket.on('disconnect', function () {
 	  console.log('user disconnected');
