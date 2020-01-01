@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import { Header } from '../../components';
 import "./game.css";
+import broadcastQuestion from "../../utils/triviaAPI";
 
 export default class Game extends Component {
 	constructor(props) {
@@ -12,6 +13,8 @@ export default class Game extends Component {
 
 	componentDidMount() {
 		console.log("Game Component Mounted")
+		broadcastQuestion();
+
 	}
 
 	render() {
