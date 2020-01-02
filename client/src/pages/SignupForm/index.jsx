@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import './signup.css';
 
+
 export default class SignupForm extends Component {
 	constructor() {
 		super()
