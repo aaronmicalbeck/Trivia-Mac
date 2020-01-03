@@ -5,7 +5,7 @@ const questionController = require("./question.controller");
 
 // API Routes
 router.use("/api/books", bookController);
-router.use("api/questions", questionController);
+router.use("/api/questions", questionController);
 
 // Auth Routes
 router.use("/auth", authController);

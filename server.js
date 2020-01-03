@@ -71,7 +71,6 @@ if (process.env.NODE_ENV === "production") {
 // ====== Routing & Controllers =====
 app.use(routes);
 
-app.use("/qu")
 
 // ====== React App ======
 app.get("*", (req, res) => {
