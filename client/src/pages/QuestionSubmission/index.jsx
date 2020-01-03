@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./questionSubmission.css";
+import questionAPI from "../../utils/questionAPI";
 
 
 export default class QuestionSubmission extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: props.user,
       question: "",
       correctAnswer: "",
       incorrectAnswer1: "",
@@ -23,7 +23,18 @@ export default class QuestionSubmission extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    // Create
+    questionAPI.submitQuestion({
+		question: this.state.question,
+		correctAnswer: this.state.correctAnswer,
+		incorrectAnswer1: this.state.incorrectAnswer1,
+		incorrectAnswer2: this.state.incorrectAnswer2,
+		incorrectAnswer3: this.state.incorrectAnswer3
+
+	})
+  .then(res => console.log(res.data))
+  .then(console.log("Thank you for submitting!"))
+	.catch(err => console.log(err)
+	);
 
     
   }
@@ -81,7 +92,7 @@ export default class QuestionSubmission extends Component {
           onChange={this.handleChange}
         ></input>
         <br></br>
-		<button id="questionSubmitButton" onclick={this.handleSubmit}>
+		<button id="questionSubmitButton" onClick={this.handleSubmit}>
           Submit your Question for Review!
         </button>
       </div>
