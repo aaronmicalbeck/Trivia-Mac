@@ -10,9 +10,8 @@ import Leaderboard from './pages/Leaderboard'
 import Game from './pages/Game'
 import QuestionSubmission from './pages/QuestionSubmission'
 import { NavBar } from './components'
-// import { subscribeToTimer } from './api';
-// import { speedometer } from "./api";
-import socketIOClient from "socket.io-client";
+
+// import socketIOClient from "socket.io-client";
 
 
 class App extends Component {
@@ -46,11 +45,11 @@ class App extends Component {
 			});
 		
 
-		const {endpoint} = this.state;
-        //Very simply connect to the socket
-        const socket = socketIOClient(endpoint);
-        //Listen for data on the "outgoing data" namespace and supply a callback for what to do when we get one. In this case, we set a state variable
-		socket.on("outgoing data", data => this.setState({response: data.num}));
+		// const {endpoint} = this.state;
+        // //Very simply connect to the socket
+        // const socket = socketIOClient(endpoint);
+        // //Listen for data on the "outgoing data" namespace and supply a callback for what to do when we get one. In this case, we set a state variable
+		// socket.on("outgoing data", data => this.setState({response: data.num}));
 		
 
 };
