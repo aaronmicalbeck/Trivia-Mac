@@ -10,24 +10,22 @@ import Leaderboard from './pages/Leaderboard'
 import Game from './pages/Game'
 import QuestionSubmission from './pages/QuestionSubmission'
 import { NavBar } from './components'
-import { subscribeToTimer } from './api';
+// import { subscribeToTimer } from './api';
+// import { speedometer } from "./api";
+import socketIOClient from "socket.io-client";
 
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			loggedIn: false,
-			user: null,
-			timestamp: "No timestamp yet"
-		}
-		this._logout = this._logout.bind(this);
-		this._login = this._login.bind(this);
-		subscribeToTimer((err, timestamp) => this.setState({
-			timestamp
-		}));
-	};
+	constructor() {
+        super();
+        this.state = {
+            response: 0,
+            endpoint: "http://127.0.0.1:8000",
+        
+        };
+		
+		
+    };
 
 	componentDidMount() {
 		axios.get('/auth/user').then(response => {
@@ -35,15 +33,27 @@ class App extends Component {
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
-				})
+				});
+				
 			} else {
 				this.setState({
 					loggedIn: false,
 					user: null
-				})
+				});
+				
 			}
-		})
-	};
+
+			});
+		
+
+		const {endpoint} = this.state;
+        //Very simply connect to the socket
+        const socket = socketIOClient(endpoint);
+        //Listen for data on the "outgoing data" namespace and supply a callback for what to do when we get one. In this case, we set a state variable
+		socket.on("outgoing data", data => this.setState({response: data.num}));
+		
+
+};
 
 	_logout(event) {
 		event.preventDefault()
@@ -74,8 +84,16 @@ class App extends Component {
 	}
 
 	render() {
+		
 		return (
+
+			
+			
+		
 			<div className="">
+
+			
+			
 
 				<div className="App">
 					<p className="App-intro">

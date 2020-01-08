@@ -18,7 +18,7 @@ export default class Home extends Component {
 		if (this.props.user) {
 			return (
 				<div className="Home">
-					<Header user={this.state.user} />
+					{/* <Header user={this.state.user} /> */}
 					<p>Current User:</p>
 					<code>
 						{JSON.stringify(this.props)}
@@ -28,7 +28,7 @@ export default class Home extends Component {
 		} else {
 			return (
 				<div className="Home">
-					<Header user={this.state.user} />
+					{/* <Header user={this.state.user} /> */}
 					<p>Current User:</p>
 					<code>
 						{JSON.stringify(this.props)}
