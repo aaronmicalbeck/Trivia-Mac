@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import { Header } from '../../components';
 import "./game.css";
 import broadcastQuestion from "../../utils/triviaAPI";
-import questionAPI from "../../utils/questionAPI";
+import questionApi from "../../utils/questionAPI";
 
 export default class Game extends Component {
 	constructor(props) {
@@ -15,6 +15,7 @@ export default class Game extends Component {
 	componentDidMount() {
 		console.log("Game Component Mounted")
 		broadcastQuestion();
+		questionApi.getQuestion();
 
 	}
 

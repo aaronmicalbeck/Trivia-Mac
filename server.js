@@ -18,13 +18,21 @@ const routes = require("./controllers");
 const PORT = process.env.PORT || 8080
 const io = require('socket.io')();
 
-io.on('connection', (client) => {
-  client.on('subscribeToTimer', (interval) => {
-    console.log(client + 'client is subscribing to timer with interval ', interval);
-    setInterval(() => {
-      client.emit('timer', new Date());
-    }, interval);
-  });
+// io.on('connection', (client) => {
+//   client.on('subscribeToTimer', (interval) => {
+//     console.log(client + 'client is subscribing to timer with interval ', interval);
+//     setInterval(() => {
+//       client.emit('timer', new Date());
+//     }, interval);
+//   });
+// });
+
+io.on("connection", socket => {
+	console.log("new client");
+
+	socket.on("incoming data", (data)=>{
+		socket.broadcast.emit("outgoing data", {num: data});
+	})
 });
 
 const socketPort = 8000;
