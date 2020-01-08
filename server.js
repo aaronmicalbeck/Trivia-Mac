@@ -22,11 +22,45 @@ const io = require('socket.io')();
 
 io.on("connection", socket => {
 	console.log("new client");
+	socket.join('game room');
 
 	socket.on("incoming data", (data)=>{
-		socket.broadcast.emit("outgoing data", {num: data});
+		socket.to('game room').emit("outgoing data", {num: data});
 	})
 });
+
+const axios = require("axios");
+const questionArray = [];
+
+
+function broadcastQuestion() {
+
+        axios.get('https://opentdb.com/api.php?amount=50').then((response) => {
+    questionArray.push(response.data.results[0]);
+    // console.log(questionArray);
+    let broadcastedQuestion = questionArray[Math.floor(Math.random() * questionArray.length)];
+    console.table('Category: ' + broadcastedQuestion.category);
+    console.table('Difficulty: ' + broadcastedQuestion.difficulty);
+    console.table('Question: ' + broadcastedQuestion.question);
+    console.table('Answers: ' + broadcastedQuestion.correct_answer + ','
+     + broadcastedQuestion.incorrect_answers);
+
+    io.to('game room').emit("incoming data", broadcastedQuestion);
+    
+
+    })
+
+    
+
+    
+        
+
+    
+
+}
+setInterval(broadcastQuestion, 2000)
+
+
 
 const socketPort = 8000;
 io.listen(socketPort);
@@ -89,12 +123,12 @@ app.use(function (err, req, res, next) {
 
 // ==== Starting Server =====
 
-io.on('connect', function (socket) {
-	console.log('a user connected');
-	socket.on('disconnect', function () {
-	  console.log('user disconnected');
-	});
-  });
+// io.on('connect', function (socket) {
+// 	console.log('a user connected');
+// 	socket.on('disconnect', function () {
+// 	  console.log('user disconnected');
+// 	});
+//   });
 
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)

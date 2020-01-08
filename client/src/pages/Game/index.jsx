@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import { Header } from '../../components';
 import "./game.css";
-import broadcastQuestion from "../../utils/triviaAPI";
+// import broadcastQuestion from "../../utils/triviaAPI";
 // import questionApi from "../../utils/questionAPI";
 
 export default class Game extends Component {
@@ -11,7 +11,7 @@ export default class Game extends Component {
 			user: props.user
 		}
 
-		setInterval(broadcastQuestion, 2000)
+		
 	}
 
 	componentDidMount() {
