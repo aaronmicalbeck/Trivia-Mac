@@ -13,7 +13,7 @@ export default class Game extends Component {
       gameStarted: false,
       gameEnded: false
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStart = this.handleStart.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,12 +23,18 @@ export default class Game extends Component {
     });
   }
 
-  handleSubmit(event){
+  handleStart(event){
 	event.preventDefault();
 	console.log("game start button working")
 	const {endpoint} = this.state;
 	const socket = socketIOClient(endpoint);
 	socket.on("FromAPI", data => this.setState({response: data}))
+
+  }
+
+  handleStop(event){
+	  event.preventDefault();
+	  console.log("game stop button working")
 
   }
 
@@ -42,8 +48,21 @@ export default class Game extends Component {
       <div id="gameDiv">
         <p>Hello Game</p>
 
-        <button id="startGame" onClick={this.handleSubmit}>Start Game</button>
+        <button id="startGame" onClick={this.handleStart}>Start Game</button>
+		<br></br>
+		
 		{response.category}
+		<br></br>
+		{response.difficulty}
+		<br></br>
+		{response.question}
+		<br></br>
+		{response.correct_answer}
+		<br></br>
+		{response.incorrect_answers}
+		<br></br>
+
+		<button id="endGame" onClick={this.handleStop}>Stop Game </button>
 
       </div>
     );
