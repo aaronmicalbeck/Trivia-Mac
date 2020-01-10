@@ -19,7 +19,7 @@ class App extends Component {
         super();
         this.state = {
             response: 0,
-            endpoint: "http://127.0.0.1:8000",
+            endpoint: "http://127.0.0.1:8080",
         
         };
 		
@@ -91,14 +91,6 @@ class App extends Component {
 		
 			<div className="">
 
-			
-			
-
-				<div className="App">
-					<p className="App-intro">
-						This is the timer value: {this.state.timestamp}
-					</p>
-				</div>
 				{/* Navbar on every page */}
 				<NavBar
 					_logout={this._logout}

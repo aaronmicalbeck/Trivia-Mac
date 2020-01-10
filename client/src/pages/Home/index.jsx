@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Header } from '../../components';
 import "./home.css";
+// import LoginForm from '../LoginForm';
 
 export default class Home extends Component {
 	constructor(props) {
