@@ -61,10 +61,14 @@ export default class Game extends Component {
 		<br></br>
 		{response.question}
 		<br></br>
-		{response.correct_answer}
+		<button>{response.correct_answer}</button>
 		<br></br>
-		{response.incorrect_answers}
-		<br></br>
+		<button>{response.incorrect_answers && response.incorrect_answers[0]}</button>
+    <br></br>
+    <button>{response.incorrect_answers && response.incorrect_answers[1]}</button>
+    <br></br>
+    <button>{response.incorrect_answers && response.incorrect_answers[2]}</button>
+    <br></br>
 
 		<button id="endGame" onClick={this.handleStop}>Stop Game</button>
 

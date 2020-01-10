@@ -109,14 +109,14 @@ let broadcastedQuestion = {};
 const questionArray = [];
 function generateQuestion() {
 	axios.get('https://opentdb.com/api.php?amount=50').then((response) => {
-		console.log(response.data.incorrect_answers);
-		// console.log(questionArray);
+		//questionArray.push(response.data.results[0]);
 		broadcastedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)];
 		console.table('Category: ' + broadcastedQuestion.category);
 		console.table('Difficulty: ' + broadcastedQuestion.difficulty);
 		console.table('Question: ' + broadcastedQuestion.question);
 		console.table('Answers: ' + broadcastedQuestion.correct_answer + ','
 			+ broadcastedQuestion.incorrect_answers);
+		console.log(broadcastedQuestion);
 	})
 }
 setInterval(generateQuestion, 10000)
