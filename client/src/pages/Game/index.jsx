@@ -10,8 +10,8 @@ export default class Game extends Component {
 	  user: props.user,
 	  response: false,
 	  endpoint: "http://127.0.0.1:8080",
-      gameStarted: false,
-      gameEnded: false
+      gameOn: false,
+      gameOff: true
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -26,6 +26,8 @@ export default class Game extends Component {
   handleStart(event){
 	event.preventDefault();
 	console.log("game start button working")
+	this.setState({gameOn: true})
+	this.setState({gameOff: false})
 	const {endpoint} = this.state;
 	const socket = socketIOClient(endpoint);
 	socket.on("FromAPI", data => this.setState({response: data}))
@@ -35,6 +37,8 @@ export default class Game extends Component {
   handleStop(event){
 	  event.preventDefault();
 	  console.log("game stop button working")
+	  this.setState({gameOn: false})
+	  this.setState({gameOff: true})
 
   }
 
@@ -49,8 +53,8 @@ export default class Game extends Component {
         <p>Hello Game</p>
 
         <button id="startGame" onClick={this.handleStart}>Start Game</button>
-		<br></br>
 		
+		<br></br>
 		{response.category}
 		<br></br>
 		{response.difficulty}
@@ -62,7 +66,7 @@ export default class Game extends Component {
 		{response.incorrect_answers}
 		<br></br>
 
-		<button id="endGame" onClick={this.handleStop}>Stop Game </button>
+		<button id="endGame" onClick={this.handleStop}>Stop Game</button>
 
       </div>
     );
