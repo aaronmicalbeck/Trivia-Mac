@@ -22,10 +22,11 @@ export default class Game extends Component {
 
   handleStart(event) {
     event.preventDefault();
-    console.log("game start button working")
+    console.log("game start button working");
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("FromAPI", data => this.setState({ response: data }));
+
     this.setState({ gameStarted: true });
     console.log(this.state.gameStarted);
   }
@@ -38,6 +39,7 @@ export default class Game extends Component {
   isCorrectAnswer(choice) {
     const { response } = this.state;
     let { sessionScore } = this.state;
+
     if (choice === response.correct_answer) {
       alert("Correct!");
       this.setState({ sessionScore: sessionScore + 1 });
@@ -63,7 +65,9 @@ export default class Game extends Component {
       <div id="gameDiv">
         <p>Hello Game</p>
 
-        <button id="startGame" onClick={this.handleStart}>Start Game</button>
+        <button id="startGame" onClick={this.handleStart}>
+          Start Game
+        </button>
         <br></br>
 
         {response.category}
@@ -72,6 +76,7 @@ export default class Game extends Component {
         <br></br>
         {response.question}
         <br></br>
+
         {console.log(response.choices)}
         {renderButtons()}
         <br></br>
