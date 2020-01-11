@@ -53,6 +53,7 @@ export default class Home extends Component {
           <Header user={this.state.user} />
           <p>Current User:</p>
           <code>{JSON.stringify(this.props)}</code>
+          <LoginForm _login={this.props._login} />
         </div>
       );
     }

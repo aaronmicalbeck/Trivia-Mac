@@ -67,6 +67,7 @@ export default class LoginForm extends Component {
             onChange={this.handleChange}
             aria-describedby="my-password-helper-text"
           />
+          <button onClick={this.handleSubmit}>Login</button>
           <a href="/auth/google">
             {/* <GoogleButton /> */}
             <img src={googleButton} alt="sign into Google Button" />

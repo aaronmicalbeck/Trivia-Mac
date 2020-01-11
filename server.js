@@ -20,20 +20,6 @@ const PORT = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 const axios = require("axios");
 
-<<<<<<< HEAD
-const getApiAndEmit = "TODO";
-
-// io.on("connection", socket => {
-// 	console.log("new client");
-// 	socket.join('game room');
-
-// 	socket.on("incoming data", (data)=>{
-// 		socket.to('game room').emit("outgoing data", {num: data});
-// 	})
-// });
-
-=======
->>>>>>> b95851d14afb95f5c5f41aaf1257423ed68b54d2
 // ===== Middleware ====
 app.use(morgan("dev"));
 app.use(
@@ -43,21 +29,14 @@ app.use(
 );
 app.use(bodyParser.json());
 
-<<<<<<< HEAD
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/projectthree",
+  process.env.MONGODB_URI ||
+    "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
 );
-=======
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	});
->>>>>>> b95851d14afb95f5c5f41aaf1257423ed68b54d2
 
 app.use(
   session({
@@ -87,29 +66,11 @@ app.get("*", (req, res) => {
 });
 
 // ====== Error handler ====
-<<<<<<< HEAD
 app.use(function(err, req, res, next) {
   console.log("====== ERROR =======");
   console.error(err.stack);
   res.status(500);
 });
-
-// ==== Starting Server =====
-
-// io.on('connect', function (socket) {
-// 	console.log('a user connected');
-// 	socket.on('disconnect', function () {
-// 	  console.log('user disconnected');
-// 	});
-//   });
-=======
-app.use(function (err, req, res, next) {
-	console.log('====== ERROR =======')
-	console.error(err.stack)
-	res.status(500)
-})
-
->>>>>>> b95851d14afb95f5c5f41aaf1257423ed68b54d2
 
 io.on("connection", socket => {
   console.log("New client connected"),
@@ -117,35 +78,15 @@ io.on("connection", socket => {
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-
-
 let broadcastedQuestion = {};
 const questionArray = [];
 function generateQuestion() {
-<<<<<<< HEAD
   axios.get("https://opentdb.com/api.php?amount=50").then(response => {
-    //questionArray.push(response.data.results[0]);
-    // console.log(questionArray);
     broadcastedQuestion =
       response.data.results[
         Math.floor(Math.random() * response.data.results.length)
       ];
-    console.table("Category: " + broadcastedQuestion.category);
-    console.table("Difficulty: " + broadcastedQuestion.difficulty);
-    console.table("Question: " + broadcastedQuestion.question);
-    console.table(
-      "Answers: " +
-        broadcastedQuestion.correct_answer +
-        "," +
-        broadcastedQuestion.incorrect_answers
-    );
   });
-=======
-	axios.get('https://opentdb.com/api.php?amount=50').then((response) => {
-	broadcastedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)];
-		
-	})
->>>>>>> b95851d14afb95f5c5f41aaf1257423ed68b54d2
 }
 setInterval(generateQuestion, 10000);
 
