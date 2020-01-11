@@ -20,17 +20,6 @@ const PORT = process.env.PORT || 8080
 const io = require('socket.io')(server);
 const axios = require("axios");
 
-const getApiAndEmit = "TODO"
-
-// io.on("connection", socket => {
-// 	console.log("new client");
-// 	socket.join('game room');
-
-// 	socket.on("incoming data", (data)=>{
-// 		socket.to('game room').emit("outgoing data", {num: data});
-// 	})
-// });
-
 // ===== Middleware ====
 app.use(morgan('dev'))
 app.use(
@@ -40,7 +29,7 @@ app.use(
 )
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/projectthree",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
 	{
 		useNewUrlParser: true,
 		useUnifiedTopology: true
@@ -83,16 +72,6 @@ app.use(function (err, req, res, next) {
 })
 
 
-
-// ==== Starting Server =====
-
-// io.on('connect', function (socket) {
-// 	console.log('a user connected');
-// 	socket.on('disconnect', function () {
-// 	  console.log('user disconnected');
-// 	});
-//   });
-
 io.on("connection", socket => {
 	console.log("New client connected"), setInterval(
 		() => broadcastQuestion(socket),
@@ -101,22 +80,14 @@ io.on("connection", socket => {
 	socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-// app.listen(PORT, () => {
-// 	console.log(`App listening on PORT: ${PORT}`)
-// })
+
 
 let broadcastedQuestion = {};
 const questionArray = [];
 function generateQuestion() {
 	axios.get('https://opentdb.com/api.php?amount=50').then((response) => {
-		//questionArray.push(response.data.results[0]);
-		broadcastedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)];
-		console.table('Category: ' + broadcastedQuestion.category);
-		console.table('Difficulty: ' + broadcastedQuestion.difficulty);
-		console.table('Question: ' + broadcastedQuestion.question);
-		console.table('Answers: ' + broadcastedQuestion.correct_answer + ','
-			+ broadcastedQuestion.incorrect_answers);
-		console.log(broadcastedQuestion);
+	broadcastedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)];
+		
 	})
 }
 setInterval(generateQuestion, 10000)

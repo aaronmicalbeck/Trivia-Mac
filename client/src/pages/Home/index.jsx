@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Header } from '../../components';
 import "./home.css";
-// import LoginForm from '../LoginForm';
+import LoginForm from '../LoginForm';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -34,6 +34,7 @@ export default class Home extends Component {
 					<code>
 						{JSON.stringify(this.props)}
 					</code>
+					<LoginForm/>
 				</div>
 			)
 		}
