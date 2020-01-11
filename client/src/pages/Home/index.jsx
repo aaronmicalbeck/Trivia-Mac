@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-// import { Header } from '../../components';
+import { Header } from '../../components';
 import "./home.css";
 import LoginForm from '../LoginForm';
+import SignupForm from '../SignupForm';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ export default class Home extends Component {
 		if (this.props.user) {
 			return (
 				<div className="Home">
-					{/* <Header user={this.state.user} /> */}
+					<Header user={this.state.user} />
 					<p>Current User:</p>
 					<code>
 						{JSON.stringify(this.props)}
@@ -29,12 +30,13 @@ export default class Home extends Component {
 		} else {
 			return (
 				<div className="Home">
-					{/* <Header user={this.state.user} /> */}
+					<Header user={this.state.user} />
 					<p>Current User:</p>
 					<code>
 						{JSON.stringify(this.props)}
 					</code>
-					<LoginForm/>
+					<LoginForm _login={this.props._login} />
+					
 				</div>
 			)
 		}
