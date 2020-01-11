@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
+//import { response } from "express";
 
 export default class Game extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class Game extends Component {
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
-    this.correctAnswer = this.correctAnswer.bind(this);
+    this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
     this.wrongAnswer = this.wrongAnswer.bind(this);
   }
 
@@ -25,7 +26,9 @@ export default class Game extends Component {
     console.log("game start button working")
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }))
+    socket.on("FromAPI", data => this.setState({ response: data }));
+    this.setState({ gameStarted: true });
+    console.log(this.state.gameStarted);
 
   }
 
@@ -35,11 +38,18 @@ export default class Game extends Component {
 
   }
 
-  correctAnswer() {
-    alert("Correct!");
+  isCorrectAnswer(choice) {
+    const { response } = this.state;
     let { sessionScore } = this.state;
-    console.log(this.state.sessionScore);
-    this.setState({ sessionScore: sessionScore + 1});
+    if (choice === response.correct_answer) {
+      alert("Correct!");
+      this.setState({ sessionScore: sessionScore + 1 });
+    } else {
+      alert("Wrong!");
+      this.setState({ sessionScore: sessionScore - 1 });
+    }
+
+
   }
 
   wrongAnswer() {
@@ -55,6 +65,11 @@ export default class Game extends Component {
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
+    const renderButtons = () => {
+      if (this.state.gameStarted && response.choices) {
+        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)
+      }
+    }
     return (
       <div id="gameDiv">
         <p>Hello Game</p>
@@ -68,13 +83,9 @@ export default class Game extends Component {
         <br></br>
         {response.question}
         <br></br>
-        <button id="correct" onClick={this.correctAnswer}>{response.correct_answer}</button>
-        <br></br>
-        <button id="wrong1" onClick={this.wrongAnswer}>{response.incorrect_answers && response.incorrect_answers[0]}</button>
-        <br></br>
-        <button id="wrong2" onClick={this.wrongAnswer}>{response.incorrect_answers && response.incorrect_answers[1]}</button>
-        <br></br>
-        <button id="wrong3" onClick={this.wrongAnswer}>{response.incorrect_answers && response.incorrect_answers[2]}</button>
+        {console.log(response.choices)}
+        {renderButtons()}
+
         <br></br>
 
         <p id="score">Score: {sessionScore}</p>

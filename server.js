@@ -86,8 +86,11 @@ let broadcastedQuestion = {};
 const questionArray = [];
 function generateQuestion() {
 	axios.get('https://opentdb.com/api.php?amount=50').then((response) => {
-	broadcastedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)];
-		
+	pickedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)]
+	choices = pickedQuestion.incorrect_answers.concat(pickedQuestion.correct_answer)
+	choices.sort(() => Math.random() - 0.5);
+	pickedQuestion.choices = choices;
+	broadcastedQuestion = pickedQuestion;
 	})
 }
 setInterval(generateQuestion, 10000)
