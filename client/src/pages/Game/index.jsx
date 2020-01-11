@@ -18,7 +18,6 @@ export default class Game extends Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
-    this.wrongAnswer = this.wrongAnswer.bind(this);
   }
 
   handleStart(event) {
@@ -30,14 +29,11 @@ export default class Game extends Component {
 
     this.setState({ gameStarted: true });
     console.log(this.state.gameStarted);
-
-
-
   }
 
   handleStop(event) {
     event.preventDefault();
-    console.log("game stop button working");
+    console.log("game stop button working")
   }
 
   isCorrectAnswer(choice) {
@@ -51,17 +47,6 @@ export default class Game extends Component {
       alert("Wrong!");
       this.setState({ sessionScore: sessionScore - 1 });
     }
-
-
-
-    console.log(this.state.sessionScore);
-    this.setState({ sessionScore: sessionScore + 1 });
-
-
-  wrongAnswer() {
-    alert("Wrong!");
-    let { sessionScore } = this.state;
-    this.setState({ sessionScore: sessionScore - 1 });
   }
 
   componentDidMount() {
@@ -94,17 +79,9 @@ export default class Game extends Component {
 
         {console.log(response.choices)}
         {renderButtons()}
-
-    
-        
-
+        <br></br>
         <p id="score">Score: {sessionScore}</p>
-
-        <button id="endGame" onClick={this.handleStop}>
-          Stop Game{" "}
-        </button>
-
-        <p>Score:{sessionScore} </p>
+        <button id="endGame" onClick={this.handleStop}>Stop Game </button>
       </div>
     );
   }
