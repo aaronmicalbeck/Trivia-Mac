@@ -57,7 +57,7 @@ export default class LoginForm extends Component {
 						<button onClick={this.handleSubmit}>Login</button>
 					</form>
 					<a href="/auth/google">
-						{/* <GoogleButton /> */}
+						<googleButton />
 						<img src={googleButton} alt="sign into Google Button" />
 					</a>
 				</div>
