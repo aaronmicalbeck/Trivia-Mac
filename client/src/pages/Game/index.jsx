@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Header } from '../../components';
+// import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
 
@@ -15,13 +15,9 @@ export default class Game extends Component {
       sessionScore: 0
     };
     this.handleStart = this.handleStart.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    this.handleStop = this.handleStop.bind(this);
+    this.correctAnswer = this.correctAnswer.bind(this);
+    this.wrongAnswer = this.wrongAnswer.bind(this);
   }
 
   handleStart(event) {
@@ -37,13 +33,26 @@ export default class Game extends Component {
     console.log("game stop button working");
   }
 
+  correctAnswer() {
+    alert("Correct!");
+    let { sessionScore } = this.state;
+    console.log(this.state.sessionScore);
+    this.setState({ sessionScore: sessionScore + 1 });
+  }
+
+  wrongAnswer() {
+    alert("Wrong!");
+    let { sessionScore } = this.state;
+    this.setState({ sessionScore: sessionScore - 1 });
+  }
+
   componentDidMount() {
     console.log("Game Component Mounted");
   }
 
   render() {
     const { response } = this.state;
-    const { sessionScore } = this.state;
+    let { sessionScore } = this.state;
     return (
       <div id="gameDiv">
         <p>Hello Game</p>
@@ -59,10 +68,24 @@ export default class Game extends Component {
         <br></br>
         {response.question}
         <br></br>
-        {response.correct_answer}
+        <button id="correct" onClick={this.correctAnswer}>
+          {response.correct_answer}
+        </button>
         <br></br>
-        {response.incorrect_answers}
+        <button id="wrong1" onClick={this.wrongAnswer}>
+          {response.incorrect_answers && response.incorrect_answers[0]}
+        </button>
         <br></br>
+        <button id="wrong2" onClick={this.wrongAnswer}>
+          {response.incorrect_answers && response.incorrect_answers[1]}
+        </button>
+        <br></br>
+        <button id="wrong3" onClick={this.wrongAnswer}>
+          {response.incorrect_answers && response.incorrect_answers[2]}
+        </button>
+        <br></br>
+
+        <p id="score">Score: {sessionScore}</p>
 
         <button id="endGame" onClick={this.handleStop}>
           Stop Game{" "}
