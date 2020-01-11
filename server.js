@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 require("dotenv").config();
-
+const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
@@ -14,25 +14,22 @@ const passport = require("./utils/passport");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
+const server = http.createServer(app);
 const routes = require("./controllers");
 const PORT = process.env.PORT || 8080;
-const io = require("socket.io")();
+const io = require("socket.io")(server);
+const axios = require("axios");
 
-io.on("connection", client => {
-  client.on("subscribeToTimer", interval => {
-    console.log(
-      client + "client is subscribing to timer with interval ",
-      interval
-    );
-    setInterval(() => {
-      client.emit("timer", new Date());
-    }, interval);
-  });
-});
+const getApiAndEmit = "TODO";
 
-const socketPort = 8000;
-io.listen(socketPort);
-console.log("listening on port ", socketPort);
+// io.on("connection", socket => {
+// 	console.log("new client");
+// 	socket.join('game room');
+
+// 	socket.on("incoming data", (data)=>{
+// 		socket.to('game room').emit("outgoing data", {num: data});
+// 	})
+// });
 
 // ===== Middleware ====
 app.use(morgan("dev"));
@@ -87,13 +84,54 @@ app.use(function(err, req, res, next) {
 
 // ==== Starting Server =====
 
-io.on("connect", function(socket) {
-  console.log("a user connected");
-  socket.on("disconnect", function() {
-    console.log("user disconnected");
-  });
+// io.on('connect', function (socket) {
+// 	console.log('a user connected');
+// 	socket.on('disconnect', function () {
+// 	  console.log('user disconnected');
+// 	});
+//   });
+
+io.on("connection", socket => {
+  console.log("New client connected"),
+    setInterval(() => broadcastQuestion(socket), 1000);
+  socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening on PORT: ${PORT}`);
-});
+// app.listen(PORT, () => {
+// 	console.log(`App listening on PORT: ${PORT}`)
+// })
+
+let broadcastedQuestion = {};
+const questionArray = [];
+function generateQuestion() {
+  axios.get("https://opentdb.com/api.php?amount=50").then(response => {
+    //questionArray.push(response.data.results[0]);
+    // console.log(questionArray);
+    broadcastedQuestion =
+      response.data.results[
+        Math.floor(Math.random() * response.data.results.length)
+      ];
+    console.table("Category: " + broadcastedQuestion.category);
+    console.table("Difficulty: " + broadcastedQuestion.difficulty);
+    console.table("Question: " + broadcastedQuestion.question);
+    console.table(
+      "Answers: " +
+        broadcastedQuestion.correct_answer +
+        "," +
+        broadcastedQuestion.incorrect_answers
+    );
+  });
+}
+setInterval(generateQuestion, 10000);
+
+// Gets a question from API and broadcasts to anyone listening
+
+const broadcastQuestion = async socket => {
+  try {
+    socket.emit("FromAPI", broadcastedQuestion); // Emitting a new message. It will be consumed by the client
+  } catch (error) {
+    console.error(`Error: ${error.code}`);
+  }
+};
+
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
