@@ -24,6 +24,7 @@ export default class LoginForm extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault()
+		console.log(this.props._login);
 		console.log('handleSubmit')
 		this.props._login(this.state.username, this.state.password)
 		this.setState({
