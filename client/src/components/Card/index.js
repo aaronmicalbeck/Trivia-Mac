@@ -1,6 +1,6 @@
 import React from "react";
 import CardBtn from "../CardBtn";
-import CardContext from "../../utils/CardContext";
+// import CardContext from "../../utils/CardContext";
 import CardTitle from "../CardTitle";
 import "./style.css";
 
@@ -8,7 +8,7 @@ function Card() {
   return (
     // The most straightforward solution would be to add the Consumer to the Card component.
     // This way, all Card components can have the Card context passed directly as props
-    <CardContext.Consumer>
+    <div id="cardContent">
       {({ image, handleBtnClick }) => (
         <div
           className="card"
@@ -23,7 +23,8 @@ function Card() {
           <CardBtn style={{ opacity: image ? 1 : 0 }} onClick={handleBtnClick} data-value="next" />
         </div>
       )}
-    </CardContext.Consumer>
+      </div>
+    
   );
 }
 

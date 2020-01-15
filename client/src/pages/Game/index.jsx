@@ -2,15 +2,23 @@ import React, { Component } from "react";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
+import { Redirect } from "react-router-dom";
 //import { response } from "express";
+
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
+
+    const PORT = process.env.PORT ? process.env.PORT: "8080" 
+
+    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com:${PORT}` :
+    "127.0.0.1:8080"
     this.state = {
+      
       user: props.user,
       response: false,
-      endpoint: "http://127.0.0.1:8080",
+      endpoint,
       gameStarted: false,
       gameEnded: false,
       sessionScore: 0
@@ -34,6 +42,7 @@ export default class Game extends Component {
   handleStop(event) {
     event.preventDefault();
     console.log("game stop button working")
+
   }
 
   isCorrectAnswer(choice) {
@@ -77,7 +86,7 @@ export default class Game extends Component {
         {response.question}
         <br></br>
 
-        {console.log(response.choices)}
+    
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
