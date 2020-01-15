@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route } from "react-router-dom";
+<<<<<<< HEAD
 //import LoginForm from "./pages/LoginForm";
+=======
+>>>>>>> 7682bda1e9e754872919ba80fdc645a69d7365b8
 import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
