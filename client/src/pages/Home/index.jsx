@@ -36,6 +36,8 @@ export default class Home extends Component {
       );
     }
   }
+<<<<<<< HEAD
+=======
 
 
   render() {
@@ -63,4 +65,5 @@ export default class Home extends Component {
       );
     }
   }
+>>>>>>> 7682bda1e9e754872919ba80fdc645a69d7365b8
 }
