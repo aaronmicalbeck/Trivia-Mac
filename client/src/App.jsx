@@ -79,7 +79,11 @@ class App extends Component {
         />
 
         <Route exact path="/signup" component={SignupForm} />
-        <Route exact path="/profile" component={Profile} />
+        <Route
+          exact
+          path="/profile"
+          render={() => <Profile user={this.state.user} _login={this._login} />}
+        />
         <Route exact path="/lobby" component={Lobby} />
         <Route exact path="/game" component={Game} />
         <Route exact path="/leaderboard" component={Leaderboard} />

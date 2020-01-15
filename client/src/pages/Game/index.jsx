@@ -2,8 +2,8 @@ import React, { Component } from "react";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
-import { Redirect } from "react-router-dom";
-//import { response } from "express";
+
+import gsap from "gsap";
 
 
 export default class Game extends Component {
@@ -60,11 +60,18 @@ export default class Game extends Component {
 
   componentDidMount() {
     console.log("Game Component Mounted");
+    /////////////
+    // on load
+    /////////////
+
+    // on load fade start button in.
+    gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
   }
 
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
+
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
         return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)

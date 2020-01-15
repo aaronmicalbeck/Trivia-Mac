@@ -13,12 +13,6 @@ function NavBarComponent({ loggedIn, _logout }) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-          </li>
-         
-          <li className="nav-item">
             <Link to="/profile" className="nav-link">
               Profile
             </Link>
