@@ -44,7 +44,7 @@ function NavBarComponent({ loggedIn, _logout }) {
             </Link>
           </li>
           <li>
-            <Link to="#" className="nav-link" onClick={_logout}>
+            <Link to="/" className="nav-link" onClick={_logout}>
               Logout
             </Link>
           </li>

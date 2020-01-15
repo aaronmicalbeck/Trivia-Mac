@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import { Header } from '../../components';
+import { Header } from '../../components';
 import "./profile.css";
 
 export default class Profile extends Component {
@@ -15,7 +15,7 @@ export default class Profile extends Component {
 	}
 
 	render() {
-		return <p>Hello Profile</p>
+		return (<Header user ={this.props.user}/>)
 	}
 
 }
