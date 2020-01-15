@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./signup.css";
-import googleButton from "./google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png";
+import {
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Input,
+  InputLabel
+} from "@material-ui/core";
 
 export default class SignupForm extends Component {
   constructor() {
@@ -34,7 +40,7 @@ export default class SignupForm extends Component {
         if (!response.data.errmsg) {
           console.log("youre good");
           this.setState({
-            redirectTo: "/login"
+            redirectTo: "/Home"
           });
         } else {
           console.log("duplicate");
@@ -48,6 +54,45 @@ export default class SignupForm extends Component {
     return (
       <div className="SignupForm">
         <h1>Signup form</h1>
+        <FormControl>
+          <InputLabel htmlFor="username">Username</InputLabel>
+          <Input
+            name="username"
+            type="text"
+            id="my-input"
+            value={this.state.username}
+            onChange={this.handleChange}
+            aria-describedby="my-helper-text"
+          />
+          <FormHelperText id="my-helper-text">
+            We'll never share your information.
+          </FormHelperText>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+            name="password"
+            type="password"
+            id="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+            aria-describedby="my-password-helper-text"
+          />
+          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+          <Input
+            name="confirmPassword"
+            type="password"
+            id="my-password"
+            value={this.state.confirmPassword}
+            onChange={this.handleChange}
+            aria-describedby="my-password-helper-text"
+          />
+          <button onClick={this.handleSubmit}>Sign up</button>
+        </FormControl>
+      </div>
+    );
+  }
+}
+{
+  /* <h1>Signup form</h1>
         <label htmlFor="username">Username: </label>
         <input
           type="text"
@@ -69,12 +114,5 @@ export default class SignupForm extends Component {
           value={this.state.confirmPassword}
           onChange={this.handleChange}
         />
-        <button onClick={this.handleSubmit}>Sign up</button>
-        <a href="/auth/google">
-          {/* <GoogleButton /> */}
-          <img src={googleButton} alt="sign into Google Button" />
-        </a>
-      </div>
-    );
-  }
+        <button onClick={this.handleSubmit}>Sign up</button> */
 }

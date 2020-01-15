@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
+import gsap from "gsap";
 
 export default class Game extends Component {
   constructor(props) {
@@ -48,11 +49,18 @@ export default class Game extends Component {
 
   componentDidMount() {
     console.log("Game Component Mounted");
+    /////////////
+    // on load
+    /////////////
+
+    // on load fade start button in.
+    gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
   }
 
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
+
     return (
       <div id="gameDiv">
         <p>Hello Game</p>

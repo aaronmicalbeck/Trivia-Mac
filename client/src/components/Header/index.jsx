@@ -18,7 +18,11 @@ const HeaderComponent = props => {
       </p>
     );
   }
-  return <div className="Header">{Greeting}</div>;
+  return (
+    <div id="header" className="Header">
+      {Greeting}
+    </div>
+  );
 };
 
 export const Header = React.memo(HeaderComponent);
