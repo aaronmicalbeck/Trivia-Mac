@@ -12,7 +12,7 @@ export default class Game extends Component {
 
     const PORT = process.env.PORT ? process.env.PORT: "8080" 
 
-    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com:${PORT}` :
+    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com` :
     "127.0.0.1:8080"
     this.state = {
       
