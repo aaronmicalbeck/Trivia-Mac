@@ -77,6 +77,11 @@ class App extends Component {
           path="/"
           render={() => <Home user={this.state.user} _login={this._login} />}
         />
+        <Route
+          exact
+          path="/game"
+          render={() => <Game user={this.state.user} />}
+        />
 
         <Route exact path="/signup" component={SignupForm} />
         <Route
@@ -85,7 +90,6 @@ class App extends Component {
           render={() => <Profile user={this.state.user} _login={this._login} />}
         />
         <Route exact path="/lobby" component={Lobby} />
-        <Route exact path="/game" component={Game} />
         <Route exact path="/leaderboard" component={Leaderboard} />
         <Route
           exact

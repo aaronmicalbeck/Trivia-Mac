@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
@@ -39,10 +40,18 @@ export default class Game extends Component {
     console.log(this.state.gameStarted);
   }
 
+  getScore(){
+    return this.state.sessionScore;
+  }
+
   handleStop(event) {
     event.preventDefault();
-    console.log("game stop button working")
+    console.log("game stop button working");
+    const score = this.getScore()
 
+    axios.post(`/api/score/${this.state.user._id}`, score)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   isCorrectAnswer(choice) {
