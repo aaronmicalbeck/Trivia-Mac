@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route } from "react-router-dom";
-//import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -85,7 +84,11 @@ class App extends Component {
         />
 
         <Route exact path="/signup" component={SignupForm} />
-        <Route exact path="/profile" component={Profile} />
+        <Route
+          exact
+          path="/profile"
+          render={() => <Profile user={this.state.user} _login={this._login} />}
+        />
         <Route exact path="/lobby" component={Lobby} />
         <Route exact path="/leaderboard" component={Leaderboard} />
         <Route

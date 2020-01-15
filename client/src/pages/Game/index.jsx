@@ -3,15 +3,23 @@ import axios from "axios";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
-//import { response } from "express";
+
+import gsap from "gsap";
+
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
+
+    const PORT = process.env.PORT ? process.env.PORT: "8080" 
+
+    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com` :
+    "127.0.0.1:8080"
     this.state = {
+      
       user: props.user,
       response: false,
-      endpoint: "http://127.0.0.1:8080",
+      endpoint,
       gameStarted: false,
       gameEnded: false,
       sessionScore: 0
@@ -61,11 +69,18 @@ export default class Game extends Component {
 
   componentDidMount() {
     console.log("Game Component Mounted");
+    /////////////
+    // on load
+    /////////////
+
+    // on load fade start button in.
+    gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
   }
 
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
+
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
         return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)
@@ -87,7 +102,7 @@ export default class Game extends Component {
         {response.question}
         <br></br>
 
-        {console.log(response.choices)}
+    
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
