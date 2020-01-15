@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import { Header } from '../../components';
 import "./leaderboard.css";
+import BarChart from "../../components/BarChart";
 
 export default class Leaderboard extends Component {
 	constructor(props) {
@@ -15,7 +16,13 @@ export default class Leaderboard extends Component {
 	}
 
 	render() {
-		return <p>Hello Leaderboard</p>
+		return (
+		
+		<div id="leaderBoard">
+		<p>Hello Leaderboard</p>
+		<BarChart/>
+		</div>
+		)
 	}
 
 }
