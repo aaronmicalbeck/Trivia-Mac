@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import axios from "axios";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
-import { Redirect } from "react-router-dom";
-//import { response } from "express";
+
+import gsap from "gsap";
 
 
 export default class Game extends Component {
@@ -39,10 +40,18 @@ export default class Game extends Component {
     console.log(this.state.gameStarted);
   }
 
+  getScore(){
+    return this.state.sessionScore;
+  }
+
   handleStop(event) {
     event.preventDefault();
-    console.log("game stop button working")
+    console.log("game stop button working");
+    const score = this.getScore()
 
+    axios.post(`/api/score/${this.state.user._id}`, score)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   isCorrectAnswer(choice) {
@@ -60,11 +69,18 @@ export default class Game extends Component {
 
   componentDidMount() {
     console.log("Game Component Mounted");
+    /////////////
+    // on load
+    /////////////
+
+    // on load fade start button in.
+    gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
   }
 
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
+
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
         return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)
