@@ -8,7 +8,8 @@ function Card() {
   return (
     // The most straightforward solution would be to add the Consumer to the Card component.
     // This way, all Card components can have the Card context passed directly as props
-    <div id="cardContent">
+
+    <CardContainer>
       {({ image, handleBtnClick }) => (
         <div
           className="card"
@@ -30,8 +31,7 @@ function Card() {
           />
         </div>
       )}
-      </div>
-    
+    </CardContainer>
   );
 }
 

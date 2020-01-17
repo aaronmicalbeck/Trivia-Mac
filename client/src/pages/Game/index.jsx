@@ -2,18 +2,20 @@ import React, { Component } from "react";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
+
 import gsap from "gsap";
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
 
-    const PORT = process.env.PORT ? process.env.PORT: "8080" 
+    const PORT = process.env.PORT ? process.env.PORT : "8080";
 
-    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com:${PORT}` :
-    "127.0.0.1:8080"
+    const endpoint =
+      process.env.NODE_ENV === "production"
+        ? `https://trivia-mac.herokuapp.com`
+        : "127.0.0.1:8080";
     this.state = {
-      
       user: props.user,
       response: false,
       endpoint,
@@ -39,8 +41,7 @@ export default class Game extends Component {
 
   handleStop(event) {
     event.preventDefault();
-    console.log("game stop button working")
-
+    console.log("game stop button working");
   }
 
   isCorrectAnswer(choice) {
@@ -71,9 +72,13 @@ export default class Game extends Component {
     let { sessionScore } = this.state;
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)
+        return response.choices.map(answers => (
+          <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>
+            {answers}
+          </button>
+        ));
       }
-    }
+    };
     return (
       <div id="gameDiv">
         <p>Hello Game</p>
@@ -90,11 +95,12 @@ export default class Game extends Component {
         {response.question}
         <br></br>
 
-    
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
-        <button id="endGame" onClick={this.handleStop}>Stop Game </button>
+        <button id="endGame" onClick={this.handleStop}>
+          Stop Game{" "}
+        </button>
       </div>
     );
   }
