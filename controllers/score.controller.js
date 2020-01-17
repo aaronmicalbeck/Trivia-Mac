@@ -3,6 +3,7 @@ const router = require("express").Router();
 
 // Update 
 router.route("/:id").post((req, res) => {
+    console.log(req.body);
     db.User
         .findOneAndUpdate({ _id: req.params.id }, req.body)
         .then(dbModel => res.json(dbModel))
