@@ -49,7 +49,7 @@ export default class Game extends Component {
     console.log("game stop button working");
     const score = this.getScore()
 
-    axios.post(`/api/score/${this.state.user._id}`, score)
+    axios.post(`/api/score/${this.state.user._id}`, {topScore: this.state.user.topScore + score})
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
