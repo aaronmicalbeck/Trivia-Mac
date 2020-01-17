@@ -88,18 +88,15 @@ export default class Game extends Component {
     }
     return (
       <div id="gameDiv">
-        <p>Hello Game</p>
-
         <button id="startGame" onClick={this.handleStart}>
           Start Game
         </button>
         <br></br>
-
-        {response.category}
+        <p>Category: {response.category}</p>
         <br></br>
-        {response.difficulty}
+        <p>Difficulty: {response.difficulty}</p>
         <br></br>
-        {response.question}
+        <p>{response.question}</p>
         <br></br>
 
     
