@@ -1,4 +1,4 @@
-#answers {
+#answers, p {
     display: inline-block;
     height: 100%;
     width: 100%;
@@ -9,7 +9,7 @@
     font-size: 3em;
     line-height: 1.2;
     text-align: center;
-    background-color: #8AD453;
+    background-color:  #007bff;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
@@ -20,7 +20,7 @@
     -o-user-select: none;
     user-select: none;
     border-bottom: 1px dotted white;
-    word-break: normal;
+    word-wrap: normal;
 }
 
 #answers:focus {
