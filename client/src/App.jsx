@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Route } from "react-router-dom";
 //import LoginForm from "./pages/LoginForm";
-
 import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";

@@ -36,32 +36,4 @@ export default class Home extends Component {
       );
     }
   }
-
-
-  render() {
-    if (this.props.user) {
-      // user is signed in
-      return (
-        <div className="Home">
-          {/* <LoginForm /> */}
-          <Header user={this.state.user} />
-          <p>Current User:</p>
-          <code>{JSON.stringify(this.props)}</code>
-        </div>
-      );
-    } else {
-      return (
-        // user is NOT signed in yet
-        <div className="Home">
-          {/* <LoginForm /> */}
-          <Header user={this.state.user} />
-          <p>Please login:</p>
-          {/* <code>{JSON.stringify(this.props)}</code> */}
-          <LoginForm _login={this.props._login} />
-          {/* <SignupForm /> */}
-        </div>
-      );
-    }
-  }
-
 }
