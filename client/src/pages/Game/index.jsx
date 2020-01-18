@@ -77,13 +77,19 @@ export default class Game extends Component {
     gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
   }
 
+  decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
 
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)
+        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{this.decodeHtml(answers)}</button>)
       }
     }
     return (
@@ -96,7 +102,7 @@ export default class Game extends Component {
         <br></br>
         <p>Difficulty: {response.difficulty}</p>
         <br></br>
-        <p>{response.question}</p>
+        <p>{this.decodeHtml(response.question)}</p>
         <br></br>
 
     
