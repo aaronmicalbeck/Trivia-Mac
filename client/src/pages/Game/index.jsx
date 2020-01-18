@@ -76,13 +76,13 @@ export default class Game extends Component {
     // on load fade start button in.
     gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
 
-    axios.get(`/api/userscore/${this.state.user._id}`)
-    .then(res => {
-      this.setState({
-        user: res.data
-      })
-      console.log(res)})
-    .catch(err => console.log(err));
+      axios.get(`/api/userscore/${this.state.user._id}`)
+      .then(res => {
+        this.setState({
+          user: res.data
+        })
+        console.log(res)})
+      .catch(err => console.log(err));
   }
 
   decodeHtml(html) {
