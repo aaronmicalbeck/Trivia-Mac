@@ -15,7 +15,6 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { Header } from "../Header";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -40,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function RecipeReviewCard(props) {
+export default function ProfileCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -53,9 +52,18 @@ export default function RecipeReviewCard(props) {
       const username = player.local.username;
       return username;
     } else {
-      console.log(player);
       const username = player.firstName;
       return username;
+    }
+  }
+
+  function profilePic(player) {
+    if (player.hasOwnProperty("local")) {
+      const profilePicture = player.photos[0];
+      return profilePicture;
+    } else {
+      const profilePicture = player.photos[0].value;
+      return profilePicture;
     }
   }
   return (
@@ -76,7 +84,7 @@ export default function RecipeReviewCard(props) {
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image={profilePic(props.user)}
         title="Paella dish"
       />
       <CardContent>

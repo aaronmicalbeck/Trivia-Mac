@@ -6,10 +6,10 @@ import socketIOClient from "socket.io-client";
 
 import gsap from "gsap";
 
-
 export default class Game extends Component {
   constructor(props) {
     super(props);
+
 
     const PORT = process.env.PORT ? process.env.PORT : "8080"
 
@@ -108,12 +108,12 @@ export default class Game extends Component {
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
-
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
+
         return response.choices.map(answers => <button disabled={!this.state.enableButton} id="answers" onClick={() => { this.isCorrectAnswer(answers) }}>{this.decodeHtml(answers)}</button>)
       }
-    }
+    };
     return (
       <div id="gameDiv">
         <button id="startGame" onClick={this.handleStart}>
@@ -127,11 +127,12 @@ export default class Game extends Component {
         <p>{this.decodeHtml(response.question)}</p>
         <br></br>
 
-
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
-        <button id="endGame" onClick={this.handleStop}>Stop Game </button>
+        <button id="endGame" onClick={this.handleStop}>
+          Stop Game{" "}
+        </button>
       </div>
     );
   }

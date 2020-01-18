@@ -9,6 +9,21 @@ import {
   Input,
   InputLabel
 } from "@material-ui/core";
+import PhotoContainer from "../../components/PhotoContainer";
+const images = [
+  { src: "Images/Brain.jpg", name: "Brain" },
+  { src: "Images/Dex_Lab.jpg", name: "Dexter" },
+  { src: "Images/Einstein.jpg", name: "Einstein" },
+  { src: "Images/Gadget_Hack.jpg", name: "Gadget" },
+  { src: "Images/Gogo_Tamo.jpg", name: "Gogo" },
+  { src: "Images/Gretchen.jpg", name: "Gretchen" },
+  { src: "Images/Lisa.jpg", name: "Lisa" },
+  { src: "Images/Megamind.jpg", name: "Megamind" },
+  { src: "Images/Ms_Frizz.jpg", name: "Ms_Frizz" },
+  { src: "Images/Prof_X.jpg", name: "Prof_X" },
+  { src: "Images/Rick.jpg", name: "Rick" },
+  { src: "Images/Velma.jpg", name: "Velma" }
+];
 
 export default class SignupForm extends Component {
   constructor() {
@@ -16,9 +31,12 @@ export default class SignupForm extends Component {
     this.state = {
       username: "",
       password: "",
+      photo: "",
       confirmPassword: "",
       redirectTo: null
     };
+
+    // TODO: Write clicked photo to state
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -33,7 +51,8 @@ export default class SignupForm extends Component {
     axios
       .post("/auth/signup", {
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        photo: this.state.photo
       })
       .then(response => {
         console.log(response);
@@ -47,10 +66,15 @@ export default class SignupForm extends Component {
         }
       });
   }
+
+  changePhoto(foo) {
+    this.setState({ photo: foo });
+  }
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     }
+    //TODO: Add photos that when clciked, set this.state.photo to their url
     return (
       <div className="SignupForm">
         <h1>Signup form</h1>
@@ -87,32 +111,15 @@ export default class SignupForm extends Component {
           />
           <button onClick={this.handleSubmit}>Sign up</button>
         </FormControl>
+        <PhotoContainer>
+          {images.map(image => (
+            <img
+              src={image.src}
+              onClick={() => this.changePhoto(image.src)}
+            ></img>
+          ))}
+        </PhotoContainer>
       </div>
     );
   }
-}
-{
-  /* <h1>Signup form</h1>
-        <label htmlFor="username">Username: </label>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="confirmPassword">Confirm Password: </label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={this.state.confirmPassword}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.handleSubmit}>Sign up</button> */
 }
