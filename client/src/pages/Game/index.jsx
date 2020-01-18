@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 // import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
@@ -9,16 +10,17 @@ export default class Game extends Component {
   constructor(props) {
     super(props);
 
-    const PORT = process.env.PORT ? process.env.PORT : "8080";
 
-    const endpoint =
-      process.env.NODE_ENV === "production"
-        ? `https://trivia-mac.herokuapp.com`
-        : "127.0.0.1:8080";
+    const PORT = process.env.PORT ? process.env.PORT : "8080"
+
+    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com` :
+      "127.0.0.1:8080"
     this.state = {
+
       user: props.user,
       response: false,
       endpoint,
+      enableButton: true,
       gameStarted: false,
       gameEnded: false,
       sessionScore: 0
@@ -30,30 +32,48 @@ export default class Game extends Component {
 
   handleStart(event) {
     event.preventDefault();
-    console.log("game start button working");
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
-
+    socket.on("FromAPI", data => this.setState({
+      //enable the button when data comes in unless...
+      enableButton: this.state.enableButton ?
+        true :
+        //the question has already been answered. else, leave it enabled
+        this.state.response.question === data.question ?
+          false :
+          true,
+      response: data
+    }));
     this.setState({ gameStarted: true });
-    console.log(this.state.gameStarted);
+  }
+
+  getScore() {
+    return this.state.sessionScore;
   }
 
   handleStop(event) {
     event.preventDefault();
-    console.log("game stop button working");
+   
+    const score = this.getScore();
+    
+
+
+    axios.post(`/api/score/${this.state.user._id}`, { topScore: this.state.user.topScore + score })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+      window.location.href = './';
   }
 
   isCorrectAnswer(choice) {
-    const { response } = this.state;
-    let { sessionScore } = this.state;
+    if (this.state.enableButton) {
+      const { response } = this.state;
+      let { sessionScore } = this.state;
 
-    if (choice === response.correct_answer) {
-      alert("Correct!");
-      this.setState({ sessionScore: sessionScore + 1 });
-    } else {
-      alert("Wrong!");
-      this.setState({ sessionScore: sessionScore - 1 });
+      if (choice === response.correct_answer) {
+        this.setState({ sessionScore: sessionScore + 1, enableButton: false });
+      } else {
+        this.setState({ sessionScore: sessionScore - 1, enableButton: false });
+      }
     }
   }
 
@@ -65,6 +85,24 @@ export default class Game extends Component {
 
     // on load fade start button in.
     gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
+
+    axios.get(`/api/userscore/${this.state.user._id}`)
+    .then(res => {
+      this.setState({
+        user: res.data
+      })
+      console.log(res)})
+    .catch(err => console.log(err));
+  }
+
+  // componentShouldUpdate() {
+  //   document.getElementById("answers").disabled = false;
+  // }
+
+  decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
   }
 
   render() {
@@ -72,27 +110,21 @@ export default class Game extends Component {
     let { sessionScore } = this.state;
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-        return response.choices.map(answers => (
-          <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>
-            {answers}
-          </button>
-        ));
+
+        return response.choices.map(answers => <button disabled={!this.state.enableButton} id="answers" onClick={() => { this.isCorrectAnswer(answers) }}>{this.decodeHtml(answers)}</button>)
       }
     };
     return (
       <div id="gameDiv">
-        <p>Hello Game</p>
-
         <button id="startGame" onClick={this.handleStart}>
           Start Game
         </button>
         <br></br>
-
-        {response.category}
+        <p>Category: {response.category}</p>
         <br></br>
-        {response.difficulty}
+        <p>Difficulty: {response.difficulty}</p>
         <br></br>
-        {response.question}
+        <p>{this.decodeHtml(response.question)}</p>
         <br></br>
 
         {renderButtons()}

@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import googleButton from "./google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png";
 import {
   FormControl,
-  FormLabel,
   FormHelperText,
   Input,
   InputLabel
@@ -46,7 +45,7 @@ export default class LoginForm extends Component {
     } else {
       return (
         <FormControl>
-          <InputLabel htmlFor="my-input">Email address</InputLabel>
+          <InputLabel htmlFor="my-input">Username or Email Address</InputLabel>
           <Input
             name="username"
             type="text"

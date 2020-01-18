@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route } from "react-router-dom";
+//import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -15,11 +16,26 @@ class App extends Component {
     super();
     this.state = {
       response: 0,
-      endpoint: "http://127.0.0.1:8080"
+      endpoint: "http://127.0.0.1:8080",
+
+      labels: ['January', 'February', 'March',
+           'April', 'May'],
+      datasets: [
+    {
+      label: 'Rainfall',
+      fill: false,
+      lineTension: 0.5,
+      backgroundColor: 'rgba(75,192,192,1)',
+      borderColor: 'rgba(0,0,0,1)',
+      borderWidth: 2,
+      data: [65, 59, 80, 81, 56]
+    }
+  ]
     };
 
     this._login = this._login.bind(this);
     this._logout = this._logout.bind(this);
+    
   }
 
   componentDidMount() {
@@ -77,6 +93,11 @@ class App extends Component {
           path="/"
           render={() => <Home user={this.state.user} _login={this._login} />}
         />
+        <Route
+          exact
+          path="/game"
+          render={() => <Game user={this.state.user} />}
+        />
 
         <Route exact path="/signup" component={SignupForm} />
         <Route
@@ -85,7 +106,6 @@ class App extends Component {
           render={() => <Profile user={this.state.user} _login={this._login} />}
         />
         <Route exact path="/lobby" component={Lobby} />
-        <Route exact path="/game" component={Game} />
         <Route exact path="/leaderboard" component={Leaderboard} />
         <Route
           exact

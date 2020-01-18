@@ -39,8 +39,14 @@ export default class QuestionSubmission extends Component {
     
   }
 
+  handleGet(event){
+    event.preventDefault();
+    questionAPI.getQuestions().then(res => console.log(res.data))
+  }
+
   componentDidMount() {
     console.log("Question Submission Component Mounted");
+    questionAPI.getQuestions().then(res => console.log(res.data))
   }
 
   render() {
@@ -94,6 +100,9 @@ export default class QuestionSubmission extends Component {
         <br></br>
 		<button id="questionSubmitButton" onClick={this.handleSubmit}>
           Submit your Question for Review!
+        </button>
+        <button id="questionGetButton" onClick={this.handleGet}>
+          Get a Q!
         </button>
       </div>
     );
