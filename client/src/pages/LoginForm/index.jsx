@@ -45,7 +45,7 @@ export default class LoginForm extends Component {
     } else {
       return (
         <FormControl>
-          <InputLabel htmlFor="my-input">Email address</InputLabel>
+          <InputLabel htmlFor="my-input">Username or Email Address</InputLabel>
           <Input
             name="username"
             type="text"
