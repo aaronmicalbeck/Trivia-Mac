@@ -61,6 +61,7 @@ export default class Game extends Component {
     axios.post(`/api/score/${this.state.user._id}`, { topScore: this.state.user.topScore + score })
       .then(res => console.log(res))
       .catch(err => console.log(err));
+      window.location.href = './';
   }
 
   isCorrectAnswer(choice) {
