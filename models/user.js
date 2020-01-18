@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const userSchema = new Schema({
 	firstName: { type: String, unique: false },
 	lastName: { type: String, unique: false },
-	topScore: {type: Number},
+	topScore: {type: Number, default: 0},
 	local: {
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Header } from "../../components";
 import "./home.css";
 import LoginForm from "../LoginForm";
+import ProfileCard from "../../components/ProfileCard";
 // import SignupForm from "../SignupForm";
 
 export default class Home extends Component {
@@ -20,7 +21,7 @@ export default class Home extends Component {
     if (this.props.user) {
       return (
         <div className="Home">
-          <Header user={this.state.user} />
+          <ProfileCard user={this.props.user} />
           <p>Current User:</p>
           <code>{JSON.stringify(this.props)}</code>
         </div>
