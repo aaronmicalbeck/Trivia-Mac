@@ -52,7 +52,6 @@ export default function ProfileCard(props) {
       const username = player.local.username;
       return username;
     } else {
-      console.log(player);
       const username = player.firstName;
       return username;
     }
@@ -60,7 +59,7 @@ export default function ProfileCard(props) {
 
   function profilePic(player) {
     if (player.hasOwnProperty("local")) {
-      const profilePicture = "Images/Brain.jpg";
+      const profilePicture = player.photos[0];
       return profilePicture;
     } else {
       const profilePicture = player.photos[0].value;
