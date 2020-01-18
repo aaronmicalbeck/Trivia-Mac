@@ -5,7 +5,8 @@ import {
   FormLabel,
   FormHelperText,
   Input,
-  InputLabel
+  InputLabel,
+  Container
 } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 // import googleButton from './google_signin_buttons/web/1x/btn_google_signin_dark_disabled_web.png'
@@ -40,23 +41,29 @@ import googleButton from "./google_signin_buttons/web/1x/btn_google_signin_dark_
 
 function LoginForm() {
   return (
-    <FormControl>
-      <InputLabel htmlFor="my-input">Email address</InputLabel>
-      <Input type="username" id="my-input" aria-describedby="my-helper-text" />
-      <FormHelperText id="my-helper-text">
-        We'll never share your email.
-      </FormHelperText>
-      <InputLabel htmlFor="my-password">Password</InputLabel>
-      <Input
-        type="password"
-        id="my-password"
-        aria-describedby="my-password-helper-text"
-      />
-      <a href="/auth/google">
-        {/* <GoogleButton /> */}
-        <img src={googleButton} alt="sign into Google Button" />
-      </a>
-    </FormControl>
+    <div>
+      <FormControl>
+        <InputLabel htmlFor="my-input">Email address</InputLabel>
+        <Input
+          type="username"
+          id="my-input"
+          aria-describedby="my-helper-text"
+        />
+        <FormHelperText id="my-helper-text">
+          We'll never share your email.
+        </FormHelperText>
+        <InputLabel htmlFor="my-password">Password</InputLabel>
+        <Input
+          type="password"
+          id="my-password"
+          aria-describedby="my-password-helper-text"
+        />
+        <a href="/auth/google">
+          {/* <GoogleButton /> */}
+          <img src={googleButton} alt="sign into Google Button" />
+        </a>
+      </FormControl>
+    </div>
   );
 }
 export { LoginForm };

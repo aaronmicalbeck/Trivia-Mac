@@ -14,6 +14,7 @@ const passport = require("./utils/passport");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
+app.use(express.static("public"));
 const server = http.createServer(app);
 const routes = require("./controllers");
 const PORT = process.env.PORT || 8080;
@@ -81,17 +82,18 @@ io.on("connection", socket => {
 let broadcastedQuestion = {};
 const questionArray = [];
 function generateQuestion() {
-
-  
-
-	axios.get('https://opentdb.com/api.php?amount=50').then((response) => {
-	pickedQuestion = response.data.results[Math.floor(Math.random() * response.data.results.length)]
-	choices = pickedQuestion.incorrect_answers.concat(pickedQuestion.correct_answer)
-	choices.sort(() => Math.random() - 0.5);
-	pickedQuestion.choices = choices;
-	broadcastedQuestion = pickedQuestion;
-	})
-
+  axios.get("https://opentdb.com/api.php?amount=50").then(response => {
+    pickedQuestion =
+      response.data.results[
+        Math.floor(Math.random() * response.data.results.length)
+      ];
+    choices = pickedQuestion.incorrect_answers.concat(
+      pickedQuestion.correct_answer
+    );
+    choices.sort(() => Math.random() - 0.5);
+    pickedQuestion.choices = choices;
+    broadcastedQuestion = pickedQuestion;
+  });
 }
 setInterval(generateQuestion, 10000);
 

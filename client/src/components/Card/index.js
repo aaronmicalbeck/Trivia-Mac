@@ -1,6 +1,5 @@
 import React from "react";
 import CardBtn from "../CardBtn";
-
 // import CardContext from "../../utils/CardContext";
 import CardTitle from "../CardTitle";
 import "./style.css";
@@ -11,7 +10,6 @@ function Card() {
     // This way, all Card components can have the Card context passed directly as props
 
     <CardContainer>
-
       {({ image, handleBtnClick }) => (
         <div
           className="card"
@@ -33,9 +31,7 @@ function Card() {
           />
         </div>
       )}
-
     </CardContainer>
-
   );
 }
 
