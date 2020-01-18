@@ -85,29 +85,32 @@ export default class Game extends Component {
     .catch(err => console.log(err));
   }
 
+  decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
 
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{answers}</button>)
+        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{this.decodeHtml(answers)}</button>)
       }
     }
     return (
       <div id="gameDiv">
-        <p>Hello Game</p>
-
         <button id="startGame" onClick={this.handleStart}>
           Start Game
         </button>
         <br></br>
-
-        {response.category}
+        <p>Category: {response.category}</p>
         <br></br>
-        {response.difficulty}
+        <p>Difficulty: {response.difficulty}</p>
         <br></br>
-        {response.question}
+        <p>{this.decodeHtml(response.question)}</p>
         <br></br>
 
     
