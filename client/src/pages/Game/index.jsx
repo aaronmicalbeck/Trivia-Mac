@@ -11,15 +11,16 @@ export default class Game extends Component {
   constructor(props) {
     super(props);
 
-    const PORT = process.env.PORT ? process.env.PORT: "8080" 
+    const PORT = process.env.PORT ? process.env.PORT : "8080"
 
     const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com` :
-    "127.0.0.1:8080"
+      "127.0.0.1:8080"
     this.state = {
-      
+
       user: props.user,
       response: false,
       endpoint,
+      enableButton: true,
       gameStarted: false,
       gameEnded: false,
       sessionScore: 0
@@ -33,12 +34,20 @@ export default class Game extends Component {
     event.preventDefault();
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
-
+    socket.on("FromAPI", data => this.setState({
+      //enable the button when data comes in unless...
+      enableButton: this.state.enableButton ?
+        true :
+        //the question has already been answered. else, leave it enabled
+        this.state.response.question === data.question ?
+          false :
+          true,
+      response: data
+    }));
     this.setState({ gameStarted: true });
   }
 
-  getScore(){
+  getScore() {
     return this.state.sessionScore;
   }
 
@@ -48,22 +57,22 @@ export default class Game extends Component {
     const score = this.getScore();
     
 
-    axios.post(`/api/score/${this.state.user._id}`, {topScore: this.state.user.topScore + score})
-    
+
+    axios.post(`/api/score/${this.state.user._id}`, { topScore: this.state.user.topScore + score })
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
 
   isCorrectAnswer(choice) {
-    const { response } = this.state;
-    let { sessionScore } = this.state;
+    if (this.state.enableButton) {
+      const { response } = this.state;
+      let { sessionScore } = this.state;
 
-    if (choice === response.correct_answer) {
-      alert("Correct!");
-      this.setState({ sessionScore: sessionScore + 1 });
-    } else {
-      alert("Wrong!");
-      this.setState({ sessionScore: sessionScore - 1 });
+      if (choice === response.correct_answer) {
+        this.setState({ sessionScore: sessionScore + 1, enableButton: false });
+      } else {
+        this.setState({ sessionScore: sessionScore - 1, enableButton: false });
+      }
     }
   }
 
@@ -85,11 +94,15 @@ export default class Game extends Component {
     .catch(err => console.log(err));
   }
 
+  // componentShouldUpdate() {
+  //   document.getElementById("answers").disabled = false;
+  // }
+
   decodeHtml(html) {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
-}
+  }
 
   render() {
     const { response } = this.state;
@@ -97,7 +110,7 @@ export default class Game extends Component {
 
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-        return response.choices.map(answers => <button id="answers" onClick={() => this.isCorrectAnswer(answers)}>{this.decodeHtml(answers)}</button>)
+        return response.choices.map(answers => <button disabled={!this.state.enableButton} id="answers" onClick={() => { this.isCorrectAnswer(answers) }}>{this.decodeHtml(answers)}</button>)
       }
     }
     return (
@@ -113,7 +126,7 @@ export default class Game extends Component {
         <p>{this.decodeHtml(response.question)}</p>
         <br></br>
 
-    
+
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
