@@ -31,13 +31,11 @@ export default class Game extends Component {
 
   handleStart(event) {
     event.preventDefault();
-    console.log("game start button working");
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("FromAPI", data => this.setState({ response: data }));
 
     this.setState({ gameStarted: true });
-    console.log(this.state.gameStarted);
   }
 
   getScore(){
@@ -46,10 +44,12 @@ export default class Game extends Component {
 
   handleStop(event) {
     event.preventDefault();
-    console.log("game stop button working");
-    const score = this.getScore()
+   
+    const score = this.getScore();
+    
 
     axios.post(`/api/score/${this.state.user._id}`, {topScore: this.state.user.topScore + score})
+    
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
@@ -75,6 +75,14 @@ export default class Game extends Component {
 
     // on load fade start button in.
     gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
+
+    axios.get(`/api/userscore/${this.state.user._id}`)
+    .then(res => {
+      this.setState({
+        user: res.data
+      })
+      console.log(res)})
+    .catch(err => console.log(err));
   }
 
   render() {

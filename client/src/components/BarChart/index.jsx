@@ -6,11 +6,11 @@ const state = {
            'April', 'May'],
   datasets: [
     {
-      label: 'Rainfall',
+      label: 'Top Score',
       backgroundColor: 'rgba(75,192,192,1)',
       borderColor: 'rgba(0,0,0,1)',
-      borderWidth: 2,
-      data: [65, 59, 80, 81, 56]
+      borderWidth: 5,
+      data: [5, 10, 15, 20, 99]
     }
   ]
 }
@@ -24,7 +24,7 @@ export default class App extends React.Component {
           options={{
             title:{
               display:true,
-              text:'Average Rainfall per month',
+              text:'Trivia-Mac Current Leaderboard',
               fontSize:20
             },
             legend:{
