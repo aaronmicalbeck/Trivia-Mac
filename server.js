@@ -1,4 +1,5 @@
-// Loading evnironmental variables here
+// //////////////////////////////////////
+// Environmental variables
 if (process.env.NODE_ENV !== "production") {
   console.log("loading dev environments");
   require("dotenv").config();
@@ -20,6 +21,8 @@ const routes = require("./controllers");
 const PORT = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 const axios = require("axios");
+// //////////////////////////////////////
+
 
 // ===== Middleware ====
 app.use(morgan("dev"));
