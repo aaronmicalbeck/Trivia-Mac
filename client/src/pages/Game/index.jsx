@@ -4,20 +4,22 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./game.css";
 import socketIOClient from "socket.io-client";
+
+import Countdown from "react-countdown";
 import gsap from "gsap";
 
-// //////////////////////////////////////////
 
-// //////////////////////////////////////////
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
 
+
     const endpoint =
       process.env.NODE_ENV === "production"
         ? `https://trivia-mac.herokuapp.com`
         : "127.0.0.1:8080";
+
     this.state = {
       user: props.user,
       response: false,
@@ -25,7 +27,9 @@ export default class Game extends Component {
       enableButton: true,
       gameStarted: false,
       gameEnded: false,
-      sessionScore: 0
+      sessionScore: 0,
+      correct_answer: "",
+      time: Date.now()
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
@@ -40,20 +44,24 @@ export default class Game extends Component {
     event.preventDefault();
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data =>
-      this.setState({
-        //enable the button when data comes in unless...
-        enableButton: this.state.enableButton
-          ? true
-          : //the question has already been answered. else, leave it enabled
-          this.state.response.question === data.question
-          ? false
-          : true,
-        response: data
-      })
-    );
+
+    socket.on("FromAPI", data => this.setState({
+      //enable the button when data comes in unless...
+      enableButton: this.state.enableButton ?
+        true :
+        //the question has already been answered. else, leave it enabled
+        this.state.response.question === data.question ?
+          false :
+          true,
+      response: data,
+      time: this.state.correct_answer != data.correct_answer ? Date.now() + 10000 : this.state.time,
+      correct_answer: data.correct_answer
+
+    }));
+
 
     // GAMESTARTED = TRUE
+
     this.setState({ gameStarted: true });
   }
 
@@ -75,8 +83,10 @@ export default class Game extends Component {
       })
       .then(res => console.log(res))
       .catch(err => console.log(err));
+
     // relocates user to Homepage 
     window.location.href = "./";
+
   }
 
   isCorrectAnswer(choice) {
@@ -104,8 +114,10 @@ export default class Game extends Component {
     // on load fade start button in
     gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
 
-    axios
-      .get(`/api/userscore/${this.state.user._id}`)
+
+
+      axios.get(`/api/userscore/${this.state.user._id}`)
+
       .then(res => {
         this.setState({
           user: res.data
@@ -124,8 +136,10 @@ export default class Game extends Component {
   render() {
     const { response } = this.state;
     let { sessionScore } = this.state;
+
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
+
         return response.choices.map(answers => (
           <button
             disabled={!this.state.enableButton}
@@ -137,13 +151,21 @@ export default class Game extends Component {
             {this.decodeHtml(answers)}
           </button>
         ));
+
       }
-    };
+    }
     return (
       <div id="gameDiv">
         <button id="startGame" onClick={this.handleStart}>
           Start Game
         </button>
+        <Countdown
+          date={this.state.time}
+          intervalDelay={0}
+          precision={0}
+          renderer={props => <div>{props.total/1000}</div>}
+        />
+
         <br></br>
         <p>Category: {response.category}</p>
         <br></br>
@@ -152,12 +174,11 @@ export default class Game extends Component {
         <p>{this.decodeHtml(response.question)}</p>
         <br></br>
 
+
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
-        <button id="endGame" onClick={this.handleStop}>
-          Stop Game{" "}
-        </button>
+        <button id="endGame" onClick={this.handleStop}>Stop Game </button>
       </div>
     );
   }
