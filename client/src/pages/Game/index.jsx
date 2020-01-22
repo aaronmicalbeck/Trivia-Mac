@@ -1,22 +1,24 @@
+// //////////////////////////////////////////
+
 import React, { Component } from "react";
 import axios from "axios";
-// import { Header } from '../../components';
 import "./game.css";
 import socketIOClient from "socket.io-client";
-
 import gsap from "gsap";
+
+// //////////////////////////////////////////
+
+// //////////////////////////////////////////
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
 
-
-    const PORT = process.env.PORT ? process.env.PORT : "8080"
-
-    const endpoint = (process.env.NODE_ENV === "production") ? `https://trivia-mac.herokuapp.com` :
-      "127.0.0.1:8080"
+    const endpoint =
+      process.env.NODE_ENV === "production"
+        ? `https://trivia-mac.herokuapp.com`
+        : "127.0.0.1:8080";
     this.state = {
-
       user: props.user,
       response: false,
       endpoint,
@@ -30,20 +32,28 @@ export default class Game extends Component {
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
   }
 
+  // //////////////////////////////////////////
+
+  // //////////////////////////////////////////
+
   handleStart(event) {
     event.preventDefault();
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({
-      //enable the button when data comes in unless...
-      enableButton: this.state.enableButton ?
-        true :
-        //the question has already been answered. else, leave it enabled
-        this.state.response.question === data.question ?
-          false :
-          true,
-      response: data
-    }));
+    socket.on("FromAPI", data =>
+      this.setState({
+        //enable the button when data comes in unless...
+        enableButton: this.state.enableButton
+          ? true
+          : //the question has already been answered. else, leave it enabled
+          this.state.response.question === data.question
+          ? false
+          : true,
+        response: data
+      })
+    );
+
+    // GAMESTARTED = TRUE
     this.setState({ gameStarted: true });
   }
 
@@ -53,21 +63,28 @@ export default class Game extends Component {
 
   handleStop(event) {
     event.preventDefault();
-   
+
+    // session score
     const score = this.getScore();
-    
 
+    // Updates user score in MongoDB (session score + user topScore)
 
-    axios.post(`/api/score/${this.state.user._id}`, { topScore: this.state.user.topScore + score })
+    axios
+      .post(`/api/score/${this.state.user._id}`, {
+        topScore: this.state.user.topScore + score
+      })
       .then(res => console.log(res))
       .catch(err => console.log(err));
-      window.location.href = './';
+    // relocates user to Homepage 
+    window.location.href = "./";
   }
 
   isCorrectAnswer(choice) {
     if (this.state.enableButton) {
       const { response } = this.state;
       let { sessionScore } = this.state;
+
+      // Buttons are disabled when user selects an answer
 
       if (choice === response.correct_answer) {
         this.setState({ sessionScore: sessionScore + 1, enableButton: false });
@@ -78,26 +95,25 @@ export default class Game extends Component {
   }
 
   componentDidMount() {
-    console.log("Game Component Mounted");
+
+
     /////////////
     // on load
     /////////////
 
-    // on load fade start button in.
+    // on load fade start button in
     gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
 
-      axios.get(`/api/userscore/${this.state.user._id}`)
+    axios
+      .get(`/api/userscore/${this.state.user._id}`)
       .then(res => {
         this.setState({
           user: res.data
-        })
-        console.log(res)})
+        });
+        console.log(res);
+      })
       .catch(err => console.log(err));
   }
-
-  // componentShouldUpdate() {
-  //   document.getElementById("answers").disabled = false;
-  // }
 
   decodeHtml(html) {
     var txt = document.createElement("textarea");
@@ -110,8 +126,17 @@ export default class Game extends Component {
     let { sessionScore } = this.state;
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-
-        return response.choices.map(answers => <button disabled={!this.state.enableButton} id="answers" onClick={() => { this.isCorrectAnswer(answers) }}>{this.decodeHtml(answers)}</button>)
+        return response.choices.map(answers => (
+          <button
+            disabled={!this.state.enableButton}
+            id="answers"
+            onClick={() => {
+              this.isCorrectAnswer(answers);
+            }}
+          >
+            {this.decodeHtml(answers)}
+          </button>
+        ));
       }
     };
     return (

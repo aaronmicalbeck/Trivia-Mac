@@ -3,7 +3,6 @@ import { Header } from "../../components";
 import "./home.css";
 import LoginForm from "../LoginForm";
 import ProfileCard from "../../components/ProfileCard";
-// import SignupForm from "../SignupForm";
 
 export default class Home extends Component {
   constructor(props) {
@@ -14,7 +13,9 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("Home Component Mounted");
+
+    // It sure did mount y'all
+
   }
 
   render() {

@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import "./signup.css";
 import {
   FormControl,
-  FormLabel,
   FormHelperText,
   Input,
   InputLabel
@@ -36,7 +35,7 @@ export default class SignupForm extends Component {
       redirectTo: null
     };
 
-    // TODO: Write clicked photo to state
+   
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -74,7 +73,7 @@ export default class SignupForm extends Component {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     }
-    //TODO: Add photos that when clciked, set this.state.photo to their url
+  
     return (
       <div className="SignupForm">
         <h1>Signup form</h1>
