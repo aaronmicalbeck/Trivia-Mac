@@ -79,7 +79,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-// SOCKETS!
+// SOCKETS! Oh Yes!
 io.on("connection", socket => {
   console.log("New client connected"),
     setInterval(() => broadcastQuestion(socket), 1000);
@@ -88,6 +88,7 @@ io.on("connection", socket => {
 
 
 // Question Generator
+
 let broadcastedQuestion = {};
 function generateQuestion() {
   axios.get("https://opentdb.com/api.php?amount=50").then(response => {
