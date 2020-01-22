@@ -9,29 +9,30 @@ export default class Leaderboard extends Component {
     super(props);
     this.state = {
       user: props.user,
-	  users: [],
-	  userScores: [],
-	  userNames: []
-	};
-	
-	this.loadScores = this.loadScores.bind(this);
-    this.getScores = this.getScores.bind(this);
+      users: [],
+      userScores: [],
+      userNames: []
+    };
+
+    this.loadScores = this.loadScores.bind(this);
   }
 
-  loadScores () {
-	chartAPI.getGoogleUser().then(res => console.log(res.data));
-	// chartAPI.getLocalUser().then(res => console.log(res.data));
-
-  };
-
-  getScores () {
-
-	  console.log(this);
-
-
-	console.log(this.state.userScores);
-	console.log(this.state.userNames);
-
+  loadScores() {
+    chartAPI.getUser().then(res => {
+      this.setState({
+        userScores: res.data.map(item => {
+          return item.topScore
+        
+        }),
+        userNames: res.data.map(item => {
+          return item.local
+              ? item.local.username
+              : item.firstName + " " + item.lastName
+          ;
+        })
+	  });
+	
+    });
   }
 
   componentDidMount() {
@@ -43,9 +44,8 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div id="leaderBoard">
-        <p>Hello Leaderboard</p>
-        <BarChart />
-		<button id ="scorebutton" onClick = {this.getScores}>Get Scores</button>
+        <BarChart labels={this.state.userNames} data={this.state.userScores} />
+        
       </div>
     );
   }
