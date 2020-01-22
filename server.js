@@ -1,4 +1,5 @@
-// Loading evnironmental variables here
+// //////////////////////////////////////
+// Environmental variables
 if (process.env.NODE_ENV !== "production") {
   console.log("loading dev environments");
   require("dotenv").config();
@@ -20,6 +21,8 @@ const routes = require("./controllers");
 const PORT = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 const axios = require("axios");
+// //////////////////////////////////////
+
 
 // ===== Middleware ====
 app.use(morgan("dev"));
@@ -30,9 +33,11 @@ app.use(
 );
 app.use(bodyParser.json());
 
+// Set MongoDB connection
+
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
+  "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -67,25 +72,29 @@ app.get("*", (req, res) => {
 });
 
 // ====== Error handler ====
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.log("====== ERROR =======");
   console.error(err.stack);
   res.status(500);
 });
 
+
+// SOCKETS! Oh Yes!
 io.on("connection", socket => {
   console.log("New client connected"),
     setInterval(() => broadcastQuestion(socket), 1000);
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
+
+// Question Generator
+
 let broadcastedQuestion = {};
-const questionArray = [];
 function generateQuestion() {
   axios.get("https://opentdb.com/api.php?amount=50").then(response => {
     pickedQuestion =
       response.data.results[
-        Math.floor(Math.random() * response.data.results.length)
+      Math.floor(Math.random() * response.data.results.length)
       ];
     choices = pickedQuestion.incorrect_answers.concat(
       pickedQuestion.correct_answer

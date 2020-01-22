@@ -16,11 +16,16 @@ export default class QuestionSubmission extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
+
+  // Retrieves information input into forms and POSTS to MongoDB
+
   handleSubmit(event) {
     event.preventDefault();
     questionAPI.submitQuestion({
@@ -39,14 +44,15 @@ export default class QuestionSubmission extends Component {
     
   }
 
+  // Axios GET request all from MongoDB
+
   handleGet(event){
     event.preventDefault();
-    questionAPI.getQuestions().then(res => console.log(res.data))
+    questionAPI.getQuestions().then(res => console.log("Perfecto!"))
   }
 
   componentDidMount() {
-    console.log("Question Submission Component Mounted");
-    questionAPI.getQuestions().then(res => console.log(res.data))
+  // We deed it
   }
 
   render() {
@@ -100,9 +106,6 @@ export default class QuestionSubmission extends Component {
         <br></br>
 		<button id="questionSubmitButton" onClick={this.handleSubmit}>
           Submit your Question for Review!
-        </button>
-        <button id="questionGetButton" onClick={this.handleGet}>
-          Get a Q!
         </button>
       </div>
     );

@@ -1,7 +1,4 @@
-
 import React, { Component } from 'react';
-import { Header } from '../../components';
-
 import "./profile.css";
 import ProfileCard from "../../components/ProfileCard";
 
@@ -14,16 +11,13 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log("Profile Component Mounted");
+    // MounTed's Excellent Adventure
   }
 
 
   render() {
     return (
       <div>
-        <p>Hello Profile</p>
-
-
         <ProfileCard user={this.state.user} />
       </div>
     );
