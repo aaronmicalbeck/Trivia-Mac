@@ -11,7 +11,6 @@ export default class Lobby extends Component {
 	}
 
 	componentDidMount() {
-		console.log("Lobby Component Mounted")
 	}
 
 	render() {
