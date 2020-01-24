@@ -4,10 +4,16 @@ import { Redirect } from "react-router-dom";
 import "./signup.css";
 import {
   FormControl,
+  FormLabel,
+  Button,
   FormHelperText,
   Input,
-  InputLabel
+  InputLabel,
+  Container,
+  Typography,
+  Grid
 } from "@material-ui/core";
+import UploadBtn from "../../components/SubmitButton";
 import PhotoContainer from "../../components/PhotoContainer";
 const images = [
   { src: "Images/Brain.jpg", name: "Brain" },
@@ -63,6 +69,7 @@ export default class SignupForm extends Component {
         } else {
           console.log("duplicate");
         }
+        window.location.href = "./";
       });
   }
 
@@ -75,50 +82,71 @@ export default class SignupForm extends Component {
     }
   
     return (
-      <div className="SignupForm">
-        <h1>Signup form</h1>
-        <FormControl>
-          <InputLabel htmlFor="username">Username</InputLabel>
-          <Input
-            name="username"
-            type="text"
-            id="my-input"
-            value={this.state.username}
-            onChange={this.handleChange}
-            aria-describedby="my-helper-text"
-          />
-          <FormHelperText id="my-helper-text">
-            We'll never share your information.
-          </FormHelperText>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
-            name="password"
-            type="password"
-            id="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            aria-describedby="my-password-helper-text"
-          />
-          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-          <Input
-            name="confirmPassword"
-            type="password"
-            id="my-password"
-            value={this.state.confirmPassword}
-            onChange={this.handleChange}
-            aria-describedby="my-password-helper-text"
-          />
-          <button onClick={this.handleSubmit}>Sign up</button>
-        </FormControl>
-        <PhotoContainer>
-          {images.map(image => (
-            <img
-              src={image.src}
-              onClick={() => this.changePhoto(image.src)}
-            ></img>
-          ))}
-        </PhotoContainer>
-      </div>
+      <Container fixed>
+        <Grid container direction="column" justify="center" alignItems="center">
+          <Typography align="center" variant="h2" gutterBottom>
+            Signup form
+          </Typography>
+          <form>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+              <FormControl>
+                <InputLabel htmlFor="username">Username</InputLabel>
+                <Input
+                  name="username"
+                  type="text"
+                  id="my-input"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  aria-describedby="my-helper-text"
+                />
+                <FormHelperText id="my-helper-text">
+                  We'll never share your information.
+                </FormHelperText>
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input
+                  name="password"
+                  type="password"
+                  id="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  aria-describedby="my-password-helper-text"
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="confirmPassword">
+                  Confirm Password
+                </InputLabel>
+                <Input
+                  name="confirmPassword"
+                  type="password"
+                  id="my-password"
+                  value={this.state.confirmPassword}
+                  onChange={this.handleChange}
+                  aria-describedby="my-password-helper-text"
+                />
+              </FormControl>
+              <Button onClick={this.handleSubmit}>Sign up</Button>
+            </Grid>
+          </form>
+          <Grid container direction="row" justify="center" alignItems="center">
+            {images.map(image => (
+              <img
+                className="photo"
+                src={image.src}
+                onClick={() => this.changePhoto(image.src)}
+              ></img>
+            ))}
+          </Grid>
+          <UploadBtn />
+        </Grid>
+      </Container>
     );
   }
 }

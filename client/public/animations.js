@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
   //     /* Item is not on the DOM at all*/
   //   }
 
-  document.getElementById("header")
-    ? gsap.from("#header", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
+  document.getElementById("LoginForm")
+    ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
     : null;
 
   //start game button fades in on document load
