@@ -13,7 +13,9 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("Home Component Mounted");
+
+    // It sure did mount y'all
+
   }
 
   render() {
