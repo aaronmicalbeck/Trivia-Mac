@@ -10,7 +10,7 @@ p {
   font-size: 3em;
   line-height: 1.2;
   text-align: center;
-  background-color: #007bff;
+  background-color: #23B8d9;
   vertical-align: middle;
   cursor: pointer;
   border: 1px solid transparent;
@@ -44,4 +44,8 @@ p {
 #gameDiv {
   height: 100%;
   width: 100%;
+}
+
+.Game{
+    background-color: #6f72b2;
 }

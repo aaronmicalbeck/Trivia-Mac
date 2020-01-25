@@ -16,7 +16,7 @@ import {
   Grid
 } from "@material-ui/core";
 import UploadBtn from "../../components/SubmitButton";
-import PhotoContainer from "../../components/PhotoContainer";
+
 const images = [
   { src: "Images/Brain.jpg", name: "Brain" },
   { src: "Images/Dex_Lab.jpg", name: "Dexter" },
@@ -84,60 +84,14 @@ export default class SignupForm extends Component {
     }
   
     return (
-<<<<<<< HEAD
-      <div className="SignupForm">
-        <h1>Signup form</h1>
-        <FormControl>
-          <InputLabel htmlFor="username">Username</InputLabel>
-          <Input
-            name="username"
-            type="text"
-            id="my-input"
-            value={this.state.username}
-            onChange={this.handleChange}
-            aria-describedby="my-helper-text"
-          />
-          <FormHelperText id="my-helper-text">
-            We'll never share your information.
-          </FormHelperText>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
-            name="password"
-            type="password"
-            id="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            aria-describedby="my-password-helper-text"
-          />
-          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-          <Input
-            name="confirmPassword"
-            type="password"
-            id="my-password"
-            value={this.state.confirmPassword}
-            onChange={this.handleChange}
-            aria-describedby="my-password-helper-text"
-          />
-          <button onClick={this.handleSubmit}>Sign up</button>
-          <Link to="/" className="nav-link">
-              <NavigationButton/>
-            </Link>
-        </FormControl>
-        <PhotoContainer>
-          {images.map(image => (
-            <img
-              src={image.src}
-              onClick={() => this.changePhoto(image.src)}
-            ></img>
-          ))}
-        </PhotoContainer>
-      </div>
-=======
       <Container fixed>
         <Grid container direction="column" justify="center" alignItems="center">
           <Typography align="center" variant="h2" gutterBottom>
             Signup form
           </Typography>
+          <Link to="/" className="nav-link">
+              <NavigationButton/>
+            </Link>
           <form>
             <Grid
               container
@@ -198,7 +152,6 @@ export default class SignupForm extends Component {
           <UploadBtn />
         </Grid>
       </Container>
->>>>>>> 7ca1de239989b9663821299676b2ddd77d7705e2
     );
   }
 }

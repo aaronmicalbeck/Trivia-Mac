@@ -1,3 +1,18 @@
 .photo {
   width: 200px;
 }
+
+
+.SignupForm{
+  margin: auto;
+  background-color: #6f72b2;
+}
+
+.MuiContainer-root, .MuiContainer-fixed, .MuiContainer-maxWidthLg{
+
+  background-color: #6f72b2;
+}
+
+.body {
+  background-color: #6f72b2;
+}

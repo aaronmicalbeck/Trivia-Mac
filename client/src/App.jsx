@@ -8,7 +8,6 @@ import Lobby from "./pages/Lobby";
 import Leaderboard from "./pages/Leaderboard";
 import Game from "./pages/Game";
 import QuestionSubmission from "./pages/QuestionSubmission";
-import { NavBar } from "./components";
 
 class App extends Component {
   constructor() {
@@ -70,9 +69,6 @@ class App extends Component {
   render() {
     return (
       <div className="">
-        {/* Navbar on every page */}
-        {/* <NavBar _logout={this._logout} loggedIn={this.state.loggedIn} /> */}
-        {/*  Individual Things */}
         <Route
           exact
           path="/"
