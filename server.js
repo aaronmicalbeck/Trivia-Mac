@@ -21,7 +21,6 @@ const routes = require("./controllers");
 const PORT = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 const axios = require("axios");
-const multer = require("multer");
 
 // ===== Middleware ====
 app.use(morgan("dev"));
@@ -36,7 +35,7 @@ app.use(bodyParser.json());
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
+    "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -66,63 +65,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 let floatingFileName = "error";
-///////////////////////////////////////////////////////////////////////////////
-// Set The Storage Engine
-const storage = multer.diskStorage({
-  destination: "./client/public/images",
-  filename: function(req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-    // cb(null, file.fieldname + path.extname(file.originalname));
-  }
-});
-// Check File Type
-function checkFileType(file, cb) {
-  // Allowed ext
-  const filetypes = /jpeg|jpg|png|gif/;
-  // Check ext
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  // Check mime
-  const mimetype = filetypes.test(file.mimetype);
-  if (mimetype && extname) {
-    return cb(null, true);
-  } else {
-    cb("Error: Images Only!");
-  }
-}
-app.post("/cms/GD8PQX3UV18999AARONWITHANEY/filename", (req, res) => {
-  floatingFileName = req.body.body.toLowerCase().split(".")[0];
-  res.send("name collected");
-});
-app.post("/cms/GD8PQX3UV18999AARONWITHANEY/upload", (req, res) => {
-  let upload = multer({
-    storage: storage,
-    limits: { fileSize: 1000000 },
-    fileFilter: function(req, file, cb) {
-      checkFileType(file, cb);
-    }
-  }).single(floatingFileName);
-  upload(req, res, err => {
-    if (err) {
-      res.send({
-        msg: err
-      });
-    } else {
-      if (req.file == undefined) {
-        res.send({
-          msg: "Error: No File Selected!"
-        });
-      } else {
-        res.send({
-          msg: "File Uploaded!",
-          file: `uploads/${req.file.filename}`
-        });
-      }
-    }
-  });
-});
+///////////////////////////////////////////////////////////////////////////////npm unp
 
 // ====== React App ======
 app.get("*", (req, res) => {
@@ -130,12 +73,11 @@ app.get("*", (req, res) => {
 });
 
 // ====== Error handler ====
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   console.log("====== ERROR =======");
   console.error(err.stack);
   res.status(500);
 });
-
 
 // SOCKETS! Oh Yes!
 io.on("connection", socket => {
@@ -144,7 +86,6 @@ io.on("connection", socket => {
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-
 // Question Generator
 
 let broadcastedQuestion = {};
@@ -152,7 +93,7 @@ function generateQuestion() {
   axios.get("https://opentdb.com/api.php?amount=50").then(response => {
     pickedQuestion =
       response.data.results[
-      Math.floor(Math.random() * response.data.results.length)
+        Math.floor(Math.random() * response.data.results.length)
       ];
     choices = pickedQuestion.incorrect_answers.concat(
       pickedQuestion.correct_answer
