@@ -4,16 +4,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./game.css";
 import socketIOClient from "socket.io-client";
-
-import Countdown from "react-countdown";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
-
 
 
 export default class Game extends Component {
   constructor(props) {
     super(props);
-
 
     const endpoint =
       process.env.NODE_ENV === "production"
@@ -29,12 +26,28 @@ export default class Game extends Component {
       gameEnded: false,
       sessionScore: 0,
       correct_answer: "",
-      time: Date.now()
+      isPlaying: false,
+      time: 10
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
+    this.renderTime = this.renderTime.bind(this);
   }
+
+  renderTime(value) {
+    if (value === 0) {
+      return <div className="timer">Too late...</div>;
+    }
+
+    return (
+      <div className="timer">
+        <div className="text">Remaining</div>
+        <div className="value">{value}</div>
+        <div className="text">seconds</div>
+      </div>
+    );
+  };
 
   // //////////////////////////////////////////
 
@@ -54,8 +67,9 @@ export default class Game extends Component {
           false :
           true,
       response: data,
-      time: this.state.correct_answer != data.correct_answer ? Date.now() + 10000 : this.state.time,
-      correct_answer: data.correct_answer
+      time: this.state.correct_answer != data.correct_answer ? 10 : this.state.time,
+      correct_answer: data.correct_answer,
+      isPlaying: true
 
     }));
 
@@ -116,7 +130,7 @@ export default class Game extends Component {
 
 
 
-      axios.get(`/api/userscore/${this.state.user._id}`)
+    axios.get(`/api/userscore/${this.state.user._id}`)
 
       .then(res => {
         this.setState({
@@ -159,17 +173,19 @@ export default class Game extends Component {
         <button id="startGame" onClick={this.handleStart}>
           Start Game
         </button>
-        <Countdown
-          date={this.state.time}
-          intervalDelay={0}
-          precision={0}
-          renderer={props => <div>{props.total/1000}</div>}
-        />
+        <div className="App">
+          <CountdownCircleTimer
+            key={this.state.correct_answer}
+            isPlaying={this.state.isPlaying}
+            durationSeconds={this.state.time}
+            colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+            renderTime={this.renderTime}
+            onComplete={() => [true, 0]}
+          />
+        </div>
 
         <br></br>
         <p>Category: {response.category}</p>
-        <br></br>
-        <p>Difficulty: {response.difficulty}</p>
         <br></br>
         <p>{this.decodeHtml(response.question)}</p>
         <br></br>
