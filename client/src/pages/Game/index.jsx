@@ -27,7 +27,8 @@ export default class Game extends Component {
       sessionScore: 0,
       correct_answer: "",
       isPlaying: false,
-      time: 10
+      time: 10,
+      backgroundColor: "5E91D3"
     };
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
@@ -67,9 +68,15 @@ export default class Game extends Component {
           false :
           true,
       response: data,
-      time: this.state.correct_answer != data.correct_answer ? 10 : this.state.time,
+      time: this.state.correct_answer !== data.correct_answer ? 10 : this.state.time,
       correct_answer: data.correct_answer,
-      isPlaying: true
+      isPlaying: true,
+      backgroundColor:  this.state.enableButton ?
+        "#5E91D3" :
+        //the question has already been answered. else, leave it enabled
+        this.state.response.question === data.question ?
+          this.state.backgroundColor :
+          "#5E91D3",
 
     }));
 
@@ -111,9 +118,9 @@ export default class Game extends Component {
       // Buttons are disabled when user selects an answer
 
       if (choice === response.correct_answer) {
-        this.setState({ sessionScore: sessionScore + 1, enableButton: false });
+        this.setState({ sessionScore: sessionScore + 1, enableButton: false, backgroundColor: "green" });
       } else {
-        this.setState({ sessionScore: sessionScore - 1, enableButton: false });
+        this.setState({ sessionScore: sessionScore - 1, enableButton: false, backgroundColor: "red" });
       }
     }
   }
@@ -158,6 +165,7 @@ export default class Game extends Component {
           <button
             disabled={!this.state.enableButton}
             id="answers"
+            style={{ backgroundColor: this.state.backgroundColor }}
             onClick={() => {
               this.isCorrectAnswer(answers);
             }}
