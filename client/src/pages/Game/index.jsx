@@ -170,11 +170,19 @@ export default class Game extends Component {
     }
     return (
       <div id="gameDiv">
-        <button id="startGame" onClick={this.handleStart}>
-          Start Game
-        </button>
+        <div className="row">
+          <div className="col">
+            <button id="startGame" onClick={this.handleStart}>
+              Start Game
+            </button>
+          </div>
+          <div className="col">
+            <button id="endGame" onClick={this.handleStop}>Stop Game </button>
+          </div>
+        </div>
         <div className="App">
           <CountdownCircleTimer
+            className="countdown"
             key={this.state.correct_answer}
             isPlaying={this.state.isPlaying}
             durationSeconds={this.state.time}
@@ -194,7 +202,6 @@ export default class Game extends Component {
         {renderButtons()}
         <br></br>
         <p id="score">Score: {sessionScore}</p>
-        <button id="endGame" onClick={this.handleStop}>Stop Game </button>
       </div>
     );
   }
