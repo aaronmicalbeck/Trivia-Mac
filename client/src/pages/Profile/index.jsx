@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import "./profile.css";
 import ProfileCard from "../../components/ProfileCard";
 
@@ -13,7 +13,6 @@ export default class Profile extends Component {
   componentDidMount() {
     // MounTed's Excellent Adventure
   }
-
 
   render() {
     return (
