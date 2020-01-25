@@ -8,6 +8,7 @@ import {
   InputLabel
 } from "@material-ui/core";
 import "./login.css";
+import gsap from "gsap";
 
 export default class LoginForm extends Component {
   constructor() {
@@ -40,33 +41,38 @@ export default class LoginForm extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <FormControl>
-          <InputLabel htmlFor="my-input">Username or Email Address</InputLabel>
-          <Input
-            name="username"
-            type="text"
-            id="my-input"
-            value={this.state.username}
-            onChange={this.handleChange}
-            aria-describedby="my-helper-text"
-          />
-          <FormHelperText id="my-helper-text">
-            We'll never share your email.
-          </FormHelperText>
-          <InputLabel htmlFor="my-password">Password</InputLabel>
-          <Input
-            name="password"
-            type="password"
-            id="my-password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            aria-describedby="my-password-helper-text"
-          />
-          <button onClick={this.handleSubmit}>Login</button>
-          <a href="/auth/google">
-            <img src={googleButton} alt="sign into Google Button" />
-          </a>
-        </FormControl>
+        <div id="LoginForm">
+          <FormControl>
+            <InputLabel htmlFor="my-input">
+              Username or Email Address
+            </InputLabel>
+            <Input
+              name="username"
+              type="text"
+              id="my-input"
+              value={this.state.username}
+              onChange={this.handleChange}
+              aria-describedby="my-helper-text"
+            />
+            <FormHelperText id="my-helper-text">
+              We'll never share your email.
+            </FormHelperText>
+            <InputLabel htmlFor="my-password">Password</InputLabel>
+            <Input
+              name="password"
+              type="password"
+              id="my-password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              aria-describedby="my-password-helper-text"
+            />
+            <button onClick={this.handleSubmit}>Login</button>
+            <a href="/auth/google">
+              {/* <GoogleButton /> */}
+              <img src={googleButton} alt="sign into Google Button" />
+            </a>
+          </FormControl>
+        </div>
       );
     }
   }
