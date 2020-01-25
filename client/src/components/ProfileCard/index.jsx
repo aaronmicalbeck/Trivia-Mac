@@ -73,13 +73,7 @@ export default function ProfileCard(props) {
     <Grid>
       <Card className={classes.card}>
         <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
           title={user(props.user)}
-          subheader="September 14, 2016"
         />
         <CardMedia
           className={classes.media}
@@ -93,7 +87,7 @@ export default function ProfileCard(props) {
             the mussels, if you like.
           </Typography>
         </CardContent>
-        {/* <CardActions disableSpacing>
+        <CardActions disableSpacing>
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded
@@ -104,7 +98,7 @@ export default function ProfileCard(props) {
           >
             <ExpandMoreIcon />
           </IconButton>
-        </CardActions> */}
+        </CardActions>
       </Card>
       <Card className={classes.card}>
         <Leaderboard />
