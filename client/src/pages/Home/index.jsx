@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Header } from "../../components";
 import "./home.css";
 import LoginForm from "../LoginForm";
 import ProfileCard from "../../components/ProfileCard";
@@ -26,35 +25,31 @@ export default class Home extends Component {
       return (
         <div className="Home">
           <Link to="/lobby" className="nav-link">
-              <NavigationButton/>
+          <NavigationButton><span id="homeNavBtnTitle">Lobby</span></NavigationButton>
             </Link>
             <Link to="/questionSubmission" className="nav-link">
-              <NavigationButton/>
+            <NavigationButton><span id="homeNavBtnTitle">Submit A Question</span></NavigationButton>
             </Link>
             <Link to="/" className="nav-link" onClick={this.props._logout}>
-              <NavigationButton/>
+            <NavigationButton><span id="homeNavBtnTitle">Logout</span></NavigationButton>
             </Link>
             <Link to="/leaderBoard" classname ="nav-link">
-              <NavigationButton/>
+            <NavigationButton><span id="homeNavBtnTitle">Leaderboard</span></NavigationButton>
             </Link>
           <ProfileCard user={this.props.user} />
-          <p>Current User:</p>
-          <code>{JSON.stringify(this.props)}</code>
         </div>
       );
     } else {
       return (
         <div className="Home">
-          <Header user={this.state.user} />
-          <p>Current User:</p>
           <code>{JSON.stringify(this.props)}</code>
           <LoginForm _login={this.props._login} />
 
           <Link to="/signup" className="nav-link">
-              <NavigationButton/>
+          <NavigationButton><span id="homeNavBtnTitle">Register</span></NavigationButton>
             </Link>
             <Link to="/leaderBoard" className="nav-link">
-            <NavigationButton/>
+            <NavigationButton><span id="homeNavBtnTitle">Leaderboard</span></NavigationButton>
             </Link>
         </div>
       );

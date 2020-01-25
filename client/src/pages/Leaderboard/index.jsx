@@ -49,7 +49,7 @@ export default class Leaderboard extends Component {
         <BarChart labels={this.state.userNames} data={this.state.userScores} />
         
         <Link to="/" className="nav-link">
-        <NavigationButton/>
+        <NavigationButton>Home</NavigationButton>
             </Link>
         
         

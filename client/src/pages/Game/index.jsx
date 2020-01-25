@@ -198,7 +198,7 @@ export default class Game extends Component {
         <p id="score">Score: {sessionScore}</p>
         <button id="endGame" onClick={this.handleStop}>Stop Game </button>
         <Link to="/" className="nav-link">
-              <NavigationButton/>
+        <NavigationButton><span id="homeNavBtnTitle">Home</span></NavigationButton>
             </Link>
 
       </div>

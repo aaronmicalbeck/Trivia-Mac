@@ -4,7 +4,8 @@ import "./style.css";
 
 function NavigationBtn(props) {
     return (
-      <button onClick={props.onClick} className={`navigation-btn ${props["data-value"]}`} {...props} />
+      <button onClick={props.onClick} className={`navigation-btn ${props["data-value"]}`} {...props}>
+      </button>
     );
   }
   

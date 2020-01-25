@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import { Header } from '../../components';
 import "./lobby.css";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
@@ -30,14 +29,15 @@ this.handleClick = this.handleClick.bind(this);
     return (
       <div>
         <Link to="/" className="nav-link">
-		 <NavigationButton/>
+		<NavigationButton><span id="homeNavBtnTitle">Head-to-Head!</span></NavigationButton>
         </Link>
 
         <Link to="/game" className="nav-link">
-          Battle Royale!
+		<NavigationButton><span id="homeNavBtnTitle">Battle-Royale!</span></NavigationButton>
         </Link>
-
-		<button id = "headtoheadbtn" onClick = {this.handleClick}> Head to Head!</button>
+		<Link to="/" className="nav-link">
+		<NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
+        </Link>
       </div>
     );
   }

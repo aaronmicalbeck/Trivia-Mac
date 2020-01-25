@@ -60,7 +60,7 @@ export default class QuestionSubmission extends Component {
   render() {
     return (
       <div id="questionSubmissionForm">
-        <p>Hello Question Submission</p>
+        <p>SUBMIT A QUESTION TO BE USED IN GAME!</p>
         <input
           id="question"
           placeholder="Type your question here!"
@@ -110,7 +110,7 @@ export default class QuestionSubmission extends Component {
           Submit your Question for Review!
         </button>
         <Link to="/" className="nav-link">
-              <NavigationButton/>
+        <NavigationButton>Home</NavigationButton>
             </Link>
       </div>
     );
