@@ -1,23 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Leaderboard from "../../pages/Leaderboard";
+import Expand from "../../components/Expand";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -36,9 +25,6 @@ const useStyles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
-  },
-  avatar: {
-    backgroundColor: red[500]
   }
 }));
 
@@ -70,39 +56,30 @@ export default function ProfileCard(props) {
     }
   }
   return (
-    <Grid>
-      <Card className={classes.card}>
-        <CardHeader
-          title={user(props.user)}
-        />
-        <CardMedia
-          className={classes.media}
-          image={profilePic(props.user)}
-          title="Paella dish"
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-      </Card>
-      <Card className={classes.card}>
-        <Leaderboard />
-      </Card>
-    </Grid>
+    <div>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Card className={classes.card}>
+          <CardHeader
+            title={
+              <Typography align="center" variant="h2" gutterBottom>
+                {user(props.user)}
+              </Typography>
+            }
+            subheader="September 14, 2016"
+          />
+          <CardMedia
+            className={classes.media}
+            image={profilePic(props.user)}
+            title="Paella dish"
+          />
+          <CardContent>
+            <Typography align="center" variant="h2" gutterBottom>
+              {user(props.user)}
+            </Typography>
+          </CardContent>
+        </Card>
+        <Expand />
+      </Grid>
+    </div>
   );
 }

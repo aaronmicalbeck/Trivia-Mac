@@ -1,6 +1,5 @@
 .Home {
-  margin: auto;
-  background-color: #6f72b2;
+  justify-content: center;
 }
 
 #homeNavBtnTitle{

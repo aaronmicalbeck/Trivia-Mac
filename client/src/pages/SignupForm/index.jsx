@@ -40,10 +40,10 @@ export default class SignupForm extends Component {
       password: "",
       photo: "",
       confirmPassword: "",
-      redirectTo: null
+      redirectTo: null,
+      selected: false
     };
 
-   
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -75,14 +75,16 @@ export default class SignupForm extends Component {
       });
   }
 
-  changePhoto(foo) {
-    this.setState({ photo: foo });
+  changePhoto(src) {
+    this.setState({ photo: src });
+    // when click give image class add style to class to show what is clicked
+    // also  to clear that class if you click on another picture
   }
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     }
-  
+
     return (
       <Container fixed>
         <Grid container direction="column" justify="center" alignItems="center">
@@ -90,8 +92,8 @@ export default class SignupForm extends Component {
             Signup form
           </Typography>
           <Link to="/" className="nav-link">
-              <NavigationButton/>
-            </Link>
+		<NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
+        </Link>
           <form>
             <Grid
               container
@@ -143,7 +145,9 @@ export default class SignupForm extends Component {
           <Grid container direction="row" justify="center" alignItems="center">
             {images.map(image => (
               <img
-                className="photo"
+                className={
+                  this.state.photo === image.src ? "photo selected" : "photo"
+                }
                 src={image.src}
                 onClick={() => this.changePhoto(image.src)}
               ></img>

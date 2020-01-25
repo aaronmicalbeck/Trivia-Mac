@@ -28,7 +28,7 @@ this.handleClick = this.handleClick.bind(this);
   render() {
     return (
       <div>
-        <Link to="/" className="nav-link">
+        <Link to="/" className="nav-link"> 
 		<NavigationButton><span id="homeNavBtnTitle">Head-to-Head!</span></NavigationButton>
         </Link>
 
