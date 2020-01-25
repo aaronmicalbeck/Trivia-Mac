@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./leaderboard.css";
 import BarChart from "../../components/BarChart";
 import chartAPI from "../../utils/chartAPI";
+import NavigationButton from "../../components/NavigationButton"
+import {Link} from "react-router-dom";
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -45,6 +47,11 @@ export default class Leaderboard extends Component {
     return (
       <div id="leaderBoard">
         <BarChart labels={this.state.userNames} data={this.state.userScores} />
+        
+        <Link to="/" className="nav-link">
+        <NavigationButton/>
+            </Link>
+        
         
       </div>
     );

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./signup.css";
+import NavigationButton from "../../components/NavigationButton";
+import {Link} from "react-router-dom";
 import {
   FormControl,
   FormHelperText,
@@ -109,6 +111,9 @@ export default class SignupForm extends Component {
             aria-describedby="my-password-helper-text"
           />
           <button onClick={this.handleSubmit}>Sign up</button>
+          <Link to="/" className="nav-link">
+              <NavigationButton/>
+            </Link>
         </FormControl>
         <PhotoContainer>
           {images.map(image => (

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route } from "react-router-dom";
-//import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -16,21 +15,7 @@ class App extends Component {
     super();
     this.state = {
       response: 0,
-      endpoint: "http://127.0.0.1:8080",
-
-      labels: ['January', 'February', 'March',
-           'April', 'May'],
-      datasets: [
-    {
-      label: 'Rainfall',
-      fill: false,
-      lineTension: 0.5,
-      backgroundColor: 'rgba(75,192,192,1)',
-      borderColor: 'rgba(0,0,0,1)',
-      borderWidth: 2,
-      data: [65, 59, 80, 81, 56]
-    }
-  ]
+      endpoint: "http://127.0.0.1:8080"
     };
 
     this._login = this._login.bind(this);
@@ -86,12 +71,12 @@ class App extends Component {
     return (
       <div className="">
         {/* Navbar on every page */}
-        <NavBar _logout={this._logout} loggedIn={this.state.loggedIn} />
+        {/* <NavBar _logout={this._logout} loggedIn={this.state.loggedIn} /> */}
         {/*  Individual Things */}
         <Route
           exact
           path="/"
-          render={() => <Home user={this.state.user} _login={this._login} />}
+          render={() => <Home user={this.state.user} _login={this._login} _logout={this._logout} />}
         />
         <Route
           exact

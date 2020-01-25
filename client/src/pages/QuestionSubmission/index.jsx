@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./questionSubmission.css";
 import questionAPI from "../../utils/questionAPI";
+import {Link} from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
 
 export default class QuestionSubmission extends Component {
@@ -107,6 +109,9 @@ export default class QuestionSubmission extends Component {
 		<button id="questionSubmitButton" onClick={this.handleSubmit}>
           Submit your Question for Review!
         </button>
+        <Link to="/" className="nav-link">
+              <NavigationButton/>
+            </Link>
       </div>
     );
   }

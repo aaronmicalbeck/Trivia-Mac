@@ -1,0 +1,13 @@
+.navigation-btn {
+    border-radius: 50%; 
+    height: 50px;
+    width: 50px;
+    position: relative;
+    float: right;
+    border: none;
+    color:#403682;
+    font-size: 24px;
+    cursor: pointer;
+    font-family: FontAwesome;
+    outline: none;
+  }

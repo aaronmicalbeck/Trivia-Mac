@@ -4,9 +4,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./game.css";
 import socketIOClient from "socket.io-client";
-
 import Countdown from "react-countdown";
 import gsap from "gsap";
+import {Link} from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
 
 
@@ -54,7 +55,7 @@ export default class Game extends Component {
           false :
           true,
       response: data,
-      time: this.state.correct_answer != data.correct_answer ? Date.now() + 10000 : this.state.time,
+      time: this.state.correct_answer !== data.correct_answer ? Date.now() + 10000 : this.state.time,
       correct_answer: data.correct_answer
 
     }));
@@ -179,6 +180,10 @@ export default class Game extends Component {
         <br></br>
         <p id="score">Score: {sessionScore}</p>
         <button id="endGame" onClick={this.handleStop}>Stop Game </button>
+        <Link to="/" className="nav-link">
+              <NavigationButton/>
+            </Link>
+
       </div>
     );
   }
