@@ -89,7 +89,7 @@ export default class SignupForm extends Component {
       <Container fixed>
         <Grid container direction="column" justify="center" alignItems="center">
           <Typography align="center" variant="h2" gutterBottom>
-            Signup form
+            Create your user credentials and select your avatar! 
           </Typography>
           <Link to="/" className="nav-link">
 		<NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
@@ -111,9 +111,6 @@ export default class SignupForm extends Component {
                   onChange={this.handleChange}
                   aria-describedby="my-helper-text"
                 />
-                <FormHelperText id="my-helper-text">
-                  We'll never share your information.
-                </FormHelperText>
               </FormControl>
               <FormControl>
                 <InputLabel htmlFor="password">Password</InputLabel>

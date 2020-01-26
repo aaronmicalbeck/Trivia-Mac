@@ -46,11 +46,10 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div id="leaderBoard">
+      
         <BarChart labels={this.state.userNames} data={this.state.userScores} />
         
-        <Link to="/" className="nav-link">
-        <NavigationButton>Home</NavigationButton>
-            </Link>
+        
         
         
       </div>

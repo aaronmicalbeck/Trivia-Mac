@@ -57,7 +57,7 @@ export default function ProfileCard(props) {
   }
   return (
     <div>
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container direction="row" justify="center" alignItems="center" width="100%">
         <Card className={classes.card}>
           <CardHeader
             title={
@@ -78,7 +78,7 @@ export default function ProfileCard(props) {
             </Typography>
           </CardContent>
         </Card>
-        <Expand />
+        {/* <Expand /> */}
       </Grid>
     </div>
   );

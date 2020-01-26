@@ -4,6 +4,7 @@ import LoginForm from "../LoginForm";
 import ProfileCard from "../../components/ProfileCard";
 import {Link} from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
+import gsap from "gsap";
 
 export default class Home extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class Home extends Component {
 
   componentDidMount() {
 
-   console.log("Home Mounted")
+    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
+    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
 
   }
 
@@ -42,15 +44,9 @@ export default class Home extends Component {
     } else {
       return (
         <div className="Home">
-          <code>{JSON.stringify(this.props)}</code>
           <LoginForm _login={this.props._login} />
 
-          <Link to="/signup" className="nav-link">
-          <NavigationButton><span id="homeNavBtnTitle">Register</span></NavigationButton>
-            </Link>
-            <Link to="/leaderBoard" className="nav-link">
-            <NavigationButton><span id="homeNavBtnTitle">Leaderboard</span></NavigationButton>
-            </Link>
+          
         </div>
       );
     }

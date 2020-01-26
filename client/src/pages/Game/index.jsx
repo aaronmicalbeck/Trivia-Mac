@@ -172,6 +172,9 @@ export default class Game extends Component {
     }
     return (
       <div id="gameDiv">
+        <Link to="/lobby" className="nav-link">
+          <NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
+            </Link>
         <div className="row">
           <div className="col">
             <button id="startGame" onClick={this.handleStart}>

@@ -3,3 +3,45 @@
   max-width: 225px;
   margin: 0 auto;
 }
+
+#LoginForm .MuiContainer-root, .MuiContainer-fixed, .MuiContainer-maxWidthLg{
+  max-width: none !important;
+
+
+}
+
+.LoginForm{
+  position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    justify-content: center;
+}
+
+.MuiCardActions-root{
+  right: 48%;
+}
+
+#welcomeMessage h1{
+  font-size: 50px;
+  color: greenyellow;
+  z-index: 1;
+  align-items: center;
+
+
+
+}
+
+#welcomeMessage2{
+  border-radius: 50px;
+  position: relative;
+  left: -50%;
+  display: block;
+}
+
+#logoWrapper{
+  position: absolute;
+  left: 50%;
+}
+
+
