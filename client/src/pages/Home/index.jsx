@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./home.css";
 import LoginForm from "../LoginForm";
 import ProfileCard from "../../components/ProfileCard";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 import gsap from "gsap";
 
@@ -16,10 +16,18 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-
-    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
-    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-
+    gsap.from("#welcomeMessage1", {
+      duration: 2,
+      delay: 1,
+      x: "-101%",
+      opacity: 0
+    }) &&
+      gsap.from("#welcomeMessage2", {
+        duration: 2,
+        delay: 1,
+        x: "101%",
+        opacity: 0
+      });
   }
 
   render() {
@@ -27,17 +35,25 @@ export default class Home extends Component {
       return (
         <div className="Home">
           <Link to="/lobby" className="nav-link">
-          <NavigationButton><span id="homeNavBtnTitle">Lobby</span></NavigationButton>
-            </Link>
-            <Link to="/questionSubmission" className="nav-link">
-            <NavigationButton><span id="homeNavBtnTitle">Submit A Question</span></NavigationButton>
-            </Link>
-            <Link to="/" className="nav-link" onClick={this.props._logout}>
-            <NavigationButton><span id="homeNavBtnTitle">Logout</span></NavigationButton>
-            </Link>
-            <Link to="/leaderBoard" classname ="nav-link">
-            <NavigationButton><span id="homeNavBtnTitle">Leaderboard</span></NavigationButton>
-            </Link>
+            <NavigationButton>
+              <span id="homeNavBtnTitle">Lobby</span>
+            </NavigationButton>
+          </Link>
+          <Link to="/questionSubmission" className="nav-link">
+            <NavigationButton>
+              <span id="homeNavBtnTitle">Submit A Question</span>
+            </NavigationButton>
+          </Link>
+          <Link to="/" className="nav-link" onClick={this.props._logout}>
+            <NavigationButton>
+              <span id="homeNavBtnTitle">Logout</span>
+            </NavigationButton>
+          </Link>
+          <Link to="/leaderBoard" classname="nav-link">
+            <NavigationButton>
+              <span id="homeNavBtnTitle">Leaderboard</span>
+            </NavigationButton>
+          </Link>
           <ProfileCard user={this.props.user} />
         </div>
       );
@@ -45,8 +61,6 @@ export default class Home extends Component {
       return (
         <div className="Home">
           <LoginForm _login={this.props._login} />
-
-          
         </div>
       );
     }

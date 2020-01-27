@@ -47,37 +47,23 @@ export default class LoginForm extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        
         <div id="expand">
-           
           <div id="welcomeMessage">
             <h1 id="welcomeMessage1">Welcome To</h1>
-            </div>
-            <div id="logoWrapper">
-            <img id ="welcomeMessage2" src="Images/trivia_mac_logo.png" alt=""/>
+          </div>
+          <div id="logoWrapper">
+            <img id="welcomeMessage2" src="Images/trivia_mac_logo.png" alt="" />
+          </div>
 
-            </div>
-            
-            
           <div id="LoginForm">
-         
-          
-            
             <Container fixed>
-              
-              
-              
               <Grid
                 container
                 direction="column"
                 justify="center"
                 alignItems="center"
               >
-
-                
-                
                 <Link to="/signup" className="nav-link">
-                
                   <NavigationButton>
                     <span id="homeNavBtnTitle">Register</span>
                   </NavigationButton>

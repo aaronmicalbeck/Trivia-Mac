@@ -30,11 +30,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   function user(player) {
     if (player.hasOwnProperty("local")) {
@@ -55,9 +50,20 @@ export default function ProfileCard(props) {
       return profilePicture;
     }
   }
+
+  function profileScore(player) {
+    if (player.hasOwnProperty("local")) {
+      const profileScore = player.topScore;
+      return profileScore;
+    } else {
+      const profileScore = player.topScore;
+      return profileScore;
+    }
+  }
+
   return (
     <div>
-      <Grid container direction="row" justify="center" alignItems="center" width="100%">
+      <Grid container direction="column" justify="center" alignItems="center">
         <Card className={classes.card}>
           <CardHeader
             title={
@@ -65,21 +71,13 @@ export default function ProfileCard(props) {
                 {user(props.user)}
               </Typography>
             }
-            subheader="September 14, 2016"
+            subheader={"Top Score; " + profileScore(props.user)}
           />
-          <CardMedia
-            className={classes.media}
-            image={profilePic(props.user)}
-            title="Paella dish"
-          />
-          <CardContent>
-            <Typography align="center" variant="h2" gutterBottom>
-              {user(props.user)}
-            </Typography>
-          </CardContent>
+          <CardMedia className={classes.media} image={profilePic(props.user)} />
+          <CardContent></CardContent>
         </Card>
-        {/* <Expand /> */}
       </Grid>
+      <Expand />
     </div>
   );
 }

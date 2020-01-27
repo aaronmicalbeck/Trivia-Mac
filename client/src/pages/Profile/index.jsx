@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./profile.css";
 import ProfileCard from "../../components/ProfileCard";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 
 export default class Profile extends Component {
@@ -11,6 +11,7 @@ export default class Profile extends Component {
       user: props.user,
       _logout: props._logout
     };
+    console.log(this.state.user);
   }
 
   componentDidMount() {
@@ -21,14 +22,14 @@ export default class Profile extends Component {
     return (
       <div>
         <Link to="/lobby" className="nav-link">
-              <NavigationButton/>
-            </Link>
-            <Link to="/questionSubmission" className="nav-link">
-              <NavigationButton/>
-            </Link>
-            <Link to="/" className="nav-link" onClick={this.props._logout}>
-              <NavigationButton/>
-            </Link>
+          <NavigationButton />
+        </Link>
+        <Link to="/questionSubmission" className="nav-link">
+          <NavigationButton />
+        </Link>
+        <Link to="/" className="nav-link" onClick={this.props._logout}>
+          <NavigationButton />
+        </Link>
 
         <ProfileCard user={this.state.user} />
       </div>

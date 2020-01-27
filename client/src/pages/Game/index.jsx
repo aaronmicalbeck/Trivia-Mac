@@ -1,4 +1,4 @@
-// //////////////////////////////////////////
+////////////////////////////////////////////
 
 import React, { Component } from "react";
 import axios from "axios";
@@ -8,10 +8,8 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
 import Sound from "react-sound";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-
-
 
 export default class Game extends Component {
   constructor(props) {
@@ -53,7 +51,7 @@ export default class Game extends Component {
         <div className="text">seconds</div>
       </div>
     );
-  };
+  }
 
   // //////////////////////////////////////////
 
@@ -64,27 +62,30 @@ export default class Game extends Component {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
 
-    socket.on("FromAPI", data => this.setState({
-      //enable the button when data comes in unless...
-      enableButton: this.state.enableButton ?
-        true :
-        //the question has already been answered. else, leave it enabled
-        this.state.response.question === data.question ?
-          false :
-          true,
-      response: data,
-      time: this.state.correct_answer !== data.correct_answer ? 10 : this.state.time,
-      correct_answer: data.correct_answer,
-      isPlaying: true,
-      backgroundColor: this.state.enableButton ?
-        "#5E91D3" :
-        //the question has already been answered. else, leave it enabled
-        this.state.response.question === data.question ?
-          this.state.backgroundColor :
-          "#5E91D3",
-
-    }));
-
+    socket.on("FromAPI", data =>
+      this.setState({
+        //enable the button when data comes in unless...
+        enableButton: this.state.enableButton
+          ? true
+          : //the question has already been answered. else, leave it enabled
+          this.state.response.question === data.question
+          ? false
+          : true,
+        response: data,
+        time:
+          this.state.correct_answer !== data.correct_answer
+            ? 10
+            : this.state.time,
+        correct_answer: data.correct_answer,
+        isPlaying: true,
+        backgroundColor: this.state.enableButton
+          ? "#5E91D3"
+          : //the question has already been answered. else, leave it enabled
+          this.state.response.question === data.question
+          ? this.state.backgroundColor
+          : "#5E91D3"
+      })
+    );
 
     // GAMESTARTED = TRUE
 
@@ -110,9 +111,8 @@ export default class Game extends Component {
       .then(res => console.log(res))
       .catch(err => console.log(err));
 
-    // relocates user to Homepage 
+    // relocates user to Homepage
     window.location.href = "./";
-
   }
 
   isCorrectAnswer(choice) {
@@ -123,16 +123,22 @@ export default class Game extends Component {
       // Buttons are disabled when user selects an answer
 
       if (choice === response.correct_answer) {
-        this.setState({ sessionScore: sessionScore + 1, enableButton: false, backgroundColor: "green" });
+        this.setState({
+          sessionScore: sessionScore + 1,
+          enableButton: false,
+          backgroundColor: "green"
+        });
       } else {
-        this.setState({ sessionScore: sessionScore - 1, enableButton: false, backgroundColor: "red" });
+        this.setState({
+          sessionScore: sessionScore - 1,
+          enableButton: false,
+          backgroundColor: "red"
+        });
       }
     }
   }
 
   componentDidMount() {
-
-
     /////////////
     // on load
     /////////////
@@ -143,9 +149,8 @@ export default class Game extends Component {
     // gsap.from("#endGame", { duration: 2, delay: 0.1, opacity: 0 });
     // gsap.from("#answers", { duration: 2, delay: 0.1, opacity: 0 });
 
-
-
-    axios.get(`/api/userscore/${this.state.user._id}`)
+    axios
+      .get(`/api/userscore/${this.state.user._id}`)
 
       .then(res => {
         this.setState({
@@ -168,7 +173,6 @@ export default class Game extends Component {
 
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-
         return response.choices.map(answers => (
           <button
             disabled={!this.state.enableButton}
@@ -181,12 +185,10 @@ export default class Game extends Component {
             {this.decodeHtml(answers)}
           </button>
         ));
-
       }
-    }
+    };
     return (
       <div id="gameDiv">
-
         <Sound
           url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
           playStatus={Sound.status.PLAYING}
@@ -194,8 +196,10 @@ export default class Game extends Component {
         />
 
         <Link to="/lobby" className="nav-link">
-          <NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
-            </Link>
+          <NavigationButton>
+            <span id="homeNavBtnTitle">Back</span>
+          </NavigationButton>
+        </Link>
 
         <div className="row">
           <div className="col">
@@ -204,7 +208,9 @@ export default class Game extends Component {
             </button>
           </div>
           <div className="col">
-            <button id="endGame" onClick={this.handleStop}>Stop Game </button>
+            <button id="endGame" onClick={this.handleStop}>
+              Stop Game{" "}
+            </button>
           </div>
         </div>
         <div className="App">
@@ -224,7 +230,6 @@ export default class Game extends Component {
         <br></br>
         <p>{this.decodeHtml(response.question)}</p>
         <br></br>
-
 
         {renderButtons()}
         <br></br>
