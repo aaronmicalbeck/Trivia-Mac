@@ -8,6 +8,10 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
 import Sound from "react-sound";
 
+import {Link} from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
+
+
 
 export default class Game extends Component {
   constructor(props) {
@@ -182,11 +186,17 @@ export default class Game extends Component {
     }
     return (
       <div id="gameDiv">
+
         <Sound
           url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
           playStatus={Sound.status.PLAYING}
           loop={true}
         />
+
+        <Link to="/lobby" className="nav-link">
+          <NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
+            </Link>
+
         <div className="row">
           <div className="col">
             <button id="startGame" onClick={this.handleStart}>

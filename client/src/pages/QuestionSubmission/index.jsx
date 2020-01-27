@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./questionSubmission.css";
 import questionAPI from "../../utils/questionAPI";
+import {Link} from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
 
 export default class QuestionSubmission extends Component {
@@ -57,8 +59,14 @@ export default class QuestionSubmission extends Component {
 
   render() {
     return (
-      <div id="questionSubmissionForm">
-        <p>Hello Question Submission</p>
+
+
+<div id="questionSubmissionForm">
+      <Link to="/" className="nav-link">
+        <NavigationButton>Home</NavigationButton>
+            </Link>
+      
+        <p>SUBMIT A QUESTION TO BE USED IN GAME!</p>
         <input
           id="question"
           placeholder="Type your question here!"
@@ -107,6 +115,7 @@ export default class QuestionSubmission extends Component {
 		<button id="questionSubmitButton" onClick={this.handleSubmit}>
           Submit your Question for Review!
         </button>
+        
       </div>
     );
   }

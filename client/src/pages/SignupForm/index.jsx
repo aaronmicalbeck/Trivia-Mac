@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./signup.css";
+import NavigationButton from "../../components/NavigationButton";
+import {Link} from "react-router-dom";
 import {
   FormControl,
   FormLabel,
@@ -14,7 +16,7 @@ import {
   Grid
 } from "@material-ui/core";
 import UploadBtn from "../../components/SubmitButton";
-import PhotoContainer from "../../components/PhotoContainer";
+
 const images = [
   { src: "Images/Brain.jpg", name: "Brain" },
   { src: "Images/Dex_Lab.jpg", name: "Dexter" },
@@ -87,8 +89,11 @@ export default class SignupForm extends Component {
       <Container fixed>
         <Grid container direction="column" justify="center" alignItems="center">
           <Typography align="center" variant="h2" gutterBottom>
-            Signup form
+            Create your user credentials and select your avatar! 
           </Typography>
+          <Link to="/" className="nav-link">
+		<NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
+        </Link>
           <form>
             <Grid
               container
@@ -106,9 +111,6 @@ export default class SignupForm extends Component {
                   onChange={this.handleChange}
                   aria-describedby="my-helper-text"
                 />
-                <FormHelperText id="my-helper-text">
-                  We'll never share your information.
-                </FormHelperText>
               </FormControl>
               <FormControl>
                 <InputLabel htmlFor="password">Password</InputLabel>

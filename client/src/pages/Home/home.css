@@ -1,3 +1,30 @@
 .Home {
-  justify-content: center;
+  height: 100vh;
+  background-color: #6f72b2;
+  position: relative;
+  }
+
+#homeNavBtnTitle{
+  font-size: xx-large;
 }
+
+.Home #LoginForm{
+  
+    position: absolute;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      width: 80%;
+  
+}
+
+
+.Home .chartjs-render-monitor{
+  background-color: white;
+  border-radius: 30px;
+}
+
+.Home .makeStyles-expand-204{
+  right: 48%;
+}
+
