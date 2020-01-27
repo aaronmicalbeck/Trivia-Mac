@@ -39,9 +39,9 @@ export default function Expand() {
   return (
     <div>
       <CardActions disableSpacing>
-        <Typography align="center" variant="h2" gutterBottom>
+        {/* <Typography align="center" variant="h2" gutterBottom>
           Leaderboard
-        </Typography>
+        </Typography> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded

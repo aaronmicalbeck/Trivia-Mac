@@ -6,6 +6,8 @@ import "./game.css";
 import socketIOClient from "socket.io-client";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
+import {Link} from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
 
 export default class Game extends Component {
@@ -178,6 +180,9 @@ export default class Game extends Component {
     }
     return (
       <div id="gameDiv">
+        <Link to="/lobby" className="nav-link">
+          <NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
+            </Link>
         <div className="row">
           <div className="col">
             <button id="startGame" onClick={this.handleStart}>
