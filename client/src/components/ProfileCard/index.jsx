@@ -32,9 +32,7 @@ export default function ProfileCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  
 
   function user(player) {
     if (player.hasOwnProperty("local")) {
@@ -55,6 +53,17 @@ export default function ProfileCard(props) {
       return profilePicture;
     }
   }
+
+  function userScore(player){
+    if(player.hasOwnProperty("local")){
+      const profileScore = player.topScore;
+     return profileScore;
+    }
+    else{
+      const profileScore = player.topScore;
+      return profileScore;
+    }
+  }
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center" width="100%">
@@ -65,20 +74,21 @@ export default function ProfileCard(props) {
                 {user(props.user)}
               </Typography>
             }
-            subheader="September 14, 2016"
+            subheader= {"Top Score: " + userScore(props.user)}
+
           />
           <CardMedia
             className={classes.media}
             image={profilePic(props.user)}
-            title="Paella dish"
           />
           <CardContent>
             <Typography align="center" variant="h2" gutterBottom>
-              {user(props.user)}
+            <Expand />
+             
             </Typography>
           </CardContent>
         </Card>
-        {/* <Expand /> */}
+        
       </Grid>
     </div>
   );

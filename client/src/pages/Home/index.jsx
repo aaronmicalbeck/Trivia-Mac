@@ -11,7 +11,8 @@ export default class Home extends Component {
     super(props);
     this.state = {
       user: props.user,
-      _logout: props._logout
+      _logout: props._logout,
+      topScore: props.topScore
     };
   }
 
@@ -19,7 +20,7 @@ export default class Home extends Component {
 
     gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
     gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-
+console.log(this.state.topScore)
   }
 
   render() {
@@ -38,7 +39,8 @@ export default class Home extends Component {
             <Link to="/leaderBoard" classname ="nav-link">
             <NavigationButton><span id="homeNavBtnTitle">Leaderboard</span></NavigationButton>
             </Link>
-          <ProfileCard user={this.props.user} />
+          <ProfileCard user={this.props.user} topScore={this.props.topScore}/>
+          
         </div>
       );
     } else {
