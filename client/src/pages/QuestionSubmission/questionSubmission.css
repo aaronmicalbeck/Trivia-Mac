@@ -1,6 +1,10 @@
-.question {
-  width: 100%;
+.QuestionSubmission,
+#questionSubmissionForm > p {
+  margin: auto;
+  background-color: #6f72b2;
+  color: #88f537;
 }
-.container {
-  width: 100%;
+
+html {
+  background-color: #6f72b2;
 }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // when document loads. drop the header into view.
 
   ///////////////////////////////////////////////
@@ -42,8 +42,23 @@ document.addEventListener("DOMContentLoaded", function() {
   //   }
 
   document.getElementById("LoginForm")
-    ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
+    ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 }) &&
+    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
+    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
     : null;
+
+    document.getElementById("line1") ?
+    gsap.from("#line1", { duration: 2, delay: 1, x: "101%", opacity: 0 })
+    : null;
+
+    document.getElementById("lobbyinstructions") ?
+    gsap.from("#lobbyinstructions", { duration: 2, delay: 1, x: "-101%", opacity: 0 })
+    : null;
+
+  // 
+  // document.getElementById("welcomeMessage")
+  // ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
+  // : null;
 
   //start game button fades in on document load
 
@@ -57,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // on scroll
   //////////////////////////////////////////////
 
-  window.addEventListener("scroll", function(event) {
+  window.addEventListener("scroll", function (event) {
     // on scroll will fire every time the window scrolls up or down.
   });
 

@@ -17,3 +17,18 @@
   opacity: 0.5;
   border: 3px solid #88f537;
 }
+
+
+.SignupForm{
+  margin: auto;
+  background-color: #6f72b2;
+}
+
+.MuiContainer-root, .MuiContainer-fixed, .MuiContainer-maxWidthLg{
+
+  background-color: #6f72b2;
+}
+
+.body {
+  background-color: #6f72b2;
+}
