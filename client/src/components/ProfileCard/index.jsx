@@ -30,9 +30,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProfileCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  
 
   function user(player) {
     if (player.hasOwnProperty("local")) {
@@ -54,19 +51,18 @@ export default function ProfileCard(props) {
     }
   }
 
-  function userScore(player){
-    if(player.hasOwnProperty("local")){
+  function profileScore(player) {
+    if (player.hasOwnProperty("local")) {
       const profileScore = player.topScore;
-     return profileScore;
-    }
-    else{
+      return profileScore;
+    } else {
       const profileScore = player.topScore;
       return profileScore;
     }
   }
   return (
     <div>
-      <Grid container direction="row" justify="center" alignItems="center" width="100%">
+      <Grid container direction="column" justify="center" alignItems="center">
         <Card className={classes.card}>
           <CardHeader
             title={
@@ -74,22 +70,13 @@ export default function ProfileCard(props) {
                 {user(props.user)}
               </Typography>
             }
-            subheader= {"Top Score: " + userScore(props.user)}
-
+            subheader={"Top Score; " + profileScore(props.user)}
           />
-          <CardMedia
-            className={classes.media}
-            image={profilePic(props.user)}
-          />
-          <CardContent>
-            <Typography align="center" variant="h2" gutterBottom>
-            <Expand />
-             
-            </Typography>
-          </CardContent>
+          <CardMedia className={classes.media} image={profilePic(props.user)} />
+          <CardContent></CardContent>
         </Card>
-        
       </Grid>
+      <Expand />
     </div>
   );
 }
