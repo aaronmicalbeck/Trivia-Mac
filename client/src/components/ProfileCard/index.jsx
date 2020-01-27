@@ -70,7 +70,7 @@ export default function ProfileCard(props) {
                 {user(props.user)}
               </Typography>
             }
-            subheader={"Top Score; " + profileScore(props.user)}
+            subheader={"Top Score: " + profileScore(props.user)}
           />
           <CardMedia className={classes.media} image={profilePic(props.user)} />
           <CardContent></CardContent>
