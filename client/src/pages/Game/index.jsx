@@ -6,6 +6,7 @@ import "./game.css";
 import socketIOClient from "socket.io-client";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
+import Sound from "react-sound";
 
 
 export default class Game extends Component {
@@ -71,7 +72,7 @@ export default class Game extends Component {
       time: this.state.correct_answer !== data.correct_answer ? 10 : this.state.time,
       correct_answer: data.correct_answer,
       isPlaying: true,
-      backgroundColor:  this.state.enableButton ?
+      backgroundColor: this.state.enableButton ?
         "#5E91D3" :
         //the question has already been answered. else, leave it enabled
         this.state.response.question === data.question ?
@@ -133,7 +134,10 @@ export default class Game extends Component {
     /////////////
 
     // on load fade start button in
-    gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
+    gsap.from("#gameDiv", { duration: 2, delay: 0.1, opacity: 0 });
+    // gsap.from("#startGame", { duration: 2, delay: 0.1, opacity: 0 });
+    // gsap.from("#endGame", { duration: 2, delay: 0.1, opacity: 0 });
+    // gsap.from("#answers", { duration: 2, delay: 0.1, opacity: 0 });
 
 
 
@@ -178,6 +182,11 @@ export default class Game extends Component {
     }
     return (
       <div id="gameDiv">
+        <Sound
+          url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
+          playStatus={Sound.status.PLAYING}
+          loop={true}
+        />
         <div className="row">
           <div className="col">
             <button id="startGame" onClick={this.handleStart}>
