@@ -14,11 +14,10 @@ html {
 
 .MuiFormControl-root {
   width: 100%;
-  background-color: #6f72b2;
 }
 
-.MuiGrid-root{
-margin: 0 0 0 0;
+.QuestionSubmission .MuiGrid-root{
+    margin: 0 0 0 0;
 position: absolute;
 background-color: #23b8d9;
 left: 31%;

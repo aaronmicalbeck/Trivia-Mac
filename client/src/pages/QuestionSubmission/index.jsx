@@ -8,8 +8,11 @@ import {
   InputLabel,
   Container,
   Grid,
-  Button
+  Button,
 } from "@material-ui/core";
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 export default class QuestionSubmission extends Component {
   constructor(props) {
@@ -23,12 +26,18 @@ export default class QuestionSubmission extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.emptyForm = this.emptyForm.bind(this);
+    // this.openModal = this.openModal.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
+  }
+
+  emptyForm = () => { 
+    this.setState({question: "", correctAnswer: "", incorrectAnswer1:"", incorrectAnswer2:"", incorrectAnswer3:""})
   }
 
   // Retrieves information input into forms and POSTS to MongoDB
@@ -44,8 +53,9 @@ export default class QuestionSubmission extends Component {
         incorrectAnswer3: this.state.incorrectAnswer3
       })
       .then(res => console.log(res.data))
-      .then(console.log("Thank you for submitting!"))
       .catch(err => console.log(err));
+      this.emptyForm();
+      this.openModal();
   }
 
   // Axios GET request all from MongoDB
@@ -54,6 +64,7 @@ export default class QuestionSubmission extends Component {
     event.preventDefault();
     questionAPI.getQuestions().then(res => console.log("Perfecto!"));
   }
+
 
   componentDidMount() {
     // We deed it
@@ -138,6 +149,7 @@ export default class QuestionSubmission extends Component {
           <Button id="questionSubmitButton" onClick={this.handleSubmit}>
             Submit your Question for Review!
           </Button>
+         
         </Grid>
       </div>
     );
