@@ -1,4 +1,4 @@
-// //////////////////////////////////////////
+////////////////////////////////////////////
 
 import React, { Component } from "react";
 import axios from "axios";
@@ -6,7 +6,6 @@ import "./game.css";
 import socketIOClient from "socket.io-client";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
-
 
 export default class Game extends Component {
   constructor(props) {
@@ -47,7 +46,7 @@ export default class Game extends Component {
         <div className="text">seconds</div>
       </div>
     );
-  };
+  }
 
   // //////////////////////////////////////////
 
@@ -58,21 +57,24 @@ export default class Game extends Component {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
 
-    socket.on("FromAPI", data => this.setState({
-      //enable the button when data comes in unless...
-      enableButton: this.state.enableButton ?
-        true :
-        //the question has already been answered. else, leave it enabled
-        this.state.response.question === data.question ?
-          false :
-          true,
-      response: data,
-      time: this.state.correct_answer != data.correct_answer ? 10 : this.state.time,
-      correct_answer: data.correct_answer,
-      isPlaying: true
-
-    }));
-
+    socket.on("FromAPI", data =>
+      this.setState({
+        //enable the button when data comes in unless...
+        enableButton: this.state.enableButton
+          ? true
+          : //the question has already been answered. else, leave it enabled
+          this.state.response.question === data.question
+          ? false
+          : true,
+        response: data,
+        time:
+          this.state.correct_answer != data.correct_answer
+            ? 10
+            : this.state.time,
+        correct_answer: data.correct_answer,
+        isPlaying: true
+      })
+    );
 
     // GAMESTARTED = TRUE
 
@@ -98,9 +100,8 @@ export default class Game extends Component {
       .then(res => console.log(res))
       .catch(err => console.log(err));
 
-    // relocates user to Homepage 
+    // relocates user to Homepage
     window.location.href = "./";
-
   }
 
   isCorrectAnswer(choice) {
@@ -119,18 +120,15 @@ export default class Game extends Component {
   }
 
   componentDidMount() {
-
-
     /////////////
     // on load
     /////////////
 
     // on load fade start button in
-    gsap.from("#startGame", { duration: 1, delay: 0.1, opacity: 0 });
+    gsap.from("#startGame", { duration: 2, delay: 0.1, opacity: 0 });
 
-
-
-    axios.get(`/api/userscore/${this.state.user._id}`)
+    axios
+      .get(`/api/userscore/${this.state.user._id}`)
 
       .then(res => {
         this.setState({
@@ -153,7 +151,6 @@ export default class Game extends Component {
 
     const renderButtons = () => {
       if (this.state.gameStarted && response.choices) {
-
         return response.choices.map(answers => (
           <button
             disabled={!this.state.enableButton}
@@ -165,9 +162,8 @@ export default class Game extends Component {
             {this.decodeHtml(answers)}
           </button>
         ));
-
       }
-    }
+    };
     return (
       <div id="gameDiv">
         <div className="row">
@@ -177,7 +173,9 @@ export default class Game extends Component {
             </button>
           </div>
           <div className="col">
-            <button id="endGame" onClick={this.handleStop}>Stop Game </button>
+            <button id="endGame" onClick={this.handleStop}>
+              Stop Game{" "}
+            </button>
           </div>
         </div>
         <div className="App">
@@ -197,7 +195,6 @@ export default class Game extends Component {
         <br></br>
         <p>{this.decodeHtml(response.question)}</p>
         <br></br>
-
 
         {renderButtons()}
         <br></br>

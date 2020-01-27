@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import "./questionSubmission.css";
 import questionAPI from "../../utils/questionAPI";
-
+import {
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+  Container,
+  Grid,
+  Button
+} from "@material-ui/core";
 
 export default class QuestionSubmission extends Component {
   constructor(props) {
@@ -17,7 +25,6 @@ export default class QuestionSubmission extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -28,85 +35,104 @@ export default class QuestionSubmission extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    questionAPI.submitQuestion({
-		question: this.state.question,
-		correctAnswer: this.state.correctAnswer,
-		incorrectAnswer1: this.state.incorrectAnswer1,
-		incorrectAnswer2: this.state.incorrectAnswer2,
-		incorrectAnswer3: this.state.incorrectAnswer3
-
-	})
-  .then(res => console.log(res.data))
-  .then(console.log("Thank you for submitting!"))
-	.catch(err => console.log(err)
-	);
-
-    
+    questionAPI
+      .submitQuestion({
+        question: this.state.question,
+        correctAnswer: this.state.correctAnswer,
+        incorrectAnswer1: this.state.incorrectAnswer1,
+        incorrectAnswer2: this.state.incorrectAnswer2,
+        incorrectAnswer3: this.state.incorrectAnswer3
+      })
+      .then(res => console.log(res.data))
+      .then(console.log("Thank you for submitting!"))
+      .catch(err => console.log(err));
   }
 
   // Axios GET request all from MongoDB
 
-  handleGet(event){
+  handleGet(event) {
     event.preventDefault();
-    questionAPI.getQuestions().then(res => console.log("Perfecto!"))
+    questionAPI.getQuestions().then(res => console.log("Perfecto!"));
   }
 
   componentDidMount() {
-  // We deed it
+    // We deed it
   }
 
   render() {
     return (
       <div id="questionSubmissionForm">
         <p>Hello Question Submission</p>
-        <input
-          id="question"
-          placeholder="Type your question here!"
-          type="text"
-          name="question"
-          value={this.state.question}
-          onChange={this.handleChange}
-        ></input>
-        <br></br>
-        <input
-          id="correctAnswer"
-          placeholder="Type the correct answer here!"
-          type="text"
-          name="correctAnswer"
-          value={this.state.correctAnswer}
-          onChange={this.handleChange}
-        ></input>
-        <br></br>
-        <input
-          id="incorrectAnswer1"
-          placeholder="Type an incorrect answer choice here!"
-          type="text"
-          name="incorrectAnswer1"
-          value={this.state.incorrectAnswer1}
-          onChange={this.handleChange}
-        ></input>
-        <br></br>
-        <input
-          id="incorrectAnswer2"
-          placeholder="Type an incorrect answer choice here!"
-          type="text"
-          name="incorrectAnswer2"
-          value={this.state.incorrectAnswer2}
-          onChange={this.handleChange}
-        ></input>
-        <br></br>
-        <input
-          id="incorrectAnswer3"
-          placeholder="Type an incorrect answer choice here!"
-          type="text"
-          name="incorrectAnswer3"
-          value={this.state.incorrectAnswer3}
-          onChange={this.handleChange}
-        ></input>
-        <br></br>
-		<button id="questionSubmitButton" onClick={this.handleSubmit}>
-          Submit your Question for Review!
-        </button>
+
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          width="100%"
+        >
+          <FormControl>
+            <InputLabel htmlFor="my-input" width="100%">
+              Question{" "}
+            </InputLabel>
+            <Input
+              width="100%"
+              id="question"
+              type="text"
+              name="question"
+              value={this.state.question}
+              onChange={this.handleChange}
+            />
+          </FormControl>
+          <br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Correct answer </InputLabel>
+            <Input
+              id="correctAnswer"
+              type="text"
+              name="correctAnswer"
+              value={this.state.correctAnswer}
+              onChange={this.handleChange}
+            />
+          </FormControl>
+          <br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Incorrect answer</InputLabel>
+            <Input
+              id="incorrectAnswer1"
+              type="text"
+              name="incorrectAnswer1"
+              value={this.state.incorrectAnswer1}
+              onChange={this.handleChange}
+            />
+          </FormControl>
+          <br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Incorrect answer</InputLabel>
+            <Input
+              id="incorrectAnswer2"
+              type="text"
+              name="incorrectAnswer2"
+              value={this.state.incorrectAnswer2}
+              onChange={this.handleChange}
+            />
+          </FormControl>
+          <br></br>
+          <FormControl>
+            <InputLabel htmlFor="my-input">Incorrect answer</InputLabel>
+            <Input
+              id="incorrectAnswer3"
+              type="text"
+              name="incorrectAnswer3"
+              value={this.state.incorrectAnswer3}
+              onChange={this.handleChange}
+            />
+          </FormControl>
+          <br></br>
+          <Button id="questionSubmitButton" onClick={this.handleSubmit}>
+            Submit your Question for Review!
+          </Button>
+        </Grid>
       </div>
     );
   }

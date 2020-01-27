@@ -8,6 +8,7 @@ export default class Profile extends Component {
     this.state = {
       user: props.user
     };
+    console.log(this.state.user);
   }
 
   componentDidMount() {
@@ -15,10 +16,6 @@ export default class Profile extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <ProfileCard user={this.state.user} />
-      </div>
-    );
+    return <div>{/* // <ProfileCard user={this.state.user} /> */}</div>;
   }
 }

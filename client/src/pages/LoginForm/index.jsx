@@ -54,9 +54,7 @@ export default class LoginForm extends Component {
               alignItems="center"
             >
               <FormControl>
-                <InputLabel htmlFor="my-input">
-                  Username or Email Address
-                </InputLabel>
+                <InputLabel htmlFor="my-input">Username</InputLabel>
                 <Input
                   name="username"
                   type="text"
@@ -66,9 +64,7 @@ export default class LoginForm extends Component {
                   aria-describedby="my-helper-text"
                 />
               </FormControl>
-              <FormHelperText id="my-helper-text">
-                We'll never share your email.
-              </FormHelperText>
+
               <FormControl>
                 <InputLabel htmlFor="my-password">Password</InputLabel>
                 <Input
