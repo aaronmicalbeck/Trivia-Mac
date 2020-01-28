@@ -5,6 +5,7 @@ import ProfileCard from "../../components/ProfileCard";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 import gsap from "gsap";
+import axios from "axios";
 
 export default class Home extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ export default class Home extends Component {
               <span id="homeNavBtnTitle">Leaderboard</span>
             </NavigationButton>
           </Link>
-          <ProfileCard user={this.props.user} />
+          <ProfileCard user={this.props.user} topScore={this.props.user} />
         </div>
       );
     } else {

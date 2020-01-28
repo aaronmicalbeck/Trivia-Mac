@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Expand from "../../components/Expand";
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -61,9 +62,18 @@ export default function ProfileCard(props) {
     }
   }
 
+  function getScore(player) {
+    axios
+      .get(`/api/userscore/${player._id}`)
+      .then(res => {
+        console.log(res.data.topScore);
+      })
+      .catch(err => console.log(err));
+  }
+
   return (
     <div>
-      <Grid container direction="column" justify="center" alignItems="center">
+      <Grid container direction="row" justify="center" alignItems="center">
         <Card className={classes.card}>
           <CardHeader
             title={
@@ -71,10 +81,10 @@ export default function ProfileCard(props) {
                 {user(props.user)}
               </Typography>
             }
-            subheader={"Top Score; " + profileScore(props.user)}
+            subheader={getScore(props.user)}
           />
           <CardMedia className={classes.media} image={profilePic(props.user)} />
-          <CardContent></CardContent>
+          {/* <CardContent>{getScore()}</CardContent> */}
         </Card>
       </Grid>
       <Expand />
