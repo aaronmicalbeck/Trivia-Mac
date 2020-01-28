@@ -46,7 +46,7 @@ export default class Lobby extends Component {
             </NavigationButton>
           </Link>
           <div id="line1"></div>
-          <div id="line2">HEAD TO HEAD</div>
+          <div id="line2">HEAD TO HEAD (coming soon...)</div>
           <div id="line3">BATTLE ROYALE</div>
         </div>
       </div>
