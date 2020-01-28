@@ -12,12 +12,12 @@ function LoginForm() {
   return (
     <div>
       <FormControl>
-        <InputLabel htmlFor="my-input">Email address</InputLabel>
+        <InputLabel htmlFor="my-input" id="loginEmailPlaceHolder">Email address</InputLabel>
         <Input
           type="username"
           id="my-input"
         />
-        <InputLabel htmlFor="my-password">Password</InputLabel>
+        <InputLabel htmlFor="my-password" id="loginPasswordPlaceholder">Password</InputLabel>
         <Input
           type="password"
           id="my-password"

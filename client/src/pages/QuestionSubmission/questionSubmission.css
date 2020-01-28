@@ -1,4 +1,7 @@
-.QuestionSubmission,
+.QuestionSubmission {
+  height: 100vh;
+  background-color: #6f72b2;
+}
 #questionSubmissionForm > p {
   margin: auto;
   background-color: #6f72b2;
@@ -8,3 +11,15 @@
 html {
   background-color: #6f72b2;
 }
+
+.QuestionSubmission .MuiFormControl-root {
+  width: 100%;
+}
+
+.QuestionSubmission .MuiGrid-root{
+    margin: 0 0 0 0;
+position: absolute;
+background-color: #23b8d9;
+left: 31%;
+top: 10%;
+  }

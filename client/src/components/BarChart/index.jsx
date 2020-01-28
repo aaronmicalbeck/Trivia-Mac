@@ -1,5 +1,8 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
+import NavigationButton from "../NavigationButton";
+import {Link} from "react-router-dom"
+import "./style.css"
 
 
 function LeaderChart(props){
@@ -17,6 +20,12 @@ function LeaderChart(props){
   } 
   return (
     <div>
+
+     <Link to="/" id="lobby-nav-link" className="nav-link">
+            <NavigationButton id="leaderboardbackbtn">
+              <span id="homeNavBtnTitle">Back</span>
+            </NavigationButton>
+          </Link>
       <Bar
         data={state}
         options={{
@@ -31,6 +40,7 @@ function LeaderChart(props){
           }
         }}
       />
+
     </div>
   );
 }

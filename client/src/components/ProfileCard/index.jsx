@@ -60,7 +60,6 @@ export default function ProfileCard(props) {
       return profileScore;
     }
   }
-
   return (
     <div>
       <Grid container direction="column" justify="center" alignItems="center">
@@ -71,13 +70,13 @@ export default function ProfileCard(props) {
                 {user(props.user)}
               </Typography>
             }
-            subheader={"Top Score; " + profileScore(props.user)}
+            subheader={"Top Score: " + profileScore(props.user)}
           />
           <CardMedia className={classes.media} image={profilePic(props.user)} />
           <CardContent></CardContent>
         </Card>
       </Grid>
-      <Expand />
+      {/* <Expand /> */}
     </div>
   );
 }

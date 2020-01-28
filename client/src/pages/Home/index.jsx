@@ -11,18 +11,13 @@ export default class Home extends Component {
     super(props);
     this.state = {
       user: props.user,
-      _logout: props._logout
+      _logout: props._logout,
+      topScore: props.topScore
     };
   }
 
   componentDidMount() {
-
-
-    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
-      gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-
-
-
+    console.log(this.state.topScore);
   }
 
   render() {
