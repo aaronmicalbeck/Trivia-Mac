@@ -76,7 +76,7 @@ export default function ProfileCard(props) {
           <CardContent></CardContent>
         </Card>
       </Grid>
-      <Expand />
+      {/* <Expand /> */}
     </div>
   );
 }

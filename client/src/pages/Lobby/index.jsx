@@ -22,11 +22,10 @@ export default class Lobby extends Component {
   componentDidMount() {
     
     gsap.from("#line1", { duration: 2, delay: 1, x: "101%", opacity: 0 })
+    gsap.from("#line2", { duration: 2, delay: 1, y: "-150%", opacity: 0 })
+    gsap.from("#line3", { duration: 2, delay: 1, y: "150%", opacity: 0 })
     gsap.from("#lobbyinstructions", { duration: 2, delay: 1, x: "-101%", opacity: 0 })
-    gsap.from("#lobbyinstructions2", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
-    gsap.from("#battleroyalebtn", { duration: 1, delay: 1, x: "-150%", opacity: 0 })
-    gsap.from("#headtoheadbtn", { duration: 1, delay: 1, x: "150%", opacity: 0 })
-    gsap.from("#lobbybackbtn", { duration: 1.5, delay: 1, y: "-150%", opacity: 0 })
+  
   }
 
   render() {
