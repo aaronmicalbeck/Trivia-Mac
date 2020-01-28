@@ -78,8 +78,8 @@ export default function ProfileCard(props) {
             </Typography>
           </CardContent>
         </Card>
-        {/* <Expand /> */}
       </Grid>
+      <Expand />
     </div>
   );
 }
