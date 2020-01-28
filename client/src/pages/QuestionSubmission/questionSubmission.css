@@ -1,12 +1,10 @@
-.QuestionSubmission, #questionSubmissionForm > p {
-    margin: auto;
-    background-color: #6f72b2;
-    color: #88f537;
-  }
-  
-  html {
+.QuestionSubmission,
+#questionSubmissionForm > p {
+  margin: auto;
+  background-color: #6f72b2;
+  color: #88f537;
+}
 
-    background-color: #6f72b2;
-  }
-
-  
+html {
+  background-color: #6f72b2;
+}
