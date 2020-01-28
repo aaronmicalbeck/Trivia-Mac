@@ -47,14 +47,12 @@ export default class Home extends Component {
               </Link>
             </div>
           </div>
-
         </div>
       )
     } else {
       return (
         <div className="Home">
           <LoginForm _login={this.props._login} />
-
         </div>
       );
     }
