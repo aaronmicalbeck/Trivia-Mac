@@ -58,28 +58,6 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-
-
-        //   <div className="Home">
-        //     <div className="LeftContainer">
-        //       <Link to="/lobby" className="nav-link">
-        //         <NavigationButton><span id="homeNavBtnTitle1">Lobby</span></NavigationButton>
-        //       </Link>
-        //       <Link to="/questionSubmission" className="nav-link">
-        //         <NavigationButton><span id="homeNavBtnTitle2">Submit A Question</span></NavigationButton>
-        //       </Link>
-        //       <Link to="/leaderBoard" className="nav-link">
-        //         <NavigationButton><span id="homeNavBtnTitle3">Leaderboard</span></NavigationButton>
-        //       </Link>
-        //     </div>
-        //     <div className="RightContainer">
-        //       <Link to="/" className="nav-link" onClick={this.props._logout}>
-        //         <NavigationButton><span id="homeNavBtnLogout">Logout</span></NavigationButton>
-        //       </Link>
-        //     </div>
-        //     <ProfileCard user={this.props.user} />
-        //   </div>
-        // );
       )
     } else {
       return (
