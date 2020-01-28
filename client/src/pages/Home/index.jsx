@@ -36,36 +36,37 @@ export default class Home extends Component {
     if (this.props.user) {
       return (
         <div className="Home">
-          <Link to="/lobby" className="nav-link">
-            <NavigationButton>
-              <span id="homeNavBtnTitle">Lobby</span>
-            </NavigationButton>
-          </Link>
-          <Link to="/questionSubmission" className="nav-link">
-            <NavigationButton>
-              <span id="homeNavBtnTitle">Submit A Question</span>
-            </NavigationButton>
-          </Link>
-          <Link to="/" className="nav-link" onClick={this.props._logout}>
-            <NavigationButton>
-              <span id="homeNavBtnTitle">Logout</span>
-            </NavigationButton>
-          </Link>
-          <Link to="/leaderBoard" classname="nav-link">
-            <NavigationButton>
-              <span id="homeNavBtnTitle">Leaderboard</span>
-            </NavigationButton>
-          </Link>
-          <ProfileCard
-            user={this.props.user}
-            topScore={this.props.user.topScore}
-          />
+          <div class="row">
+            <div class="column side">
+              <Link to="/lobby" className="nav-link">
+                <NavigationButton><span id="homeNavBtnTitle1">Lobby</span></NavigationButton>
+              </Link>
+              <Link to="/questionSubmission" className="nav-link">
+                <NavigationButton><span id="homeNavBtnTitle2">Submit A Question</span></NavigationButton>
+              </Link>
+              <Link to="/leaderBoard" className="nav-link">
+                <NavigationButton><span id="homeNavBtnTitle3">Leaderboard</span></NavigationButton>
+              </Link>
+            </div>
+
+            <div class="column middle">
+              <ProfileCard user={this.props.user} />
+            </div>
+
+            <div class="column side">
+              <Link to="/" className="nav-link" onClick={this.props._logout}>
+                <NavigationButton><span id="homeNavBtnLogout">Logout</span></NavigationButton>
+              </Link>
+            </div>
+          </div>
+
         </div>
-      );
+      )
     } else {
       return (
         <div className="Home">
           <LoginForm _login={this.props._login} />
+
         </div>
       );
     }

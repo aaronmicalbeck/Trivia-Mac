@@ -22,28 +22,33 @@ export default class Lobby extends Component {
   componentDidMount() {
     
     gsap.from("#line1", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-
-
     gsap.from("#lobbyinstructions", { duration: 2, delay: 1, x: "-101%", opacity: 0 })
+    gsap.from("#lobbyinstructions2", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
+    gsap.from("#battleroyalebtn", { duration: 1, delay: 1, x: "-150%", opacity: 0 })
+    gsap.from("#headtoheadbtn", { duration: 1, delay: 1, x: "150%", opacity: 0 })
+    gsap.from("#lobbybackbtn", { duration: 1.5, delay: 1, y: "-150%", opacity: 0 })
   }
 
   render() {
     return (
       <div id="lobbyDiv">
         <h1 id="lobbyinstructions">Choose your game mode!</h1>
+
         <div className="container-fluid">
           
           <button id="headtoheadbtn" onClick={this.handleClick}></button>
           
-          <Link to="/game" className="nav-link">
+          <Link to="/game" id="lobby-nav-link" className="nav-link">
             <button id="battleroyalebtn"></button>
           </Link>
-          <Link to="/" className="nav-link">
-            <NavigationButton id="backbtn">
+          <Link to="/" id="lobby-nav-link" className="nav-link">
+            <NavigationButton id="lobbybackbtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
           </Link>
           <div id="line1"></div>
+          <div id="line2">HEAD TO HEAD</div>
+          <div id="line3">BATTLE ROYALE</div>
         </div>
       </div>
     );

@@ -3,16 +3,13 @@ import "./questionSubmission.css";
 import questionAPI from "../../utils/questionAPI";
 import {
   FormControl,
-  FormHelperText,
   Input,
   InputLabel,
-  Container,
   Grid,
-  Button,
+  Button
 } from "@material-ui/core";
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { Link } from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
 export default class QuestionSubmission extends Component {
   constructor(props) {
@@ -27,7 +24,6 @@ export default class QuestionSubmission extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.emptyForm = this.emptyForm.bind(this);
-    // this.openModal = this.openModal.bind(this);
   }
 
   handleChange(event) {
@@ -36,9 +32,15 @@ export default class QuestionSubmission extends Component {
     });
   }
 
-  emptyForm = () => { 
-    this.setState({question: "", correctAnswer: "", incorrectAnswer1:"", incorrectAnswer2:"", incorrectAnswer3:""})
-  }
+  emptyForm = () => {
+    this.setState({
+      question: "",
+      correctAnswer: "",
+      incorrectAnswer1: "",
+      incorrectAnswer2: "",
+      incorrectAnswer3: ""
+    });
+  };
 
   // Retrieves information input into forms and POSTS to MongoDB
 
@@ -54,8 +56,8 @@ export default class QuestionSubmission extends Component {
       })
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
-      this.emptyForm();
-      this.openModal();
+    this.emptyForm();
+    this.openModal();
   }
 
   // Axios GET request all from MongoDB
@@ -64,7 +66,6 @@ export default class QuestionSubmission extends Component {
     event.preventDefault();
     questionAPI.getQuestions().then(res => console.log("Perfecto!"));
   }
-
 
   componentDidMount() {
     // We deed it
@@ -83,7 +84,7 @@ export default class QuestionSubmission extends Component {
           width="100%"
         >
           <FormControl>
-            <InputLabel htmlFor="my-input" width="100%">
+            <InputLabel id="questionInputLabel" htmlFor="my-input" width="100%">
               Question{" "}
             </InputLabel>
             <Input
@@ -149,7 +150,11 @@ export default class QuestionSubmission extends Component {
           <Button id="questionSubmitButton" onClick={this.handleSubmit}>
             Submit your Question for Review!
           </Button>
-         
+          <Link to="/" className="nav-link">
+          <NavigationButton>
+            <span id="homeNavBtnTitle">Back</span>
+          </NavigationButton>
+        </Link>
         </Grid>
       </div>
     );
