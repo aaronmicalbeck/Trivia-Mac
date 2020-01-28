@@ -17,8 +17,11 @@ export default class Home extends Component {
 
   componentDidMount() {
 
+
     gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
       gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
+
+
 
   }
 
@@ -49,6 +52,7 @@ export default class Home extends Component {
               </Link>
             </div>
           </div>
+
         </div>
 
 
@@ -77,7 +81,6 @@ export default class Home extends Component {
       return (
         <div className="Home">
           <LoginForm _login={this.props._login} />
-
 
         </div>
       );
