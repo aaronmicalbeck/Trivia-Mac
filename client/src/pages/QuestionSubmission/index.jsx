@@ -3,13 +3,13 @@ import "./questionSubmission.css";
 import questionAPI from "../../utils/questionAPI";
 import {
   FormControl,
-  FormHelperText,
   Input,
   InputLabel,
-  Container,
   Grid,
   Button
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
 export default class QuestionSubmission extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export default class QuestionSubmission extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.emptyForm = this.emptyForm.bind(this);
   }
 
   handleChange(event) {
@@ -30,6 +31,16 @@ export default class QuestionSubmission extends Component {
       [event.target.name]: event.target.value
     });
   }
+
+  emptyForm = () => {
+    this.setState({
+      question: "",
+      correctAnswer: "",
+      incorrectAnswer1: "",
+      incorrectAnswer2: "",
+      incorrectAnswer3: ""
+    });
+  };
 
   // Retrieves information input into forms and POSTS to MongoDB
 
@@ -44,8 +55,9 @@ export default class QuestionSubmission extends Component {
         incorrectAnswer3: this.state.incorrectAnswer3
       })
       .then(res => console.log(res.data))
-      .then(console.log("Thank you for submitting!"))
       .catch(err => console.log(err));
+    this.emptyForm();
+    this.openModal();
   }
 
   // Axios GET request all from MongoDB
@@ -62,7 +74,7 @@ export default class QuestionSubmission extends Component {
   render() {
     return (
       <div id="questionSubmissionForm">
-        <p>Hello Question Submission</p>
+        <p>Submit a Question to the Trivia-Mac question library!</p>
 
         <Grid
           container
@@ -72,11 +84,10 @@ export default class QuestionSubmission extends Component {
           width="100%"
         >
           <FormControl>
-            <InputLabel htmlFor="my-input" width="100%">
+            <InputLabel id="questionInputLabel" htmlFor="my-input" width="100%">
               Question{" "}
             </InputLabel>
             <Input
-              width="100%"
               id="question"
               type="text"
               name="question"
@@ -86,52 +97,64 @@ export default class QuestionSubmission extends Component {
           </FormControl>
           <br></br>
           <FormControl>
-            <InputLabel htmlFor="my-input">Correct answer </InputLabel>
+            <InputLabel htmlFor="my-input">Correct Answer </InputLabel>
             <Input
               id="correctAnswer"
               type="text"
               name="correctAnswer"
               value={this.state.correctAnswer}
               onChange={this.handleChange}
+              color="primary"
             />
           </FormControl>
           <br></br>
           <FormControl>
-            <InputLabel htmlFor="my-input">Incorrect answer</InputLabel>
+            <InputLabel htmlFor="my-input">Second Choice</InputLabel>
             <Input
               id="incorrectAnswer1"
               type="text"
               name="incorrectAnswer1"
               value={this.state.incorrectAnswer1}
               onChange={this.handleChange}
+              variant="outlined"
+              color="secondary"
             />
           </FormControl>
           <br></br>
           <FormControl>
-            <InputLabel htmlFor="my-input">Incorrect answer</InputLabel>
+            <InputLabel htmlFor="my-input">Third Choice</InputLabel>
             <Input
               id="incorrectAnswer2"
               type="text"
               name="incorrectAnswer2"
               value={this.state.incorrectAnswer2}
               onChange={this.handleChange}
+              variant="outlined"
+              color="secondary"
             />
           </FormControl>
           <br></br>
           <FormControl>
-            <InputLabel htmlFor="my-input">Incorrect answer</InputLabel>
+            <InputLabel htmlFor="my-input">Fourth Choice</InputLabel>
             <Input
               id="incorrectAnswer3"
               type="text"
               name="incorrectAnswer3"
               value={this.state.incorrectAnswer3}
               onChange={this.handleChange}
+              variant="outlined"
+              color="secondary"
             />
           </FormControl>
           <br></br>
           <Button id="questionSubmitButton" onClick={this.handleSubmit}>
             Submit your Question for Review!
           </Button>
+          <Link to="/" className="nav-link">
+          <NavigationButton>
+            <span id="homeNavBtnTitle">Back</span>
+          </NavigationButton>
+        </Link>
         </Grid>
       </div>
     );

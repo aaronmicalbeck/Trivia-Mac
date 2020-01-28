@@ -4,7 +4,34 @@
   position: relative;
   }
 
-#homeNavBtnTitle{
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 25px;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  
+#homeNavBtnTitle1{
   font-size: xx-large;
 }
 
@@ -28,3 +55,6 @@
   right: 48%;
 }
 
+.Home .MuiFormLabel-root{
+  color: white;
+}

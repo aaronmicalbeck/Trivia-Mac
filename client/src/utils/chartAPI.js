@@ -6,4 +6,9 @@ export default {
     return axios.get("/api/userScore");
   },
 
+   // Gets the user by specific ID
+   getOneUser: function(res) {
+    return axios.get("/api/userScore/");
+  },
+
 };

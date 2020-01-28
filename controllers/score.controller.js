@@ -8,6 +8,7 @@ router.route("/:id").post((req, res) => {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 }),
+  // Find one by ID
   router.route("/:id").get((req, res) => {
     db.User.findById(req.params.id)
       .then(dbModel => res.json(dbModel))

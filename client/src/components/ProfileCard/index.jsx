@@ -87,7 +87,7 @@ export default function ProfileCard(props) {
           {/* <CardContent>{getScore()}</CardContent> */}
         </Card>
       </Grid>
-      <Expand />
+      {/* <Expand /> */}
     </div>
   );
 }
