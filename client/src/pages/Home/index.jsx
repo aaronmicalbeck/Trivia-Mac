@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 import gsap from "gsap";
 
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -18,14 +17,21 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-
-    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
-    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-console.log(this.state.topScore)
-
+    gsap.from("#welcomeMessage1", {
+      duration: 2,
+      delay: 1,
+      x: "-101%",
+      opacity: 0
+    }) &&
+      gsap.from("#welcomeMessage2", {
+        duration: 2,
+        delay: 1,
+        x: "101%",
+        opacity: 0
+      });
+    console.log(this.state.topScore);
   }
 
-  
   render() {
     if (this.props.user) {
       return (
@@ -50,8 +56,10 @@ console.log(this.state.topScore)
               <span id="homeNavBtnTitle">Leaderboard</span>
             </NavigationButton>
           </Link>
-          <ProfileCard user={this.props.user} topScore={this.props.user.topScore} />
-      
+          <ProfileCard
+            user={this.props.user}
+            topScore={this.props.user.topScore}
+          />
         </div>
       );
     } else {
