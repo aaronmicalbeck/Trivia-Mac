@@ -4,21 +4,21 @@ import LoginForm from "../LoginForm";
 import ProfileCard from "../../components/ProfileCard";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-import gsap from "gsap";
-import axios from "axios";
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: props.user,
+      response: false,
       _logout: props._logout,
       topScore: props.topScore
     };
+    console.log(props);
   }
 
   componentDidMount() {
-    console.log(this.state.topScore);
+    //It mounted
   }
 
   render() {

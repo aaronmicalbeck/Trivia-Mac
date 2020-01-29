@@ -37,6 +37,7 @@ export default class Game extends Component {
     this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
     this.renderTime = this.renderTime.bind(this);
+    console.log(props);
   }
 
   renderTime(value) {

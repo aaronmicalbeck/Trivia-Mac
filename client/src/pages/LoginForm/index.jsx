@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import googleButton from "./google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png";
 import {
   FormControl,
-  FormHelperText,
   Input,
   InputLabel,
   Container,
@@ -11,7 +10,6 @@ import {
   Button
 } from "@material-ui/core";
 import "./login.css";
-import gsap from "gsap";
 import Expand from "../../components/Expand";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";

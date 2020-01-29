@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./leaderboard.css";
 import BarChart from "../../components/BarChart";
 import chartAPI from "../../utils/chartAPI";
-import NavigationButton from "../../components/NavigationButton"
-import {Link} from "react-router-dom";
 
 export default class Leaderboard extends Component {
   constructor(props) {
@@ -24,34 +22,25 @@ export default class Leaderboard extends Component {
     chartAPI.getUser().then(res => {
       this.setState({
         userScores: res.data.map(item => {
-          return item.topScore
-        
+          return item.topScore;
         }),
         userNames: res.data.map(item => {
           return item.local
-              ? item.local.username
-              : item.firstName + " " + item.lastName
-          ;
+            ? item.local.username
+            : item.firstName + " " + item.lastName;
         })
-	  });
-	
+      });
     });
   }
 
   componentDidMount() {
-
     this.loadScores();
   }
 
   render() {
     return (
       <div id="leaderBoard">
-      
         <BarChart labels={this.state.userNames} data={this.state.userScores} />
-        
-        
-        
-        
       </div>
     );
   }
