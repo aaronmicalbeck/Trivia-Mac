@@ -19,7 +19,6 @@ class App extends Component {
 
     this._login = this._login.bind(this);
     this._logout = this._logout.bind(this);
-    
   }
 
   componentDidMount() {
@@ -29,6 +28,16 @@ class App extends Component {
           loggedIn: true,
           user: response.data.user
         });
+        axios
+          .get(`/api/userscore/${this.state.user._id}`)
+
+          .then(res => {
+            this.setState({
+              user: res.data
+            });
+            console.log(res);
+          })
+          .catch(err => console.log(err));
       } else {
         this.setState({
           loggedIn: false,
@@ -72,7 +81,13 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={() => <Home user={this.state.user} _login={this._login} _logout={this._logout} />}
+          render={() => (
+            <Home
+              user={this.state.user}
+              _login={this._login}
+              _logout={this._logout}
+            />
+          )}
         />
         <Route
           exact
