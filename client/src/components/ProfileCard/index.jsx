@@ -6,15 +6,19 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Expand from "../../components/Expand";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 500
+    maxWidth: 300
   },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
+  },
+  subheader:{
+
+    align: "center"
+
   },
   expand: {
     transform: "rotate(0deg)",
@@ -76,7 +80,6 @@ export default function ProfileCard(props) {
           <CardContent></CardContent>
         </Card>
       </Grid>
-      {/* <Expand /> */}
     </div>
   );
 }
