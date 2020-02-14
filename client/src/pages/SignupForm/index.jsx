@@ -3,7 +3,7 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./signup.css";
 import NavigationButton from "../../components/NavigationButton";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   FormControl,
   Button,
@@ -84,73 +84,91 @@ export default class SignupForm extends Component {
     }
 
     return (
-      <Container fixed>
-        <Grid container direction="column" justify="center" alignItems="center">
-          <Typography align="center" variant="h2" gutterBottom>
-            Create your user credentials and select your avatar! 
-          </Typography>
-          <Link to="/" className="nav-link">
-		<NavigationButton><span id="homeNavBtnTitle">Back</span></NavigationButton>
-        </Link>
-          <form>
+      <div className="Signup">
+        <Container fixed>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            width="50%"
+          >
+            <Typography align="center" variant="h2" gutterBottom>
+              Create your user credentials and select your avatar!
+            </Typography>
+            <Link to="/" className="nav-link">
+              <NavigationButton>
+                <span id="homeNavBtnTitle">Back</span>
+              </NavigationButton>
+            </Link>
+            <form>
+              <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+              >
+                <FormControl>
+                  <InputLabel htmlFor="username">Username</InputLabel>
+                  <Input
+                    name="username"
+                    type="text"
+                    id="my-input"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    aria-describedby="my-helper-text"
+                  />
+                </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    name="password"
+                    type="password"
+                    id="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    aria-describedby="my-password-helper-text"
+                  />
+                </FormControl>
+                <FormControl>
+                  <InputLabel htmlFor="confirmPassword">
+                    Confirm Password
+                  </InputLabel>
+                  <Input
+                    name="confirmPassword"
+                    type="password"
+                    id="my-password"
+                    value={this.state.confirmPassword}
+                    onChange={this.handleChange}
+                    aria-describedby="my-password-helper-text"
+                  />
+                </FormControl>
+                <Button id="signupButton" onClick={this.handleSubmit}>
+                  Sign up
+                </Button>
+              </Grid>
+            </form>
             <Grid
               container
-              direction="column"
+              direction="row"
               justify="center"
               alignItems="center"
             >
-              <FormControl>
-                <InputLabel htmlFor="username">Username</InputLabel>
-                <Input
-                  name="username"
-                  type="text"
-                  id="my-input"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                  aria-describedby="my-helper-text"
-                />
-              </FormControl>
-              <FormControl>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  name="password"
-                  type="password"
-                  id="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  aria-describedby="my-password-helper-text"
-                />
-              </FormControl>
-              <FormControl>
-                <InputLabel htmlFor="confirmPassword">
-                  Confirm Password
-                </InputLabel>
-                <Input
-                  name="confirmPassword"
-                  type="password"
-                  id="my-password"
-                  value={this.state.confirmPassword}
-                  onChange={this.handleChange}
-                  aria-describedby="my-password-helper-text"
-                />
-              </FormControl>
-              <Button onClick={this.handleSubmit}>Sign up</Button>
+              {images.map(image => (
+                <img
+                  alt="profilepic"
+                  className={
+                    this.state.photo === image.src ? "photo selected" : "photo"
+                  }
+                  src={image.src}
+                  onClick={() => this.changePhoto(image.src)}
+                ></img>
+              ))}
             </Grid>
-          </form>
-          <Grid container direction="row" justify="center" alignItems="center">
-            {images.map(image => (
-              <img
-                className={
-                  this.state.photo === image.src ? "photo selected" : "photo"
-                }
-                src={image.src}
-                onClick={() => this.changePhoto(image.src)}
-              ></img>
-            ))}
+            <UploadBtn />
           </Grid>
-          <UploadBtn />
-        </Grid>
-      </Container>
+        </Container>
+      </div>
     );
   }
 }

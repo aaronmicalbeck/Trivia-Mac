@@ -42,6 +42,7 @@ export default function Expand() {
           Leaderboard
         </Typography> */}
         <IconButton
+          id="expandButton"
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
           })}

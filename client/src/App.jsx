@@ -35,7 +35,6 @@ class App extends Component {
             this.setState({
               user: res.data
             });
-            console.log(res);
           })
           .catch(err => console.log(err));
       } else {

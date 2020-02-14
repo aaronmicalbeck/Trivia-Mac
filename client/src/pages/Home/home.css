@@ -1,8 +1,14 @@
 .Home {
+  background-image: url(../../background_images/triviamac.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
-  background-color: #6f72b2;
   position: relative;
-  }
+  justify-content: center;
+  background-color: black;
+}
 
 /* Create three unequal columns that floats next to each other */
 .column {
@@ -30,31 +36,28 @@
   display: table;
   clear: both;
 }
-  
-#homeNavBtnTitle1{
+
+#homeNavBtnTitle1 {
   font-size: xx-large;
 }
 
-.Home #LoginForm{
-  
-    position: absolute;
-      top: 55%;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      width: 80%;
-  
+.Home #LoginForm {
+  position: absolute;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  left: 66%;
+  width: 80%;
 }
 
-
-.Home .chartjs-render-monitor{
+.Home .chartjs-render-monitor {
   background-color: white;
   border-radius: 30px;
 }
 
-.Home .makeStyles-expand-204{
+.Home .makeStyles-expand-204 {
   right: 48%;
 }
 
-.Home .MuiFormLabel-root{
-  color: white;
+.Home .MuiFormLabel-root {
+  color: #aebd38;
 }

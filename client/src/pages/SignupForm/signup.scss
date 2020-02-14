@@ -1,0 +1,56 @@
+.MuiGrid-container {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.photo {
+  width: 200px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+
+  &:hover {
+    opacity: 0.5;
+    border: 3px solid #aebd38;
+  }
+}
+
+.selected {
+  opacity: 0.5;
+  border: 3px solid #aebd38;
+}
+
+.Signup {
+  margin: auto;
+  background-image: url(../../background_images/colored_cornors.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.MuiGrid-root,
+.MuiGrid-container,
+.MuiGrid-direction-xs-column,
+.MuiGrid-align-items-xs-center,
+.MuiGrid-justify-xs-center {
+  margin: 2em;
+}
+
+.MuiContainer-root,
+.MuiContainer-fixed,
+.MuiContainer-maxWidthLg {
+  margin: auto;
+  width: 50%;
+}
+
+form {
+  background-color: rgba(80, 81, 96, 0.6);
+}
+
+.Signup .MuiFormLabel-root {
+  color: #aebd38;
+}
+
+// .body {
+//   background-image: url(../../background_images/colored_cornors.jpg);
+// }

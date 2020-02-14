@@ -50,11 +50,11 @@ export default class LoginForm extends Component {
             <h1 id="welcomeMessage1">Welcome To</h1>
           </div>
           <div id="logoWrapper">
-            <img id="welcomeMessage2" src="Images/trivia_mac_logo.png" alt="" />
+            <img id="welcomeMessage2" alt="" />
           </div>
 
           <div id="LoginForm">
-            <Container fixed>
+            <Container fixed width="50%">
               <Grid
                 container
                 direction="column"
@@ -66,37 +66,46 @@ export default class LoginForm extends Component {
                     <span id="homeNavBtnTitle">Register</span>
                   </NavigationButton>
                 </Link>
-                <FormControl>
-                  <InputLabel htmlFor="my-input">Username</InputLabel>
-                  <Input
-                    name="username"
-                    type="text"
-                    id="my-input"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                    aria-describedby="my-helper-text"
-                  />
-                </FormControl>
-                <FormControl>
-                  <InputLabel htmlFor="my-password">Password</InputLabel>
-                  <Input
-                    name="password"
-                    type="password"
-                    id="my-password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    aria-describedby="my-password-helper-text"
-                  />
-                </FormControl>
-                <Button onClick={this.handleSubmit}>Login</Button>
-                <a href="/auth/google">
-                  {/* <GoogleButton /> */}
-                  <img src={googleButton} alt="sign into Google Button" />
-                </a>
+                <form>
+                  <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                  >
+                    <FormControl>
+                      <InputLabel htmlFor="my-input">Username</InputLabel>
+                      <Input
+                        name="username"
+                        type="text"
+                        id="my-input"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        aria-describedby="my-helper-text"
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <InputLabel htmlFor="my-password">Password</InputLabel>
+                      <Input
+                        name="password"
+                        type="password"
+                        id="my-password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        aria-describedby="my-password-helper-text"
+                      />
+                    </FormControl>
+                    <Button onClick={this.handleSubmit}>Login</Button>
+                    <a href="/auth/google">
+                      {/* <GoogleButton /> */}
+                      <img src={googleButton} alt="sign into Google Button" />
+                    </a>
+                  </Grid>
+                </form>
                 <br></br>
                 <h1>LeaderBoard</h1>
+                <Expand />
               </Grid>
-              <Expand />
             </Container>
           </div>
         </div>

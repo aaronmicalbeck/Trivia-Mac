@@ -4,7 +4,11 @@
   .MuiPaper-elevation1
   .MuiPaper-rounded {
   max-width: auto;
-  background-color: #6f72b2;;
+  background-color: #6f72b2;
 }
 
-
+#container {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}

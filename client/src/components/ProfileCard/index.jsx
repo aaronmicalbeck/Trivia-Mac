@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -60,8 +60,13 @@ export default function ProfileCard(props) {
   }
 
   return (
-    <div>
-      <Grid container direction="row" justify="center" alignItems="center">
+    <div id="container">
+      <Grid
+        direction="column"
+        justify="center"
+        alignItems="center"
+        width="100%"
+      >
         <Card className={classes.card}>
           <CardHeader
             title={
@@ -78,8 +83,8 @@ export default function ProfileCard(props) {
           <CardMedia className={classes.media} image={profilePic(props.user)} />
           {/* <CardContent>{getScore()}</CardContent> */}
         </Card>
+        {/* <Expand /> */}
       </Grid>
-      {/* <Expand /> */}
     </div>
   );
 }
