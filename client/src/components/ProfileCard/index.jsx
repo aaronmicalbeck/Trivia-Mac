@@ -8,11 +8,16 @@ import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 500
+    maxWidth: 300
   },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
+  },
+  subheader:{
+
+    align: "center"
+
   },
   expand: {
     transform: "rotate(0deg)",

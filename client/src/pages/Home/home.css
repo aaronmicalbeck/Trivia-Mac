@@ -10,31 +10,43 @@
   background-color: black;
 }
 
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
+.row1 {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: 10%;
+  flex-wrap: wrap;
 }
 
-/* Left and right column */
-.column.side {
-  width: 25%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  padding: 25px;
+.row2 {
+  top: 5%;
+  position: relative;
+  position: center;
+  width: 100%;
+  justify-items: center;
 }
 
-/* Middle column */
-.column.middle {
-  width: 50%;
+.Home .ProfileCard {
+  position: relative;
 }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+a.nav-link {
+  padding: 0 0 0 0;
+}
+
+.Home
+  .MuiPaper-root
+  .MuiCard-root
+  .makeStyles-card-241
+  .MuiPaper-elevation1
+  .MuiPaper-rounded {
+  max-width: 20vw;
+  position: relative;
+  left: 40vw;
+}
+.Home .makeStyles-media-242 {
+  height: 0;
+  padding-top: 100%;
 }
 
 #homeNavBtnTitle1 {
@@ -45,7 +57,7 @@
   position: absolute;
   top: 55%;
   transform: translate(-50%, -50%);
-  left: 66%;
+  left: 50%;
   width: 80%;
 }
 
@@ -60,4 +72,24 @@
 
 .Home .MuiFormLabel-root {
   color: #aebd38;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .Home #LoginForm {
+    position: absolute;
+    top: 100%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .Home #LoginForm {
+    position: absolute;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 80%;
+  }
 }
