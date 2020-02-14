@@ -8,11 +8,16 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 500
+    maxWidth: 300
   },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
+  },
+  subheader:{
+
+    align: "center"
+
   },
   expand: {
     transform: "rotate(0deg)",
@@ -79,7 +84,6 @@ export default function ProfileCard(props) {
           {/* <CardContent>{getScore()}</CardContent> */}
         </Card>
       </Grid>
-      {/* <Expand /> */}
     </div>
   );
 }

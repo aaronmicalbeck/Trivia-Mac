@@ -25,8 +25,12 @@ export default class Home extends Component {
     if (this.props.user) {
       return (
         <div className="Home">
-          <div class="row">
-            <div class="column side">
+          <div className="row2">
+            <ProfileCard user={this.props.user} />
+          </div>
+
+          <div className="row1">
+            
               <Link to="/lobby" className="nav-link">
                 <NavigationButton>
                   <span id="homeNavBtnTitle1">Lobby</span>
@@ -42,20 +46,15 @@ export default class Home extends Component {
                   <span id="homeNavBtnTitle3">Leaderboard</span>
                 </NavigationButton>
               </Link>
-            </div>
-
-            <div class="column middle">
-              <ProfileCard user={this.props.user} />
-            </div>
-
-            <div class="column side">
               <Link to="/" className="nav-link" onClick={this.props._logout}>
                 <NavigationButton>
                   <span id="homeNavBtnLogout">Logout</span>
                 </NavigationButton>
               </Link>
-            </div>
           </div>
+
+          
+
         </div>
       );
     } else {

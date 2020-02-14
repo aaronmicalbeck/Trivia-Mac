@@ -32,3 +32,7 @@
 .body {
   background-color: #6f72b2;
 }
+
+.MuiFormLabel-root{
+  color: white;
+}

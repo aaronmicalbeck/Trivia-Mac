@@ -87,3 +87,36 @@ p {
 .Game{
     background-color: #6f72b2;
 }
+
+/* @media only screen and (min-width : 320px) and (max-width : 900px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+
+  #answers,
+#startGame,
+#endGame,
+p {
+  display: inline-block;
+  height: 50%;
+  width: 50%;
+  margin-bottom: 0;
+  color: #ecffe0;
+ 
+  font-weight: 100;
+  font-size: 50px;
+  line-height: 1.2;
+  text-align: center;
+  background-color: #5E91D3;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  border-bottom: 1px dotted white;
+}
+
+
+} */
+
+
