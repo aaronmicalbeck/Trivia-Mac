@@ -1,19 +1,24 @@
 .Home {
+  background-image: url(../../background_images/triviamac.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
-  background-color: #6f72b2;
   position: relative;
-  }
+  justify-content: center;
+  background-color: black;
+}
 
-.row1{
+.row1 {
   display: flex;
   justify-content: space-around;
   position: relative;
   top: 10%;
   flex-wrap: wrap;
-
 }
 
-.row2{
+.row2 {
   top: 5%;
   position: relative;
   position: center;
@@ -21,89 +26,70 @@
   justify-items: center;
 }
 
-.Home .ProfileCard{
-
+.Home .ProfileCard {
   position: relative;
 }
 
-a.nav-link{
+a.nav-link {
   padding: 0 0 0 0;
 }
 
-.Home .MuiPaper-root .MuiCard-root .makeStyles-card-241 .MuiPaper-elevation1 .MuiPaper-rounded{
-  
-    max-width: 20vw;
-    position: relative;
-    left: 40vw;
-
+.Home
+  .MuiPaper-root
+  .MuiCard-root
+  .makeStyles-card-241
+  .MuiPaper-elevation1
+  .MuiPaper-rounded {
+  max-width: 20vw;
+  position: relative;
+  left: 40vw;
 }
 .Home .makeStyles-media-242 {
-    height: 0;
-    padding-top: 100%;
+  height: 0;
+  padding-top: 100%;
 }
 
-
-  
-#homeNavBtnTitle1{
+#homeNavBtnTitle1 {
   font-size: xx-large;
 }
 
-.Home #LoginForm{
-  
-  
-    position: absolute;
-      top: 55%;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      width: 80%;
-  
+.Home #LoginForm {
+  position: absolute;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  width: 80%;
 }
 
-
-.Home .chartjs-render-monitor{
+.Home .chartjs-render-monitor {
   background-color: white;
   border-radius: 30px;
 }
 
-.Home .makeStyles-expand-204{
+.Home .makeStyles-expand-204 {
   right: 48%;
 }
 
-.Home .MuiFormLabel-root{
-  color: white;
+.Home .MuiFormLabel-root {
+  color: #aebd38;
 }
 
-
-@media only screen and (min-width : 320px) and (max-width : 800px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
- 
- 
-  .Home #LoginForm{
-  
-  
+@media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .Home #LoginForm {
     position: absolute;
-      top: 100%;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      width: 80%;
-  
+    top: 100%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 80%;
+  }
 }
 
-
-}
-
-@media only screen and (min-width : 375px) and (max-width : 700px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
- 
- 
-  .Home #LoginForm{
-  
-  
+@media only screen and (min-width: 375px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .Home #LoginForm {
     position: absolute;
-      top: 80%;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      width: 80%;
-  
-}
-
-
+    top: 80%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 80%;
+  }
 }

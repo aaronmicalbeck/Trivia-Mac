@@ -1,25 +1,25 @@
 .QuestionSubmission {
   height: 100vh;
-  background-color: #6f72b2;
+  background-color: #68829e;
 }
 #questionSubmissionForm > p {
   margin: auto;
-  background-color: #6f72b2;
-  color: #88f537;
+  background-color: #68829e;
+  color: #aebd38;
 }
 
 html {
-  background-color: #6f72b2;
+  background-color: #68829e;
 }
 
 .QuestionSubmission .MuiFormControl-root {
   width: 100%;
 }
 
-.QuestionSubmission .MuiGrid-root{
-    margin: 0 0 0 0;
-position: absolute;
-background-color: #23b8d9;
-left: 31%;
-top: 10%;
-  }
+.QuestionSubmission .MuiGrid-root {
+  margin: 0 0 0 0;
+  position: absolute;
+  background-color: #505160;
+  left: 31%;
+  top: 10%;
+}

@@ -11,7 +11,7 @@ h1 {
 }
 
 .text {
-  color: #aaa;
+  color: #aebd38;
 }
 
 .value {
@@ -25,11 +25,11 @@ h1 {
   font-size: 16px;
 }
 
-.col{
+.col {
   padding: 0px;
 }
 
-.App{
+.App {
   margin-top: 15px;
 }
 
@@ -41,13 +41,13 @@ p {
   height: 100%;
   width: 100%;
   margin-bottom: 0;
-  color: #ecffe0;
- 
+  color: #aebd38;
+
   font-weight: 700;
   font-size: 3em;
   line-height: 1.2;
   text-align: center;
-  background-color: #5E91D3;
+  background-color: #505160;
   vertical-align: middle;
   cursor: pointer;
   border: 1px solid transparent;
@@ -56,7 +56,7 @@ p {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  border-bottom: 1px dotted white;
+  border-bottom: 1px dotted #aebd38;
 }
 
 #answers:focus {
@@ -81,11 +81,11 @@ p {
 #gameDiv {
   height: 100%;
   width: 100%;
-  background-color: #6F72B2;
+  background-color: #68829e;
 }
 
-.Game{
-    background-color: #6f72b2;
+.Game {
+  background-color: #aebd38;
 }
 
 /* @media only screen and (min-width : 320px) and (max-width : 900px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {

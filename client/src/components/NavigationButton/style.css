@@ -1,24 +1,21 @@
 .navigation-btn {
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    position: relative;
-    float: right;
-    border: none;
-    color:#403682;
-    background-color: #23b8d9;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1;
-    outline: none;
-    transition: transform .3s ease;
-  }
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  float: right;
+  border: none;
+  color: #aebd38;
+  background-color: #505160;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  outline: none;
+  transition: transform 0.3s ease;
+}
 
-  .navigation-btn:hover{
-
-    -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-
-
-  }
+.navigation-btn:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}

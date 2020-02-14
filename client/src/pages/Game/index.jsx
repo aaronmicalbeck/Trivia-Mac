@@ -7,7 +7,7 @@ import socketIOClient from "socket.io-client";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
 import Sound from "react-sound";
-
+import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 
@@ -37,7 +37,6 @@ export default class Game extends Component {
     this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
     this.renderTime = this.renderTime.bind(this);
-    console.log(props);
   }
 
   renderTime(value) {
@@ -157,7 +156,6 @@ export default class Game extends Component {
         this.setState({
           user: res.data
         });
-        console.log(res);
       })
       .catch(err => console.log(err));
   }
@@ -190,51 +188,53 @@ export default class Game extends Component {
     };
     return (
       <div id="gameDiv">
-        <Sound
-          url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
-          playStatus={Sound.status.PLAYING}
-          loop={true}
-        />
-
-        <Link to="/lobby" className="nav-link">
-          <NavigationButton>
-            <span id="homeNavBtnTitle">Back</span>
-          </NavigationButton>
-        </Link>
-
-        <div className="row">
-          <div className="col">
-            <button id="startGame" onClick={this.handleStart}>
-              Start Game
-            </button>
-          </div>
-          <div className="col">
-            <button id="endGame" onClick={this.handleStop}>
-              Stop Game{" "}
-            </button>
-          </div>
-        </div>
-        <div className="App">
-          <CountdownCircleTimer
-            className="countdown"
-            key={this.state.correct_answer}
-            isPlaying={this.state.isPlaying}
-            durationSeconds={this.state.time}
-            colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-            renderTime={this.renderTime}
-            onComplete={() => [true, 0]}
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Sound
+            url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
+            playStatus={Sound.status.PLAYING}
+            loop={true}
           />
-        </div>
 
-        <br></br>
-        <p>Category: {response.category}</p>
-        <br></br>
-        <p>{this.decodeHtml(response.question)}</p>
-        <br></br>
+          <Link to="/lobby" className="nav-link">
+            <NavigationButton>
+              <span id="homeNavBtnTitle">Back</span>
+            </NavigationButton>
+          </Link>
 
-        {renderButtons()}
-        <br></br>
-        <p id="score">Score: {sessionScore}</p>
+          <div className="row">
+            <div className="col">
+              <button id="startGame" onClick={this.handleStart}>
+                Start Game
+              </button>
+            </div>
+            <div className="col">
+              <button id="endGame" onClick={this.handleStop}>
+                Stop Game{" "}
+              </button>
+            </div>
+          </div>
+          <div className="App">
+            <CountdownCircleTimer
+              className="countdown"
+              key={this.state.correct_answer}
+              isPlaying={this.state.isPlaying}
+              durationSeconds={this.state.time}
+              colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+              renderTime={this.renderTime}
+              onComplete={() => [true, 0]}
+            />
+          </div>
+
+          <br></br>
+          <p>Category: {response.category}</p>
+          <br></br>
+          <p>{this.decodeHtml(response.question)}</p>
+          <br></br>
+
+          {renderButtons()}
+          <br></br>
+          <p id="score">Score: {sessionScore}</p>
+        </Grid>
       </div>
     );
   }

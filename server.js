@@ -91,7 +91,7 @@ io.on("connection", socket => {
 let broadcastedQuestion = {};
 function generateQuestion() {
   axios.get("https://opentdb.com/api.php?amount=50").then(response => {
-    console.log(response.data.results)
+    // console.log(response.data.results)
     pickedQuestion =
       response.data.results[
         Math.floor(Math.random() * response.data.results.length)
