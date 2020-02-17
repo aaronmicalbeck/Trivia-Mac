@@ -98,3 +98,20 @@
   top: 5%;
   text-align: center;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  #lobbyInstructions{
+    color: #aebd38;
+    background-color: none;
+    /* Set neon color */
+    --neon-text-color: #f40;
+    border-radius: 50px;
+    position: relative;
+    /* font-weight: 900; */
+    font-size: 25pt;
+    display: block;
+    animation: flicker 4s infinite alternate-reverse;
+    top: 5%;
+    text-align: center;
+  }
+}

@@ -66,3 +66,51 @@
   font-size: 15pt !important;
 
 }
+
+@media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  #questionSubmissionInstructions{
+    color: #aebd38;
+    background-color: none;
+    /* Set neon color */
+    --neon-text-color: #f40;
+    border-radius: 50px;
+    position: relative;
+    font-weight: 900;
+    display: block;
+    animation: flicker 4s infinite alternate-reverse;
+    margin-top: 75%;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .QuestionSubmission, .MuiFormLabel-root, .MuiButton-label{
+    color: #aebd38 !important;
+    font-family: "Exo 2", sans-serif !important;
+    font-size: 10pt !important;
+  
+  }
+  #questionSubmissionForm, #question, #incorrectAnswer1, #incorrectAnswer2, #incorrectAnswer3 {
+    color: #aebd38;
+    font-family: "Exo 2", sans-serif;
+    font-size: 9pt;
+  }
+  
+  
+}
+
+@media only screen and (min-width: 375px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  #questionSubmissionInstructions{
+    color: #aebd38;
+    background-color: none;
+    /* Set neon color */
+    --neon-text-color: #f40;
+    border-radius: 50px;
+    position: relative;
+    font-weight: 900;
+    display: block;
+    animation: flicker 4s infinite alternate-reverse;
+    margin-top: 35%;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}
