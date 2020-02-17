@@ -137,7 +137,15 @@
 }
 
 #lobbyDiv {
-  background-color: #68829e;
+  background-image: url(../../background_images/yellow_question_mark.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+  justify-content: center;
+  background-color: black;
 }
 #lobbyinstructions2 {
   width: 100%;

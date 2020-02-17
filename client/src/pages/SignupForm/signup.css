@@ -54,22 +54,7 @@
 }
 
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
-#signupButton {
-  /* Base font size */
-  font-size: 10px;
 
-  /* Set neon color */
-  --neon-text-color: #60066c;
-  --neon-border-color: #aebd38;
-}
-#signupButton:body {
-  font-family: "Exo 2", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000;
-  min-height: 100vh;
-}
 #signupButton {
   font-family: "Exo 2", sans-serif;
   font-size: 3rem;
@@ -81,6 +66,8 @@
   border-radius: 2rem;
   text-transform: uppercase;
   animation: flicker 1.5s infinite alternate;
+  --neon-text-color: #60066c;
+  --neon-border-color: #aebd38;
 }
 #signupButton::-moz-selection {
   background-color: var(--neon-border-color);

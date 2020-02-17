@@ -68,94 +68,100 @@ export default class QuestionSubmission extends Component {
   }
 
   componentDidMount() {
-    // We deed it
+    // We need it
   }
 
   render() {
     return (
-      <div id="questionSubmissionForm">
-        <p>Submit a Question to the Trivia-Mac question library!</p>
+      <div className="userQuestion">
+        <div id="questionSubmissionForm">
+          <p>Submit a Question to the Trivia-Mac question library!</p>
 
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          width="100%"
-        >
-          <FormControl>
-            <InputLabel id="questionInputLabel" htmlFor="my-input" width="100%">
-              Question{" "}
-            </InputLabel>
-            <Input
-              id="question"
-              type="text"
-              name="question"
-              value={this.state.question}
-              onChange={this.handleChange}
-            />
-          </FormControl>
-          <br></br>
-          <FormControl>
-            <InputLabel htmlFor="my-input">Correct Answer </InputLabel>
-            <Input
-              id="correctAnswer"
-              type="text"
-              name="correctAnswer"
-              value={this.state.correctAnswer}
-              onChange={this.handleChange}
-              color="primary"
-            />
-          </FormControl>
-          <br></br>
-          <FormControl>
-            <InputLabel htmlFor="my-input">Second Choice</InputLabel>
-            <Input
-              id="incorrectAnswer1"
-              type="text"
-              name="incorrectAnswer1"
-              value={this.state.incorrectAnswer1}
-              onChange={this.handleChange}
-              variant="outlined"
-              color="secondary"
-            />
-          </FormControl>
-          <br></br>
-          <FormControl>
-            <InputLabel htmlFor="my-input">Third Choice</InputLabel>
-            <Input
-              id="incorrectAnswer2"
-              type="text"
-              name="incorrectAnswer2"
-              value={this.state.incorrectAnswer2}
-              onChange={this.handleChange}
-              variant="outlined"
-              color="secondary"
-            />
-          </FormControl>
-          <br></br>
-          <FormControl>
-            <InputLabel htmlFor="my-input">Fourth Choice</InputLabel>
-            <Input
-              id="incorrectAnswer3"
-              type="text"
-              name="incorrectAnswer3"
-              value={this.state.incorrectAnswer3}
-              onChange={this.handleChange}
-              variant="outlined"
-              color="secondary"
-            />
-          </FormControl>
-          <br></br>
-          <Button id="questionSubmitButton" onClick={this.handleSubmit}>
-            Submit your Question for Review!
-          </Button>
-          <Link to="/" className="nav-link">
-          <NavigationButton>
-            <span id="homeNavBtnTitle">Back</span>
-          </NavigationButton>
-        </Link>
-        </Grid>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            width="100%"
+          >
+            <FormControl>
+              <InputLabel
+                id="questionInputLabel"
+                htmlFor="my-input"
+                width="100%"
+              >
+                Question{" "}
+              </InputLabel>
+              <Input
+                id="question"
+                type="text"
+                name="question"
+                value={this.state.question}
+                onChange={this.handleChange}
+              />
+            </FormControl>
+            <br></br>
+            <FormControl>
+              <InputLabel htmlFor="my-input">Correct Answer </InputLabel>
+              <Input
+                id="correctAnswer"
+                type="text"
+                name="correctAnswer"
+                value={this.state.correctAnswer}
+                onChange={this.handleChange}
+                color="primary"
+              />
+            </FormControl>
+            <br></br>
+            <FormControl>
+              <InputLabel htmlFor="my-input">Second Choice</InputLabel>
+              <Input
+                id="incorrectAnswer1"
+                type="text"
+                name="incorrectAnswer1"
+                value={this.state.incorrectAnswer1}
+                onChange={this.handleChange}
+                variant="outlined"
+                color="secondary"
+              />
+            </FormControl>
+            <br></br>
+            <FormControl>
+              <InputLabel htmlFor="my-input">Third Choice</InputLabel>
+              <Input
+                id="incorrectAnswer2"
+                type="text"
+                name="incorrectAnswer2"
+                value={this.state.incorrectAnswer2}
+                onChange={this.handleChange}
+                variant="outlined"
+                color="secondary"
+              />
+            </FormControl>
+            <br></br>
+            <FormControl>
+              <InputLabel htmlFor="my-input">Fourth Choice</InputLabel>
+              <Input
+                id="incorrectAnswer3"
+                type="text"
+                name="incorrectAnswer3"
+                value={this.state.incorrectAnswer3}
+                onChange={this.handleChange}
+                variant="outlined"
+                color="secondary"
+              />
+            </FormControl>
+            <br></br>
+            <Button id="questionSubmitButton" onClick={this.handleSubmit}>
+              Submit your Question for Review!
+            </Button>
+            <Link to="/" className="nav-link">
+              <NavigationButton>
+                <span id="homeNavBtnTitle">Back</span>
+              </NavigationButton>
+            </Link>
+          </Grid>
+        </div>
       </div>
     );
   }
