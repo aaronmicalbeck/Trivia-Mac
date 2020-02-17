@@ -20,7 +20,7 @@ body {
   font-weight: 200;
   font-style: italic;
   color: #fff;
-  padding: 4rem 6rem 5.5rem;
+  /* padding: 4rem 6rem 5.5rem; */
   border: 0.4rem solid #fff;
   border-radius: 2rem;
   text-transform: uppercase;
@@ -36,6 +36,10 @@ body {
 }
 #expandButton:focus {
   outline: none;
+}
+
+.MuiIconButton-label{
+  fill: greenyellow;
 }
 /* Animate neon flicker */
 @keyframes flicker {

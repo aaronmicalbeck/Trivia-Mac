@@ -91,16 +91,12 @@ export default class SignupForm extends Component {
             direction="column"
             justify="center"
             alignItems="center"
-            width="50%"
+            width="50%"   
           >
-            <Typography align="center" variant="h2" gutterBottom>
+            <Typography id="signupInstructions" align="center" variant="h2" gutterBottom>
               Create your user credentials and select your avatar!
             </Typography>
-            <Link to="/" className="nav-link">
-              <NavigationButton>
-                <span id="homeNavBtnTitle">Back</span>
-              </NavigationButton>
-            </Link>
+            
             <form>
               <Grid
                 container
@@ -164,8 +160,14 @@ export default class SignupForm extends Component {
                   onClick={() => this.changePhoto(image.src)}
                 ></img>
               ))}
+              
             </Grid>
             <UploadBtn />
+            <Link to="/" className="nav-link">
+              <NavigationButton id="signupBackBtn">
+                <span id="homeNavBtnTitle">Back</span>
+              </NavigationButton>
+            </Link>
           </Grid>
         </Container>
       </div>

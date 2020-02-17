@@ -6,6 +6,7 @@ import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Leaderboard from "../../pages/Leaderboard";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -49,6 +50,7 @@ export default function Expand() {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+    
         >
           <ExpandMoreIcon />
         </IconButton>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Bar} from 'react-chartjs-2';
+import {Bar, HorizontalBar} from 'react-chartjs-2';
 import NavigationButton from "../NavigationButton";
 import {Link} from "react-router-dom"
 import "./style.css"
@@ -27,8 +27,10 @@ function LeaderChart(props){
             </NavigationButton>
           </Link>
       <Bar
+        
         data={state}
         options={{
+          maintainAspectRatio: true,
           title:{
             display:true,
             text:'Trivia-Mac Current Leaderboard',

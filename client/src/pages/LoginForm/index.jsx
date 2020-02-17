@@ -48,10 +48,9 @@ export default class LoginForm extends Component {
         <div id="expand">
           <div id="welcomeMessage">
             <h1 id="welcomeMessage1">Welcome To</h1>
+            <h1 id="welcomeMessage2">TRIVIA - MAC</h1>
           </div>
-          <div id="logoWrapper">
-            <img id="welcomeMessage2" alt="" />
-          </div>
+          
 
           <div id="LoginForm">
             <Container fixed width="50%">
@@ -104,9 +103,11 @@ export default class LoginForm extends Component {
                 </form>
                 <br></br>
                 <h1>LeaderBoard</h1>
-                <Expand />
+                
               </Grid>
+              <Expand />
             </Container>
+           
           </div>
         </div>
       );
