@@ -41,7 +41,7 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div id="leaderBoard">
-        <BarChart labels={this.state.userNames} data={this.state.userScores} type={HorizontalBar} />
+        <BarChart labels={this.state.userNames} data={this.state.userScores}/>
       </div>
     );
   }

@@ -11,10 +11,10 @@ function LeaderChart(props){
     datasets: [
       {
         label: 'Top Score',
-        backgroundColor: '#23b8d9',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 0,
-        data: props.data
+        backgroundColor: '#aebd38',
+        borderColor: 'rebeccapurple',
+        borderWidth: 3,
+        data: props.data,
       }
     ]
   } 
@@ -27,14 +27,14 @@ function LeaderChart(props){
             </NavigationButton>
           </Link>
       <Bar
-        
+        type="horizontalBar" 
         data={state}
         options={{
           maintainAspectRatio: true,
           title:{
             display:true,
             text:'Trivia-Mac Current Leaderboard',
-            fontSize:20
+            fontSize:50
           },
           legend:{
             display:true,
