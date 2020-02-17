@@ -32,6 +32,8 @@
   display: block;
   animation: flicker 4s infinite alternate-reverse;
   top: 5%;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .QuestionSubmission, .MuiFormControl-root {

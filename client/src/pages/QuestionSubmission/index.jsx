@@ -75,7 +75,7 @@ export default class QuestionSubmission extends Component {
   render() {
     return (
       <div>
-      <h1 id="questionSubmissionInstructions">Submit a Question to the Trivia-Mac question library!</h1>
+      <h1 id="questionSubmissionInstructions">Submit a Question to the Trivia-Mac library!</h1>
       <div id="questionSubmissionForm">
         
 

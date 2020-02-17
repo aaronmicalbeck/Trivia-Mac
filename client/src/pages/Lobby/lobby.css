@@ -1,174 +1,100 @@
-.Lobby #lobbyDiv {
+.Lobby, html {
+  /* background-image: url(../../background_images/triviamac.png): */
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
-  background-color: #68829e;
+  width: 100vw;
   position: relative;
+  justify-content: center;
+  background-image: linear-gradient(to bottom right, black
+  , rebeccapurple
+
+  );
 }
 
-.nav-link {
-  padding: 50px;
+
+.Lobby, .row1 {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: 10%;
+  flex-wrap: wrap;
 }
 
-#line1 {
-  width: 100%;
-  height: 47px;
-  border-bottom: 20px solid #aebd38;
-  border-radius: 99%;
-  -webkit-transform: translateY(-50%) translateX(-50%) rotate(27deg);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  font-size: 50px;
-  z-index: 3;
-}
-#line2 {
-  width: 100%;
-  height: 47px;
-  border-bottom: 20px solid #68829e;
-  border-radius: 99%;
-  -webkit-transform: translateY(-50%) translateX(-50%) rotate(27deg);
-  position: absolute;
-  top: 43%;
-  left: 50.5%;
-  text-align: center;
-  font-size: 50px;
-  color: #aebd38;
-  z-index: 1;
-  animation: pulse-green 2s infinite;
+#lobbyNavBtn1{
+   /* Set neon color */
+   --neon-text-color: #f40;
+   --neon-border-color: #08f;
+   border-radius: 50%;
+   height: 150px;
+   width: 150px;
+   position: relative;
+   float: right;
+   border: none;
+   color: #aebd38;
+   background-color: #505160;
+   font-size: 24px;
+   cursor: pointer;
+   z-index: 1;
+   outline: none;
+   transition: transform 0.3s ease;
+   animation: flicker 1.8s infinite alternate;
 }
 
-/* @keyframes pulse-green {
-	0% {
-		transform: scale(0.95);
-	
-	}
-	
-	70% {
-		transform: scale(1);
-	
-	}
-	
-	100% {
-		transform: scale(0.95);
-	
-	}
-} */
-
-#line3 {
-  width: 100%;
-  height: 47px;
-  border-bottom: 20px solid #68829e;
-  border-radius: 99%;
-  -webkit-transform: translateY(-50%) translateX(-50%) rotate(27deg);
-  position: absolute;
-  top: 54.7%;
-  left: 47.5%;
-  text-align: center;
-  font-size: 50px;
-  color: #aebd38;
-  z-index: 1;
+#lobbyNavBtn2{
+   /* Set neon color */
+   --neon-text-color: #f40;
+   --neon-border-color: #08f;
+   border-radius: 50%;
+   height: 150px;
+   width: 150px;
+   position: relative;
+   float: right;
+   border: none;
+   color: #aebd38;
+   background-color: #505160;
+   font-size: 24px;
+   cursor: pointer;
+   z-index: 1;
+   outline: none;
+   transition: transform 0.3s ease;
+   animation: flicker 2.1s infinite alternate;
 }
 
-#battleroyalebtn {
-  top: 50%;
-  position: absolute;
-  left: 10%;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 200px 0 0 360px;
-  transition: transform 0.6s ease;
-
-  border-color: transparent transparent transparent #505160;
-  background-color: transparent;
-}
-
-#battleroyalebtn:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-#headtoheadbtn {
-  position: absolute;
-  top: 28%;
-  right: 10%;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 360px 200px 0;
-  transition: transform 0.6s ease;
-  text-align: right;
-  border-color: transparent #505160 transparent transparent;
-  background-color: transparent;
-}
-
-#headtoheadbtn:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-#lobbyinstructions {
-  width: 100%;
-  height: auto;
-  background-color: #68829e;
-  color: #aebd38;
-  margin: 0 0 0 0;
-  z-index: 1;
-}
-
-#backbtn {
-  height: 100px;
-  width: 100px;
-  position: absolute;
+.Lobby, .row2 {
   top: 5%;
-  right: 5%;
-}
-
-.makeStyles-root-1 {
-  position: absolute;
-  top: 45%;
-}
-
-#lobby-nav-link {
-  padding: 0 0 0 0;
-  background-color: #68829e;
-}
-
-#lobbyDiv {
-  background-color: #68829e;
-}
-#lobbyinstructions2 {
+  position: relative;
+  position: center;
   width: 100%;
-  position: absolute;
-  height: auto;
-  background-color: #68829e;
+  justify-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.Lobby, .row3 {
+  top: 5%;
+  position: relative;
+  position: center;
+  width: 100%;
+  justify-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+#lobbyInstructions{
   color: #aebd38;
-  margin: 0 0 0 0;
-  z-index: 0;
-  top: 13%;
-}
-
-.blob.red {
-  background: rgba(255, 82, 82, 1);
-  box-shadow: 0 0 0 0 rgba(255, 82, 82, 1);
-  animation: pulse-red 2s infinite;
-}
-
-@keyframes pulse-red {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
-  }
+  background-color: none;
+  /* Set neon color */
+  --neon-text-color: #f40;
+  border-radius: 50px;
+  position: relative;
+  font-weight: 900;
+  display: block;
+  animation: flicker 4s infinite alternate-reverse;
+  top: 5%;
+  text-align: center;
 }

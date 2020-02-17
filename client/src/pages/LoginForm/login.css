@@ -22,12 +22,12 @@
   right: 48%;
 }
 
-#welcomeMessage h1 {
+#welcomeMessage {
   font-size: 50px;
   color: #aebd38;
   z-index: 1;
   align-items: center;
-  --neon-text-color: #f40
+  --neon-text-color: #f40;
 }
 
 #LoginForm, #my-input, #my-password, #password{ 
@@ -43,6 +43,7 @@
   font-weight: 900;
   display: block;
   animation: flicker 4s infinite alternate-reverse;
+  text-align: center;
 }
 
 

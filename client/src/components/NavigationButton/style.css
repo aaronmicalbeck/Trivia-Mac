@@ -15,7 +15,9 @@
   z-index: 1;
   outline: none;
   transition: transform 0.3s ease;
-  /* animation: flicker 1.5s infinite alternate; */
+  animation: flicker 2.1s infinite alternate;
+  margin: 8px 8px 8px 8px;
+
 }
 
 .navigation-btn:hover {

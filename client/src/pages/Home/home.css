@@ -4,7 +4,7 @@
   background-position: center 0;
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   position: relative;
   justify-content: center;
@@ -18,16 +18,18 @@
   color: #aebd38;
 }
 
-.row1 {
+#homeRow1 {
   display: flex;
   justify-content: space-around;
   position: relative;
   top: 10%;
   flex-wrap: wrap;
+  margin-bottom: 10%;
 }
 
-.row2 {
-  top: 5%;
+#homeRow2 {
+  display: flex;
+  /* top: 5%; */
   position: relative;
   position: center;
   width: 100%;
@@ -161,6 +163,8 @@ a.nav-link {
 .Home .MuiButtonBase-root .MuiIconButton-root .makeStyles-expand-204{
   left: 0% !important;
 }
+
+
 @media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   .Home #LoginForm {
     position: absolute;

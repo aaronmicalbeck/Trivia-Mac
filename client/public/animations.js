@@ -47,18 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
     : null;
 
-    // document.getElementById("QuestionSubmission")
-    // ? gsap.from("#questionSubmissionInstructions", { duration: 2, delay: 1, x: "-1001%", opacity: 0 })
-    // : null;
-
-    document.getElementById("line1") ?
-    gsap.from("#line1", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-    : null;
-
-    document.getElementById("lobbyinstructions") ?
-    gsap.from("#lobbyinstructions", { duration: 2, delay: 1, x: "-101%", opacity: 0 })
-    : null;
-
   // 
   // document.getElementById("welcomeMessage")
   // ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 })
