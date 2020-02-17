@@ -145,10 +145,7 @@ export default class Game extends Component {
 
     // on load fade start button in
     gsap.from("#gameDiv", { duration: 2, delay: 0.1, opacity: 0 });
-    // gsap.from("#startGame", { duration: 2, delay: 0.1, opacity: 0 });
-    // gsap.from("#endGame", { duration: 2, delay: 0.1, opacity: 0 });
-    // gsap.from("#answers", { duration: 2, delay: 0.1, opacity: 0 });
-
+    
     axios
       .get(`/api/userscore/${this.state.user._id}`)
 
@@ -213,7 +210,7 @@ export default class Game extends Component {
               key={this.state.correct_answer}
               isPlaying={this.state.isPlaying}
               durationSeconds={this.state.time}
-              colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+              colors={[["#aebd38", 0.33], ["#d17600", 0.33], ["#c70606"]]}
               renderTime={this.renderTime}
               onComplete={() => [true, 0]}
             />

@@ -10,8 +10,7 @@ function LeaderChart(props){
     labels: props.labels,
     datasets: [
       {
-        backgroundColor: '#aebd38',
-        borderColor: 'rebeccapurple',
+        backgroundColor: 'rebeccapurple',
         data: props.data,
         label: 'Top Score'
       }
