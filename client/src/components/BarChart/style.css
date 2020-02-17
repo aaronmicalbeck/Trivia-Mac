@@ -1,6 +1,6 @@
-.chartjs-size-monitor {
-    
-    background-color: #6f72b2;
+.chartjs-render-monitor {
+    height: 100%;
+    background-color:white
 
 }
 
@@ -10,4 +10,5 @@
     position: absolute;
     right: 6%;
     font-size: small;
+    animation: none !important;
 }

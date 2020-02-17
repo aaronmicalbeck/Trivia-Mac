@@ -3,6 +3,7 @@ import "./leaderboard.css";
 import BarChart from "../../components/BarChart";
 import chartAPI from "../../utils/chartAPI";
 
+
 export default class Leaderboard extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +41,7 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <div id="leaderBoard">
-        <BarChart labels={this.state.userNames} data={this.state.userScores} />
+        <BarChart labels={this.state.userNames} data={this.state.userScores}/>
       </div>
     );
   }

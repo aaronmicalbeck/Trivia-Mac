@@ -1,4 +1,41 @@
-.Leaderboard {
-  margin: auto;
-  background-color: #505160;
+#leaderBoard{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  width: 90vw;
+  height: 100vh;
 }
+
+
+@media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  
+  #leaderBoard{
+    display: flex;
+    align-content: center;
+    height: 100vh;
+    width: 94%;
+  }
+  
+}
+
+@media only screen and (min-width: 375px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  #leaderBoard{
+    display: flex;
+    align-content: center;
+    height: 100vh;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 414px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  #leaderBoard{
+    display: flex;
+    align-content: center;
+    height: 100vh;
+    width: 100%;
+  }
+
+}
+
+

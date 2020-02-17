@@ -6,10 +6,11 @@ import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Leaderboard from "../../pages/Leaderboard";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 500
+    // maxWidth: 500
   },
   media: {
     height: 0,
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   expand: {
     transform: "rotate(0deg)",
-    marginLeft: "auto",
+    // marginLeft: "auto",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest
     })
@@ -49,6 +50,7 @@ export default function Expand() {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+    
         >
           <ExpandMoreIcon />
         </IconButton>

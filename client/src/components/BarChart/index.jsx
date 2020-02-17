@@ -1,5 +1,5 @@
 import React from 'react';
-import {Bar} from 'react-chartjs-2';
+import {Bar, HorizontalBar} from 'react-chartjs-2';
 import NavigationButton from "../NavigationButton";
 import {Link} from "react-router-dom"
 import "./style.css"
@@ -10,33 +10,34 @@ function LeaderChart(props){
     labels: props.labels,
     datasets: [
       {
-        label: 'Top Score',
-        backgroundColor: '#23b8d9',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 0,
-        data: props.data
+        backgroundColor: 'rebeccapurple',
+        data: props.data,
+        label: 'Top Score'
       }
     ]
   } 
   return (
-    <div>
+    <div id="leaderboardWrapper">
 
      <Link to="/" id="lobby-nav-link" className="nav-link">
             <NavigationButton id="leaderboardbackbtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
           </Link>
-      <Bar
+      <HorizontalBar
         data={state}
         options={{
+          responsive: true,
+          maintainAspectRatio: false,
           title:{
             display:true,
             text:'Trivia-Mac Current Leaderboard',
-            fontSize:20
+            fontSize: 10
           },
           legend:{
-            display:true,
-            position:'right'
+            
+            position:'top',
+            fontSize: 10
           }
         }}
       />

@@ -9,6 +9,10 @@
 
 #container {
   justify-content: center;
-  align-items: center;
   margin: auto;
+  display: flex;
+}
+
+.ProfileCard .MuiGrid-root .MuiGrid-direction-xs-column .MuiGrid-align-items-xs-center .MuiGrid-justify-xs-center{
+  display: flex;
 }
