@@ -10,7 +10,7 @@ import "./style.css";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 500
+    // maxWidth: 500
   },
   media: {
     height: 0,
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   expand: {
     transform: "rotate(0deg)",
-    marginLeft: "auto",
+    // marginLeft: "auto",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest
     })

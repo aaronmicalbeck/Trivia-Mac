@@ -13,6 +13,7 @@ import "./login.css";
 import Expand from "../../components/Expand";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
+import gsap from "gsap";
 
 export default class LoginForm extends Component {
   constructor() {
@@ -39,6 +40,15 @@ export default class LoginForm extends Component {
       redirectTo: "/"
     });
   }
+
+  componentDidMount(){
+    gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 });
+    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 });
+    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 });
+
+  }
+
+  
 
   render() {
     if (this.state.redirectTo) {
@@ -105,7 +115,10 @@ export default class LoginForm extends Component {
                 <h1>LeaderBoard</h1>
                 
               </Grid>
+              <div id="expandrow">
               <Expand />
+              </div>
+              
             </Container>
            
           </div>

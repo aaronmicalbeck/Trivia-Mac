@@ -59,8 +59,8 @@ a.nav-link {
   padding-top: 100%;
 }
 
-.Home .MuiGrid-container{
-    /* max-width: none; */
+.Home .makeStyles-expand-517{
+  margin: 0 0 0 0;
 }
 
 #homeNavBtnTitle1 {
@@ -80,9 +80,7 @@ a.nav-link {
   border-radius: 30px;
 }
 
-.Home .makeStyles-expand-204 {
-  right: 48% !important;
-}
+
 .MuiFormLabel-root .MuiButton-label{
   color: #aebd38;
 }
@@ -160,10 +158,15 @@ a.nav-link {
   animation: flicker 1.9s infinite alternate;
 }
 
-.Home .MuiButtonBase-root .MuiIconButton-root .makeStyles-expand-204{
-  left: 0% !important;
+.Home .makeStyles-expand-204{
+  /* left: 0% !important; */
+  margin: 0 0 0 0;
+  
 }
-
+#expandrow{
+  display: flex;
+  justify-content: center;
+}
 
 @media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   .Home #LoginForm {

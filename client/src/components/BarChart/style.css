@@ -10,5 +10,5 @@
     position: absolute;
     right: 6%;
     font-size: small;
-    animation: flicker 1.6s infinite alternate;
+    animation: none !important;
 }
