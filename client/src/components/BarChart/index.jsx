@@ -10,32 +10,35 @@ function LeaderChart(props){
     labels: props.labels,
     datasets: [
       {
-        label: 'Top Score',
         backgroundColor: '#aebd38',
         borderColor: 'rebeccapurple',
         data: props.data,
+        label: 'Top Score'
       }
     ]
   } 
   return (
-    <div>
+    <div id="leaderboardWrapper">
 
      <Link to="/" id="lobby-nav-link" className="nav-link">
             <NavigationButton id="leaderboardbackbtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
           </Link>
-      <Bar
+      <HorizontalBar
         data={state}
         options={{
+          responsive: true,
+          maintainAspectRatio: false,
           title:{
             display:true,
             text:'Trivia-Mac Current Leaderboard',
-            fontSize:50
+            fontSize: 10
           },
           legend:{
-            display:true,
-            position:'right'
+            
+            position:'top',
+            fontSize: 10
           }
         }}
       />

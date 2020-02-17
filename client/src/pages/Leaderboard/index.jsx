@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./leaderboard.css";
 import BarChart from "../../components/BarChart";
 import chartAPI from "../../utils/chartAPI";
-import { HorizontalBar } from "react-chartjs-2";
+
 
 export default class Leaderboard extends Component {
   constructor(props) {
