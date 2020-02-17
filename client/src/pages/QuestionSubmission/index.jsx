@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./questionSubmission.css";
+import gsap from "gsap"
 import questionAPI from "../../utils/questionAPI";
 import {
   FormControl,
@@ -68,13 +69,15 @@ export default class QuestionSubmission extends Component {
   }
 
   componentDidMount() {
-    // We deed it
+     gsap.from("#questionSubmissionInstructions", { duration: 2, delay: .5, x: "-101%", opacity: 0 });
   }
 
   render() {
     return (
+      <div>
+      <h1 id="questionSubmissionInstructions">Submit a Question to the Trivia-Mac question library!</h1>
       <div id="questionSubmissionForm">
-        <p>Submit a Question to the Trivia-Mac question library!</p>
+        
 
         <Grid
           container
@@ -156,6 +159,7 @@ export default class QuestionSubmission extends Component {
           </NavigationButton>
         </Link>
         </Grid>
+      </div>
       </div>
     );
   }

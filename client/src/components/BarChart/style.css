@@ -1,7 +1,13 @@
-.chartjs-size-monitor {
-    
-    background-color: #6f72b2;
+.chartjs-render-monitor {
+    height: 100%;
+    width: 100%;
+    background-color: white
 
+}
+
+.chartjs-size-monitor{
+    height: 100vh;
+    width: 100vw;
 }
 
 #leaderboardbackbtn{
