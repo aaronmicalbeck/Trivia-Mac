@@ -234,7 +234,7 @@ export default class Game extends Component {
 
           <div id="gameRow4">
           <Link to="/lobby" className="nav-link">
-            <NavigationButton>
+            <NavigationButton id="gameBackBtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
           </Link>
