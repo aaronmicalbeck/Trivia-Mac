@@ -89,7 +89,7 @@
     font-size: 10pt !important;
   
   }
-  #questionSubmissionForm, #question, #incorrectAnswer1, #incorrectAnswer2, #incorrectAnswer3 {
+  #questionSubmissionForm, #question, #correctAnswer, #incorrectAnswer1, #incorrectAnswer2, #incorrectAnswer3 {
     color: #aebd38;
     font-family: "Exo 2", sans-serif;
     font-size: 9pt;
