@@ -163,7 +163,7 @@ a.nav-link {
   justify-content: center;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+/* @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
 
 #loginButton {
   font-family: "Exo 2", sans-serif;
@@ -190,7 +190,7 @@ a.nav-link {
 #loginButton:focus {
   outline: none;
 }
-/* Animate neon flicker */
+/* Animate neon flicker
 @keyframes flicker {
   0%,
   19%,
