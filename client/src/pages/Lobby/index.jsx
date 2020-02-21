@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "./lobby.css";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-import { makeStyles } from "@material-ui/core/styles";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Typography from "@material-ui/core/Typography";
 
 import gsap from "gsap";
 
@@ -25,9 +22,12 @@ export default class Lobby extends Component {
   }
 
   componentDidMount() {
-    gsap.from("#lobbyInstructions", { duration: 2, delay: .5, x: "101%", opacity: 0 });
-    
-
+    gsap.from("#lobbyInstructions", {
+      duration: 2,
+      delay: 0.5,
+      x: "101%",
+      opacity: 0
+    });
   }
 
   render() {
@@ -38,30 +38,24 @@ export default class Lobby extends Component {
         </div>
 
         <div className="row2">
-          
-        <Link to="/game" id="lobby-nav-link" className="nav-link">
-          <NavigationButton id="lobbyNavBtn2">
+          <Link to="/game" id="lobby-nav-link" className="nav-link">
+            <NavigationButton id="lobbyNavBtn2">
               <span id="homeNavBtnTitle">Battle Royale!</span>
             </NavigationButton>
           </Link>
-          
 
-          <NavigationButton id="lobbyNavBtn1" onClick={this.handleClick}>
+          <Link to="/createGame" id="lobby-nav-link" className="nav-link">
+            <NavigationButton id="lobbyNavBtn1">
               <span id="homeNavBtnTitle">Head 2 Head</span>
             </NavigationButton>
-        
-
-          
-
-          
+          </Link>
         </div>
         <div className="row3">
-        <Link to="/" id="lobby-nav-link" className="nav-link">
+          <Link to="/" id="lobby-nav-link" className="nav-link">
             <NavigationButton id="lobbyNavBtn3">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
           </Link>
-
         </div>
       </div>
     );

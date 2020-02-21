@@ -1,27 +1,52 @@
-.QuestionSubmission, body {
-    /* background-image: url(../../background_images/triviamac.png) */
-    background-repeat: no-repeat;
-    background-position: center 0;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-    justify-content: center;
-    background-image: linear-gradient(to bottom right, black
-    , rebeccapurple
-  
-    );
-    font-family: "Exo 2", sans-serif;
-  }
-  
+/* .userQuestion {
+  background-image: url(../../background_images/red_question_mark.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+  justify-content: center;
+  background-color: black;
+}
 
-#questionSubmissionForm, #question, #incorrectAnswer1, #incorrectAnswer2, #incorrectAnswer3 {
+.MuiGrid-root.MuiGrid-container.MuiGrid-direction-xs-column.MuiGrid-align-items-xs-center.MuiGrid-justify-xs-center {
+  background-color: rgba(80, 81, 96, 0.6);
+}
+
+.QuestionSubmission {
+  height: 100vh;
+  background-color: rgba(80, 81, 96, 0.6);
+}
+#questionSubmissionForm > p {
+  margin: auto;
+  background-color: #68829e; */
+
+.QuestionSubmission,
+body {
+  /* background-image: url(../../background_images/triviamac.png) */
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  justify-content: center;
+  background-image: linear-gradient(to bottom right, black, rebeccapurple);
+  font-family: "Exo 2", sans-serif;
+}
+
+#questionSubmissionForm,
+#question,
+#incorrectAnswer1,
+#incorrectAnswer2,
+#incorrectAnswer3 {
   color: #aebd38;
   font-family: "Exo 2", sans-serif;
 }
 
-#questionSubmissionInstructions{
+#questionSubmissionInstructions {
   color: #aebd38;
   background-color: none;
   /* Set neon color */
@@ -36,7 +61,8 @@
   text-align: center;
 }
 
-.QuestionSubmission, .MuiFormControl-root {
+.QuestionSubmission,
+.MuiFormControl-root {
   width: 90%;
 }
 
@@ -48,7 +74,8 @@
   top: 10%;
 }
 
-.QuestionSubmission, .MuiInput-underline:before {
+.QuestionSubmission,
+.MuiInput-underline:before {
   left: 0;
   right: 0;
   bottom: 0;
@@ -60,18 +87,19 @@
   font-family: "Exo 2", sans-serif;
 }
 
-.QuestionSubmission, .MuiFormLabel-root, .MuiButton-label{
+.QuestionSubmission,
+.MuiFormLabel-root,
+.MuiButton-label {
   color: #aebd38 !important;
   font-family: "Exo 2", sans-serif !important;
   font-size: 15pt !important;
-
 }
 
 @media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  #questionSubmissionInstructions{
+  #questionSubmissionInstructions {
     color: #aebd38;
     background-color: none;
-    /* Set neon color */
+
     --neon-text-color: #f40;
     border-radius: 50px;
     position: relative;
@@ -83,23 +111,27 @@
     text-align: center;
   }
 
-  .QuestionSubmission, .MuiFormLabel-root, .MuiButton-label{
+  .QuestionSubmission,
+  .MuiFormLabel-root,
+  .MuiButton-label {
     color: #aebd38 !important;
     font-family: "Exo 2", sans-serif !important;
     font-size: 10pt !important;
-  
   }
-  #questionSubmissionForm, #question, #correctAnswer, #incorrectAnswer1, #incorrectAnswer2, #incorrectAnswer3 {
+  #questionSubmissionForm,
+  #question,
+  #correctAnswer,
+  #incorrectAnswer1,
+  #incorrectAnswer2,
+  #incorrectAnswer3 {
     color: #aebd38;
     font-family: "Exo 2", sans-serif;
     font-size: 9pt;
   }
-  
-  
 }
 
 @media only screen and (min-width: 375px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  #questionSubmissionInstructions{
+  #questionSubmissionInstructions {
     color: #aebd38;
     background-color: none;
     /* Set neon color */

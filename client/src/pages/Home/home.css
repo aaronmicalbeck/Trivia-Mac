@@ -1,4 +1,5 @@
-.Home, html {
+.Home,
+html {
   /* background-image: url(../../background_images/triviamac.png): */
   background-repeat: no-repeat;
   background-position: center 0;
@@ -8,13 +9,11 @@
   width: 100vw;
   position: relative;
   justify-content: center;
-  background-image: linear-gradient(to bottom right, black
-  , rebeccapurple
-
-  );
+  background-image: linear-gradient(to bottom right, black, rebeccapurple);
 }
 
-.Home,h1{
+.Home,
+h1 {
   color: #aebd38;
 }
 
@@ -59,7 +58,7 @@ a.nav-link {
   padding-top: 100%;
 }
 
-.Home .makeStyles-expand-517{
+.Home .makeStyles-expand-517 {
   margin: 0 0 0 0;
 }
 
@@ -80,18 +79,15 @@ a.nav-link {
   border-radius: 30px;
 }
 
-
-.MuiFormLabel-root .MuiButton-label{
+.MuiFormLabel-root .MuiButton-label {
   color: #aebd38;
 }
 
-.MuiInputBase-input .MuiInput-input{
+.MuiInputBase-input .MuiInput-input {
   color: #aebd38;
 }
 
-
-
-#lobbyNavBtn{
+#lobbyNavBtn {
   /* Set neon color */
   --neon-text-color: #f40;
   --neon-border-color: #08f;
@@ -99,7 +95,7 @@ a.nav-link {
   animation: flicker 1.5s infinite alternate;
 }
 
-#submitQuestionNavBtn{
+#submitQuestionNavBtn {
   /* Set neon color */
   --neon-text-color: #f40;
   --neon-border-color: #08f;
@@ -118,7 +114,7 @@ a.nav-link {
   transition: transform 0.3s ease;
   animation: flicker 1.6s infinite alternate;
 }
-#leaderboardNavBtn{
+#leaderboardNavBtn {
   /* Set neon color */
   --neon-text-color: #f40;
   --neon-border-color: #08f;
@@ -138,7 +134,7 @@ a.nav-link {
   animation: flicker 1.1s infinite alternate;
 }
 
-#logoutNavBtn{
+#logoutNavBtn {
   /* Set neon color */
   --neon-text-color: #f40;
   --neon-border-color: #08f;
@@ -158,14 +154,123 @@ a.nav-link {
   animation: flicker 1.9s infinite alternate;
 }
 
-.Home .makeStyles-expand-204{
+.Home .makeStyles-expand-204 {
   /* left: 0% !important; */
   margin: 0 0 0 0;
-  
 }
-#expandrow{
+#expandrow {
   display: flex;
   justify-content: center;
+}
+
+/* @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+
+#loginButton {
+  font-family: "Exo 2", sans-serif;
+  font-size: 3rem;
+  font-weight: 200;
+  font-style: italic;
+  color: #fff;
+  padding: 2rem 3rem 3rem;
+  border: 0.4rem solid #fff;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: flicker 1.5s infinite alternate;
+  --neon-text-color: #60066c;
+  --neon-border-color: #aebd38;
+}
+#loginButton::-moz-selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+#loginButton::selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+#loginButton:focus {
+  outline: none;
+}
+/* Animate neon flicker
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: -0.2rem -0.2rem 1rem #fff, 0.2rem 0.2rem 1rem #fff,
+      0 0 2rem var(--neon-text-color), 0 0 4rem var(--neon-text-color),
+      0 0 6rem var(--neon-text-color), 0 0 8rem var(--neon-text-color),
+      0 0 10rem var(--neon-text-color);
+
+    box-shadow: 0 0 0.5rem #fff, inset 0 0 0.5rem #fff,
+      0 0 2rem var(--neon-border-color), inset 0 0 2rem var(--neon-border-color),
+      0 0 4rem var(--neon-border-color), inset 0 0 4rem var(--neon-border-color);
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+    box-shadow: none;
+  }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+
+.MuiSvgIcon-root {
+  font-family: "Exo 2", sans-serif;
+  font-size: 3rem;
+  font-weight: 200;
+  font-style: italic;
+  color: #fff;
+  padding: 2rem 3rem 3rem;
+  border: 0.4rem solid #fff;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  animation: flicker 1.5s infinite alternate;
+  --neon-text-color: #60066c;
+  --neon-border-color: #aebd38;
+}
+.MuiSvgIcon-root::-moz-selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+.MuiSvgIcon-root::selection {
+  background-color: var(--neon-border-color);
+  color: var(--neon-text-color);
+}
+.MuiSvgIcon-root:focus {
+  outline: none;
+}
+/* Animate neon flicker */
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: -0.2rem -0.2rem 1rem #fff, 0.2rem 0.2rem 1rem #fff,
+      0 0 2rem var(--neon-text-color), 0 0 4rem var(--neon-text-color),
+      0 0 6rem var(--neon-text-color), 0 0 8rem var(--neon-text-color),
+      0 0 10rem var(--neon-text-color);
+
+    box-shadow: 0 0 0.5rem #fff, inset 0 0 0.5rem #fff,
+      0 0 2rem var(--neon-border-color), inset 0 0 2rem var(--neon-border-color),
+      0 0 4rem var(--neon-border-color), inset 0 0 4rem var(--neon-border-color);
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+    box-shadow: none;
+  }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
