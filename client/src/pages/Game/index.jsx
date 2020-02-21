@@ -7,7 +7,6 @@ import socketIOClient from "socket.io-client";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
 import Sound from "react-sound";
-import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 
@@ -79,11 +78,11 @@ export default class Game extends Component {
         correct_answer: data.correct_answer,
         isPlaying: true,
         backgroundColor: this.state.enableButton
-          ? "#5E91D3"
+          ? "#505160"
           : //the question has already been answered. else, leave it enabled
           this.state.response.question === data.question
           ? this.state.backgroundColor
-          : "#5E91D3"
+          : "#505160"
       })
     );
 
@@ -145,9 +144,6 @@ export default class Game extends Component {
 
     // on load fade start button in
     gsap.from("#gameDiv", { duration: 2, delay: 0.1, opacity: 0 });
-    // gsap.from("#startGame", { duration: 2, delay: 0.1, opacity: 0 });
-    // gsap.from("#endGame", { duration: 2, delay: 0.1, opacity: 0 });
-    // gsap.from("#answers", { duration: 2, delay: 0.1, opacity: 0 });
 
     axios
       .get(`/api/userscore/${this.state.user._id}`)
@@ -188,43 +184,38 @@ export default class Game extends Component {
     };
     return (
       <div id="gameDiv">
-        <Grid container direction="row" justify="center" alignItems="center">
-          <Sound
-            url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
-            playStatus={Sound.status.PLAYING}
-            loop={true}
-          />
+        {/* <Grid container direction="row" justify="center" alignItems="center"> */}
+        <Sound
+          url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
+          playStatus={Sound.status.PLAYING}
+          loop={true}
+        />
 
-          <Link to="/lobby" className="nav-link">
-            <NavigationButton>
-              <span id="homeNavBtnTitle">Back</span>
-            </NavigationButton>
-          </Link>
+        <div className="gameRow1">
+          <button id="startGame" onClick={this.handleStart}>
+            Start Game
+          </button>
 
-          <div className="row">
-            <div className="col">
-              <button id="startGame" onClick={this.handleStart}>
-                Start Game
-              </button>
-            </div>
-            <div className="col">
-              <button id="endGame" onClick={this.handleStop}>
-                Stop Game{" "}
-              </button>
-            </div>
-          </div>
+          <button id="endGame" onClick={this.handleStop}>
+            Stop Game{" "}
+          </button>
+        </div>
+
+        <div id="gameRow2">
           <div className="App">
             <CountdownCircleTimer
               className="countdown"
               key={this.state.correct_answer}
               isPlaying={this.state.isPlaying}
               durationSeconds={this.state.time}
-              colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+              colors={[["#aebd38", 0.33], ["#d17600", 0.33], ["#c70606"]]}
               renderTime={this.renderTime}
               onComplete={() => [true, 0]}
             />
           </div>
+        </div>
 
+        <div id="gameRow3">
           <br></br>
           <p>Category: {response.category}</p>
           <br></br>
@@ -234,7 +225,17 @@ export default class Game extends Component {
           {renderButtons()}
           <br></br>
           <p id="score">Score: {sessionScore}</p>
-        </Grid>
+        </div>
+
+        <div id="gameRow4">
+          <Link to="/lobby" className="nav-link">
+            <NavigationButton id="gameBackBtn">
+              <span id="homeNavBtnTitle">Back</span>
+            </NavigationButton>
+          </Link>
+        </div>
+
+        {/* </Grid> */}
       </div>
     );
   }

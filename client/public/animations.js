@@ -41,19 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
   //     /* Item is not on the DOM at all*/
   //   }
 
-  document.getElementById("LoginForm")
-    ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 }) &&
-    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
-    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-    : null;
-
-    document.getElementById("line1") ?
-    gsap.from("#line1", { duration: 2, delay: 1, x: "101%", opacity: 0 })
-    : null;
-
-    document.getElementById("lobbyinstructions") ?
-    gsap.from("#lobbyinstructions", { duration: 2, delay: 1, x: "-101%", opacity: 0 })
-    : null;
+  // document.getElementById("LoginForm")
+  //   ? gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 }) &&
+  //   gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 }) &&
+  //   gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 })
+  //   : null;
 
   // 
   // document.getElementById("welcomeMessage")

@@ -1,25 +1,34 @@
-.Home {
-  background-image: url(../../background_images/triviamac.png);
+.Home,
+html {
+  /* background-image: url(../../background_images/triviamac.png): */
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
+  background-position: center 0;
+  background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
+  height: 80vh;
+  width: 100vw;
   position: relative;
   justify-content: center;
-  background-color: black;
+  background-image: linear-gradient(to bottom right, black, rebeccapurple);
 }
 
-.row1 {
+.Home,
+h1 {
+  color: #aebd38;
+}
+
+#homeRow1 {
   display: flex;
   justify-content: space-around;
   position: relative;
   top: 10%;
   flex-wrap: wrap;
+  margin-bottom: 10%;
 }
 
-.row2 {
-  top: 5%;
+#homeRow2 {
+  display: flex;
+  /* top: 5%; */
   position: relative;
   position: center;
   width: 100%;
@@ -49,6 +58,10 @@ a.nav-link {
   padding-top: 100%;
 }
 
+.Home .makeStyles-expand-517 {
+  margin: 0 0 0 0;
+}
+
 #homeNavBtnTitle1 {
   font-size: xx-large;
 }
@@ -66,12 +79,88 @@ a.nav-link {
   border-radius: 30px;
 }
 
-.Home .makeStyles-expand-204 {
-  right: 48%;
+.MuiFormLabel-root .MuiButton-label {
+  color: #aebd38;
 }
 
-.Home .MuiFormLabel-root {
+.MuiInputBase-input .MuiInput-input {
   color: #aebd38;
+}
+
+#lobbyNavBtn {
+  /* Set neon color */
+  --neon-text-color: #f40;
+  --neon-border-color: #08f;
+
+  animation: flicker 1.5s infinite alternate;
+}
+
+#submitQuestionNavBtn {
+  /* Set neon color */
+  --neon-text-color: #f40;
+  --neon-border-color: #08f;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  float: right;
+  border: none;
+  color: #aebd38;
+  background-color: #505160;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  outline: none;
+  transition: transform 0.3s ease;
+  animation: flicker 1.6s infinite alternate;
+}
+#leaderboardNavBtn {
+  /* Set neon color */
+  --neon-text-color: #f40;
+  --neon-border-color: #08f;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  float: right;
+  border: none;
+  color: #aebd38;
+  background-color: #505160;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  outline: none;
+  transition: transform 0.3s ease;
+  animation: flicker 1.1s infinite alternate;
+}
+
+#logoutNavBtn {
+  /* Set neon color */
+  --neon-text-color: #f40;
+  --neon-border-color: #08f;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  float: right;
+  border: none;
+  color: #aebd38;
+  background-color: #505160;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+  outline: none;
+  transition: transform 0.3s ease;
+  animation: flicker 1.9s infinite alternate;
+}
+
+.Home .makeStyles-expand-204 {
+  /* left: 0% !important; */
+  margin: 0 0 0 0;
+}
+#expandrow {
+  display: flex;
+  justify-content: center;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);

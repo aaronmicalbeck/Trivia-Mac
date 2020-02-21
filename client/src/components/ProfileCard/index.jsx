@@ -5,6 +5,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
+import "./profileCard.css"
+
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -71,6 +73,7 @@ export default function ProfileCard(props) {
         justify="center"
         alignItems="center"
         width="100%"
+  
       >
         <Card className={classes.card}>
           <CardHeader

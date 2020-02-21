@@ -1,46 +1,43 @@
-import React from 'react';
-import {Bar} from 'react-chartjs-2';
+import React from "react";
+import { HorizontalBar } from "react-chartjs-2";
 import NavigationButton from "../NavigationButton";
-import {Link} from "react-router-dom"
-import "./style.css"
+import { Link } from "react-router-dom";
+import "./style.css";
 
-
-function LeaderChart(props){
+function LeaderChart(props) {
   const state = {
     labels: props.labels,
     datasets: [
       {
-        label: 'Top Score',
-        backgroundColor: '#23b8d9',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 0,
-        data: props.data
+        backgroundColor: "rebeccapurple",
+        data: props.data,
+        label: "Top Score"
       }
     ]
-  } 
+  };
   return (
-    <div>
-
-     <Link to="/" id="lobby-nav-link" className="nav-link">
-            <NavigationButton id="leaderboardbackbtn">
-              <span id="homeNavBtnTitle">Back</span>
-            </NavigationButton>
-          </Link>
-      <Bar
+    <div id="leaderboardWrapper">
+      <Link to="/" id="lobby-nav-link" className="nav-link">
+        <NavigationButton id="leaderboardbackbtn">
+          <span id="homeNavBtnTitle">Back</span>
+        </NavigationButton>
+      </Link>
+      <HorizontalBar
         data={state}
         options={{
-          title:{
-            display:true,
-            text:'Trivia-Mac Current Leaderboard',
-            fontSize:20
+          responsive: true,
+          maintainAspectRatio: false,
+          title: {
+            display: true,
+            text: "Trivia-Mac Current Leaderboard",
+            fontSize: 10
           },
-          legend:{
-            display:true,
-            position:'right'
+          legend: {
+            position: "top",
+            fontSize: 10
           }
         }}
       />
-
     </div>
   );
 }
