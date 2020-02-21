@@ -16,11 +16,22 @@ export default class CreateGame extends Component {
     super(props);
     this.state = {
       user: props.user,
-      create: "",
-      join: "",
+      createroomname: "",
+      joinroomname: "",
       redirectTo: null
     };
+
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+
 
   render() {
     return (
@@ -33,7 +44,7 @@ export default class CreateGame extends Component {
             alignItems="center"
           >
             <Link to="/lobby" className="nav-link">
-              <NavigationButton>
+              <NavigationButton id="createGameBackBtn">
                 <span id="homeNavBtnTitle">Back</span>
               </NavigationButton>
             </Link>
@@ -45,32 +56,32 @@ export default class CreateGame extends Component {
                 alignItems="center"
               >
                 <FormControl>
-                  <InputLabel htmlFor="my-input">Create</InputLabel>
+                  <InputLabel htmlFor="my-input">Create A Room</InputLabel>
                   <Input
                     name="createGame"
                     type="text"
                     id="my-input"
-                    value={this.state.username}
+                    value={this.state.createroomname}
                     onChange={this.handleChange}
                     aria-describedby="my-helper-text"
                   />
                 </FormControl>
                 <Button id="createButton" onClick={this.handleSubmit}>
-                  Create
+                  Submit
                 </Button>
                 <FormControl>
-                  <InputLabel htmlFor="my-password">Join</InputLabel>
+                  <InputLabel htmlFor="my-password">Join A Room</InputLabel>
                   <Input
                     name="joinGame"
                     type="joinGame"
-                    id="my-password"
-                    value={this.state.password}
+                    id="join-input"
+                    value={this.state.joinroomname}
                     onChange={this.handleChange}
                     aria-describedby="my-password-helper-text"
                   />
                 </FormControl>
                 <Button id="joinButton" onClick={this.handleSubmit}>
-                  Join
+                  Submit
                 </Button>
               </Grid>
             </form>

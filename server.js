@@ -22,6 +22,7 @@ const PORT = process.env.PORT || 8080;
 const io = require("socket.io")(server);
 const axios = require("axios");
 
+
 // ===== Middleware ====
 app.use(morgan("dev"));
 app.use(
@@ -64,7 +65,6 @@ if (process.env.NODE_ENV === "production") {
 // ====== Routing & Controllers =====
 app.use(routes);
 
-let floatingFileName = "error";
 ///////////////////////////////////////////////////////////////////////////////npm unp
 
 // ====== React App ======
@@ -83,6 +83,12 @@ app.use(function(err, req, res, next) {
 io.on("connection", socket => {
   console.log("New client connected"),
     setInterval(() => broadcastQuestion(socket), 1000);
+  socket.on("disconnect", () => console.log("Client disconnected"));
+});
+
+io.on("connection", socket => {
+  console.log("New client connected"),
+  broadcastHeadToHeadQuestion(socket);
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
@@ -106,6 +112,26 @@ function generateQuestion() {
 }
 setInterval(generateQuestion, 10000);
 
+// Head To Head Question Generator
+
+let headToHeadBroadcastedQuestion = {};
+function generateHeadToHeadQuestion(){
+  axios.get("https://opentdb.com/api.php?amount=10").then(response => {
+    // console.log(response.data.results)
+    pickedQuestion =
+      response.data.results[
+        Math.floor(Math.random() * response.data.results.length)
+      ];
+    choices = pickedQuestion.incorrect_answers.concat(
+      pickedQuestion.correct_answer
+    );
+    choices.sort(() => Math.random() - 0.5);
+    pickedQuestion.choices = choices;
+    headToHeadBroadcastedQuestion = pickedQuestion;
+  });
+}
+
+generateHeadToHeadQuestion();
 // Gets a question from API and broadcasts to anyone listening
 
 const broadcastQuestion = async socket => {
@@ -116,4 +142,26 @@ const broadcastQuestion = async socket => {
   }
 };
 
+const broadcastHeadToHeadQuestion = async socket => {
+  try{
+    socket.emit("FromAPI2", headToHeadBroadcastedQuestion); // Emitting a new message. It will be consumed by the client
+  } catch (error) {
+    console.error(`Error: ${error.code}`);
+  }
+
+}
+
+let roomno = 1;
+io.on('connection', function(socket) {
+  
+  //Increase roomno 2 clients are present in a room.
+  if(io.nsps['/'].adapter.rooms["room-"+roomno] && io.nsps['/'].adapter.rooms["room-"+roomno].length > 0) roomno++;
+  socket.join("room-"+roomno);
+
+  //Send this event to everyone in the room.
+  io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
+})
+
+
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+

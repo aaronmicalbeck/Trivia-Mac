@@ -40,7 +40,7 @@ export default class Lobby extends Component {
         <div className="row2">
           <Link to="/game" id="lobby-nav-link" className="nav-link">
             <NavigationButton id="lobbyNavBtn2">
-              <span id="homeNavBtnTitle">Battle Royale!</span>
+              <span id="homeNavBtnTitle">Marathon Mode!</span>
             </NavigationButton>
           </Link>
 

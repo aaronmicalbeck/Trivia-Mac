@@ -55,13 +55,13 @@ export default class UploadBtn extends Component {
     return (
       <div className="upload_img_root">
         <input type="file" name="file" onChange={this.uploadFileHandler} />
-        <button
+        {/* <button
           type="button"
           className="button"
           onClick={this.submitPhotoForUpload}
         >
           <ion-icon name="ios-save"></ion-icon>
-        </button>
+        </button> */}
       </div>
     );
   }
