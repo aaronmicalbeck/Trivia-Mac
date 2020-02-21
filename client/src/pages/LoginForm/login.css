@@ -34,6 +34,10 @@
   color: #aebd38;
 }
 
+#my-password{
+  margin-bottom: 15px;
+}
+
 
 #welcomeMessage1, #welcomeMessage2 {
   /* Set neon color */
@@ -74,3 +78,5 @@
   color: #aebd38;
   margin: 25px 0 25px 0;
 }
+
+

@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "./lobby.css";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-import { makeStyles } from "@material-ui/core/styles";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Typography from "@material-ui/core/Typography";
 
 import gsap from "gsap";
 
@@ -41,14 +38,15 @@ export default class Lobby extends Component {
           
         <Link to="/game" id="lobby-nav-link" className="nav-link">
           <NavigationButton id="lobbyNavBtn2">
-              <span id="homeNavBtnTitle">Battle Royale!</span>
+              <span id="homeNavBtnTitle">Marathon Mode!</span>
             </NavigationButton>
           </Link>
           
-
+          {/* <Link to="/headtohead" id="loby-nav-link" className="nav-link"> */}
           <NavigationButton id="lobbyNavBtn1" onClick={this.handleClick}>
               <span id="homeNavBtnTitle">Head 2 Head</span>
             </NavigationButton>
+            {/* </Link> */}
         
 
           

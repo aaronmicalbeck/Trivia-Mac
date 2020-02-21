@@ -4,7 +4,6 @@ import LoginForm from "../LoginForm";
 import ProfileCard from "../../components/ProfileCard";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-import gsap from "gsap";
 export default class Home extends Component {
   constructor(props) {
     super(props);

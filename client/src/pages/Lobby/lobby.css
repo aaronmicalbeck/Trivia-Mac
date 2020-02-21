@@ -113,5 +113,6 @@
     animation: flicker 4s infinite alternate-reverse;
     top: 5%;
     text-align: center;
+    overflow: auto;
   }
 }
