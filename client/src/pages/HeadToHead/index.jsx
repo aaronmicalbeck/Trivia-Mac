@@ -9,7 +9,7 @@ import Sound from "react-sound";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 
-export default class HeadtoHeadGame extends Component {
+export default class HeadToHeadGame extends Component {
   constructor(props) {
     super(props);
 

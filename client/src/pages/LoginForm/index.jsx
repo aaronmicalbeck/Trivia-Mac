@@ -41,14 +41,21 @@ export default class LoginForm extends Component {
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 });
-    gsap.from("#welcomeMessage1", { duration: 2, delay: 1, x: "-101%", opacity: 0 });
-    gsap.from("#welcomeMessage2", { duration: 2, delay: 1, x: "101%", opacity: 0 });
-
+    gsap.from("#welcomeMessage1", {
+      duration: 2,
+      delay: 1,
+      x: "-101%",
+      opacity: 0
+    });
+    gsap.from("#welcomeMessage2", {
+      duration: 2,
+      delay: 1,
+      x: "101%",
+      opacity: 0
+    });
   }
-
-  
 
   render() {
     if (this.state.redirectTo) {
@@ -60,7 +67,6 @@ export default class LoginForm extends Component {
             <h1 id="welcomeMessage1">Welcome To</h1>
             <h1 id="welcomeMessage2">TRIVIA - MAC</h1>
           </div>
-          
 
           <div id="LoginForm">
             <Container fixed width="50%">
@@ -104,7 +110,9 @@ export default class LoginForm extends Component {
                         aria-describedby="my-password-helper-text"
                       />
                     </FormControl>
-                    <Button id="loginFormSubmitBtn"onClick={this.handleSubmit}>Login</Button>
+                    <Button id="loginButton" onClick={this.handleSubmit}>
+                      Login
+                    </Button>
                     <a href="/auth/google">
                       {/* <GoogleButton /> */}
                       <img src={googleButton} alt="sign into Google Button" />
@@ -113,14 +121,11 @@ export default class LoginForm extends Component {
                 </form>
                 <br></br>
                 <h1>LeaderBoard</h1>
-                
               </Grid>
               <div id="expandrow">
-              <Expand />
+                <Expand />
               </div>
-              
             </Container>
-           
           </div>
         </div>
       );

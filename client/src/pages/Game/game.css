@@ -1,5 +1,3 @@
-
-
 .timer {
   font-family: "Exo 2", sans-serif;
   display: flex;
@@ -7,30 +5,23 @@
   align-items: center;
 }
 
-.text {
-  color: #aebd38;
-}
 
 .value {
   font-size: 40px;
   color: #aebd38;
 }
 
-.info {
-  max-width: 360px;
-  margin: 40px auto 0;
-  text-align: center;
-  font-size: 16px;
-}
 
 
 #answers,
 #startGame,
 #endGame,
 p {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   height: 100%;
-  width: 100%;
+  width: 60%;
+  margin: 5px;
   margin-bottom: 2px;
   color: #aebd38;
   border-radius: 35px;
@@ -47,14 +38,23 @@ p {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  border-bottom: 1px dotted #aebd38;
+  /* border-bottom: 1px dotted #aebd38; */
 }
-z
-#answers:focus {
-  outline: thin dotted #333;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+
+#gameQuestions,#gameCategory,#score{
+  background: transparent;
+  border: none;
+  margin: 5px 0 5px 0;
 }
+
+#startGame,#endGame{
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
 
 #answers:hover,
 #answers:focus {
@@ -70,19 +70,20 @@ z
 }
 
 #gameDiv {
+
   height: 100%;
   width: 100%;
-  
 }
 
-#gameRow1{
+#gameRow1 {
   display: flex;
   justify-content: center;
-  position: absolute;
   margin-top: 10%;
+  width: 100%;
+
 }
 
-#gameRow2{
+#gameRow2 {
   display: flex;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -90,7 +91,7 @@ z
   flex-wrap: wrap;
 }
 
-#gameRow3{
+#gameRow3 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -98,12 +99,11 @@ z
   margin-bottom: 25px;
 }
 
-#gameRow4{
+#gameRow4 {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-
 
 @media only screen and (min-width: 320px) and (max-width: 800px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   #answers,
@@ -115,9 +115,9 @@ z
     width: 100%;
     margin-bottom: 0;
     color: #aebd38;
-  
+
     font-weight: 250;
-    font-size: .75em;
+    font-size: 0.75em;
     line-height: 1.2;
     text-align: center;
     background-color: #505160;
@@ -129,29 +129,28 @@ z
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    border-bottom: 1px dotted #aebd38;
+    /* border-bottom: 1px dotted #aebd38; */
   }
-  #gameRow1{
+  #gameRow1 {
     margin-top: 60%;
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
   }
 
-#gameRow2{
-  margin: 10px 0 10px 0;
-}
+  #gameRow2 {
+    margin: 10px 0 10px 0;
+  }
 
-#gameRow3{
-  margin: 5px 0 15px 0;
-}
+  #gameRow3 {
+    margin: 5px 0 15px 0;
+  }
 
-.Game, #gameBackBtn{
-  height: 70px;
-  width: 70px;
-}
-  
-  
+  .Game,
+  #gameBackBtn {
+    height: 70px;
+    width: 70px;
+  }
 }
 
 @media only screen and (min-width: 375px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
@@ -159,12 +158,12 @@ z
   #startGame,
   #endGame,
   p {
-    display: inline-block;
+    display: flex;
     height: 100%;
     width: 100%;
     margin-bottom: 0;
     color: #aebd38;
-  
+
     font-weight: 400;
     font-size: 1.3em;
     line-height: 1.2;
@@ -181,11 +180,10 @@ z
     border-bottom: 1px dotted #aebd38;
   }
 
-  #gameRow1{
+  #gameRow1 {
     margin-top: 55%;
     margin-bottom: 25px;
   }
-  
 }
 
 @media only screen and (min-width: 414px) and (max-width: 700px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
@@ -193,12 +191,12 @@ z
   #startGame,
   #endGame,
   p {
-    display: inline-block;
+    display: flex;
     height: 100%;
     width: 100%;
     margin-bottom: 0;
     color: #aebd38;
-  
+
     font-weight: 400;
     font-size: 1.1em;
     line-height: 1.2;
@@ -212,15 +210,11 @@ z
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    border-bottom: 1px dotted #aebd38;
+    /* border-bottom: 1px dotted #aebd38; */
   }
 
-  #gameRow1{
+  #gameRow1 {
     margin-top: 55%;
     margin-bottom: 25px;
   }
-
-  
-
-
 }

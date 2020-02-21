@@ -30,7 +30,10 @@
   --neon-text-color: #f40;
 }
 
-#LoginForm, #my-input, #my-password, #password{ 
+#LoginForm,
+#my-input,
+#my-password,
+#password {
   color: #aebd38;
 }
 
@@ -50,12 +53,13 @@
   text-align: center;
 }
 
-
-
 #logoWrapper {
   position: absolute;
   left: 50%;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i); */
+
 
 #LoginForm .MuiInput-underline:before {
   left: 0;
@@ -68,13 +72,12 @@
   pointer-events: none;
 }
 
-#LoginForm .MuiFormLabel-root{
+#LoginForm .MuiFormLabel-root {
   color: #aebd38 !important;
   font-family: "Exo 2", sans-serif;
-
 }
 
-#LoginForm .MuiButton-label{
+#LoginForm .MuiButton-label {
   color: #aebd38;
   margin: 25px 0 25px 0;
 }

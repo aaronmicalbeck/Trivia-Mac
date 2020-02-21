@@ -44,11 +44,18 @@ export default class SignupForm extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
+  }
+
+  handleClick(event){
+    event.preventDefault();
+    alert("We're working on it!");
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -162,7 +169,7 @@ export default class SignupForm extends Component {
               ))}
               
             </Grid>
-            <UploadBtn />
+            <UploadBtn onClick ={this.handleClick}/>
             <Link to="/" className="nav-link">
               <NavigationButton id="signupBackBtn">
                 <span id="homeNavBtnTitle">Back</span>

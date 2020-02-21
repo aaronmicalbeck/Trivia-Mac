@@ -8,7 +8,8 @@ import Lobby from "./pages/Lobby";
 import Leaderboard from "./pages/Leaderboard";
 import Game from "./pages/Game";
 import QuestionSubmission from "./pages/QuestionSubmission";
-import HeadtoHeadGame from "./pages/HeadtoHeadGame";
+import HeadToHeadGame from "./pages/HeadToHead";
+import CreateGame from "./pages/CreateGame";
 
 class App extends Component {
   constructor() {
@@ -96,8 +97,13 @@ class App extends Component {
         />
         <Route
           exact
+          path="/createGame"
+          render={() => <CreateGame user={this.state.user} />}
+        />
+        <Route
+          exact
           path="/headtohead"
-          render={() => <HeadtoHeadGame user={this.state.user} />}
+          render={() => <HeadToHeadGame user={this.state.user} />}
         />
 
         <Route exact path="/signup" component={SignupForm} />
