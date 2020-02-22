@@ -23,6 +23,11 @@ class App extends Component {
     this._logout = this._logout.bind(this);
   }
 
+
+  _failedLogin(){
+    this.setState({failedLogin: true})
+  }
+
   componentDidMount() {
     axios.get("/auth/user").then(response => {
       if (!!response.data.user) {
@@ -38,7 +43,7 @@ class App extends Component {
               user: res.data
             });
           })
-          .catch(err => console.log(err));
+          .catch(err => console.log(err))
       } else {
         this.setState({
           loggedIn: false,
