@@ -16,8 +16,8 @@ export default class CreateGame extends Component {
     super(props);
     this.state = {
       user: props.user,
-      create: "",
-      join: "",
+      createGame: "",
+      joinGame: "",
       redirectTo: null
     };
   }
@@ -50,7 +50,7 @@ export default class CreateGame extends Component {
                     name="createGame"
                     type="text"
                     id="my-input"
-                    value={this.state.username}
+                    value={this.state.createGame}
                     onChange={this.handleChange}
                     aria-describedby="my-helper-text"
                   />
@@ -62,11 +62,11 @@ export default class CreateGame extends Component {
                   <InputLabel htmlFor="my-password">Join</InputLabel>
                   <Input
                     name="joinGame"
-                    type="joinGame"
-                    id="my-password"
-                    value={this.state.password}
+                    type="text"
+                    id="my-input"
+                    value={this.state.joinGame}
                     onChange={this.handleChange}
-                    aria-describedby="my-password-helper-text"
+                    aria-describedby="my-helper-text"
                   />
                 </FormControl>
                 <Button id="joinButton" onClick={this.handleSubmit}>
