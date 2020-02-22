@@ -1,5 +1,4 @@
-.Lobby,
-html {
+.Lobby, html {
   /* background-image: url(../../background_images/triviamac.png): */
   background-repeat: no-repeat;
   background-position: center 0;
@@ -10,7 +9,6 @@ html {
   position: relative;
   justify-content: center;
   background-image: linear-gradient(to bottom right, black, rebeccapurple);
-  overflow: hidden;
 }
 
 .Lobby,
