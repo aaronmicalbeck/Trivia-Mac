@@ -45,21 +45,13 @@ export default class SignupForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.checkForm = this.checkForm.bind(this);
+    this.apiPost = this.apiPost.bind(this);
+    this.confirmPasswordCheck = this.confirmPasswordCheck.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
+  apiPost = () =>{
 
-  handleClick(event){
-    event.preventDefault();
-    alert("We're working on it!");
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-    // TODO - validate!
     axios
       .post("/auth/signup", {
         username: this.state.username,
@@ -78,6 +70,53 @@ export default class SignupForm extends Component {
         }
         window.location.href = "./";
       });
+
+  }
+
+  confirmPasswordCheck = () => {
+    if(!(this.state.password === this.state.confirmPassword)){
+      alert("Passwords do not match!")
+    }
+    else{
+      this.apiPost();
+    }
+  }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+
+checkForm = () =>{
+  if (this.state.username === ""){
+    alert("Please fill out the form completely!")
+  }
+  else if (this.state.password === ""){
+    alert("Please fill out the form completely!")
+  }
+  else if(this.state.confirmPassword === ""){
+    alert("Please fill out the form completely!")
+  }
+  else if(this.state.photo === ""){
+    alert("Please fill out the form completely!")
+  }
+  else{
+    this.confirmPasswordCheck();
+  }
+    
+}
+
+  handleClick(event){
+    event.preventDefault();
+    alert("We're working on it!");
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    // TODO - validate!
+
+    this.checkForm();
+    
   }
 
   changePhoto(src) {
