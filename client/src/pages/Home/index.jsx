@@ -54,7 +54,7 @@ export default class Home extends Component {
     } else {
       return (
         <div className="Home">
-          <LoginForm _login={this.props._login} />
+          <LoginForm _login={this.props._login}/>
         </div>
       );
     }
