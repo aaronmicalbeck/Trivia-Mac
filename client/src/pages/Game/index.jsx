@@ -108,7 +108,7 @@ export default class Game extends Component {
         topScore: this.state.user.topScore + score
       })
       .then(res => console.log(res))
-      .catch(err => alert(err));
+      .catch(err => alert(err.message));
 
     // relocates user to Homepage
     window.location.href = "./";
