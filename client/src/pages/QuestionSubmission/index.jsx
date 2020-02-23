@@ -47,7 +47,41 @@ export default class QuestionSubmission extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    questionAPI
+    this.checkForm();
+    
+   
+  }
+
+  // Axios GET request all from MongoDB
+
+  handleGet(event) {
+    event.preventDefault();
+    questionAPI.getQuestions().then(res => console.log("Perfecto!"));
+  }
+
+
+
+  // Simple form validation
+  checkForm = () =>{
+
+    if (this.state.question === ""){
+      alert("Please fill out the form completely!")
+    }
+    else if (this.state.incorrectAnswer1 === ""){
+      alert("Please fill out the form completely!")
+    }
+    else if(this.state.incorrectAnswer2 === ""){
+      alert("Please fill out the form completely!")
+    }
+    else if(this.state.incorrectAnswer3 === ""){
+      alert("Please fill out the form completely!")
+    }
+    else if(this.state.correctAnswer === ""){
+      alert("Please fill out the form completely!")
+    }
+    else{
+      alert("Thank you for your submission!");
+      questionAPI
       .submitQuestion({
         question: this.state.question,
         correctAnswer: this.state.correctAnswer,
@@ -58,15 +92,12 @@ export default class QuestionSubmission extends Component {
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
     this.emptyForm();
-    this.openModal();
-  }
+      
+    }
 
-  // Axios GET request all from MongoDB
 
-  handleGet(event) {
-    event.preventDefault();
-    questionAPI.getQuestions().then(res => console.log("Perfecto!"));
   }
+  
 
   componentDidMount() {
     gsap.from("#questionSubmissionInstructions", {
@@ -79,9 +110,7 @@ export default class QuestionSubmission extends Component {
 
   render() {
     return (
-      // <div className="userQuestion">
-      //   <div id="questionSubmissionForm">
-      //     <p>Submit a Question to the Trivia-Mac question library!</p>
+    
       <div>
         <h1 id="questionSubmissionInstructions">
           Submit a Question to the Trivia-Mac library!
@@ -119,7 +148,7 @@ export default class QuestionSubmission extends Component {
                 name="correctAnswer"
                 value={this.state.correctAnswer}
                 onChange={this.handleChange}
-                color="primary"
+                color="secondary"
               />
             </FormControl>
             <br></br>
