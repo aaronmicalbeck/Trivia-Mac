@@ -21,6 +21,7 @@ class App extends Component {
 
     this._login = this._login.bind(this);
     this._logout = this._logout.bind(this);
+    this.failedLogin = this.failedLogin.bind(this);
   }
 
 
@@ -65,6 +66,15 @@ class App extends Component {
     });
   }
 
+  failedLogin() {
+    let failed = document.getElementById("wrong");
+    if (failed.style.display === "none") {
+      failed.style.display = "block";
+    } else {
+      failed.style.display = "none";
+    }
+  }
+
   _login(username, password) {
     axios
       .post("/auth/login", {
@@ -77,6 +87,8 @@ class App extends Component {
             loggedIn: true,
             user: response.data.user
           });
+        } else {
+          this.failedLogin();
         }
       });
   }

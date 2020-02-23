@@ -37,12 +37,16 @@
   color: #aebd38;
 }
 
-#my-password{
+#my-password {
   margin-bottom: 15px;
 }
 
+#wrong {
+  display: none;
+}
 
-#welcomeMessage1, #welcomeMessage2 {
+#welcomeMessage1,
+#welcomeMessage2 {
   /* Set neon color */
   --neon-text-color: #f40;
   border-radius: 50px;
@@ -58,10 +62,8 @@
   left: 50%;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Exo+2:200i); */
-
-
-#LoginForm .MuiInput-underline:before {
+@import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
+*/ #LoginForm .MuiInput-underline:before {
   left: 0;
   right: 0;
   bottom: 0;
@@ -81,5 +83,3 @@
   color: #aebd38;
   margin: 25px 0 25px 0;
 }
-
-
