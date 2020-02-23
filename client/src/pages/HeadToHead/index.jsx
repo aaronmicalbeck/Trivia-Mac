@@ -19,7 +19,7 @@ export default class HeadToHeadGame extends Component {
         : "127.0.0.1:8080";
 
     this.state = {
-    //   user: props.user,
+      //   user: props.user,
       response: false,
       endpoint,
       enableButton: true,
@@ -28,7 +28,7 @@ export default class HeadToHeadGame extends Component {
       sessionScore: 0,
       correct_answer: "",
       isPlaying: false,
-
+      isCorrect: false,
       backgroundColor: "5E91D3"
     };
     this.handleStart = this.handleStart.bind(this);
@@ -38,11 +38,9 @@ export default class HeadToHeadGame extends Component {
     // this.handleClick = this.handleClick.bind(this);
   }
 
- 
-
   // //////////////////////////////////////////
 
-  headToHeadGamePlay(){
+  headToHeadGamePlay() {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
 
@@ -53,17 +51,14 @@ export default class HeadToHeadGame extends Component {
           ? true
           : //the question has already been answered. else, leave it enabled
           this.state.response.question === data.question
-          ? false
+          ? this.headToHeadGamePlay()
           : true,
         response: data,
+        isCorrect:
+          this.state.correct_answer !== data.correct_answer ? false : true,
         correct_answer: data.correct_answer,
         isPlaying: true,
-        backgroundColor: this.state.enableButton
-          ? "#505160"
-          : //the question has already been answered. else, leave it enabled
-          this.state.response.question === data.question
-          ? this.state.backgroundColor
-          : "#505160"
+        gameStarted: true
       })
     );
   }
@@ -73,45 +68,42 @@ export default class HeadToHeadGame extends Component {
   handleStart(event) {
     event.preventDefault();
     // this.headToHeadGamePlay();
-   
-   
+
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-      socket.on('connectToRoom',function(data) {
-         document.body.innerHTML = '';
-         document.write(data);
-      });
-    
-   
-    
+    socket.on("connectToRoom", function(data) {
+      document.body.innerHTML = "";
+      document.write(data);
+    });
 
     // GAMESTARTED = TRUE
 
     this.setState({ gameStarted: true });
   }
 
-  getScore() {
-    return this.state.sessionScore;
+  handleStop(event) {
+    event.preventDefault();
+
+    // Updates user score in MongoDB (session score + user topScore)
+
+    if ("win") {
+      axios
+        .post(`/api/score/${this.state.user._id}`, {
+          wins: this.state.user.wins + 1
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    } else {
+      axios
+        .post(`/api/score/${this.state.user._id}`, {
+          losses: this.state.user.losses + 1
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+    // relocates user to Homepage
+    window.location.href = "./createGame";
   }
-
-//   handleStop(event) {
-//     event.preventDefault();
-
-//     // session score
-//     const score = this.getScore();
-
-//     // Updates user score in MongoDB (session score + user topScore)
-
-//     axios
-//       .post(`/api/score/${this.state.user._id}`, {
-//         topScore: this.state.user.topScore + score
-//       })
-//       .then(res => console.log(res))
-//       .catch(err => console.log(err));
-
-//     // relocates user to Homepage
-//     window.location.href = "./";
-//   }
 
   isCorrectAnswer(choice) {
     if (this.state.enableButton) {
@@ -123,19 +115,16 @@ export default class HeadToHeadGame extends Component {
       if (choice === response.correct_answer) {
         this.setState({
           sessionScore: sessionScore + 1,
-          enableButton: false,
-          backgroundColor: "green"
+          enableButton: false
         });
+        this.headToHeadGamePlay();
       } else {
         this.setState({
-          sessionScore: sessionScore - 1,
-          enableButton: false,
-          backgroundColor: "red"
+          sessionScore: sessionScore - 1
         });
       }
     }
   }
-
 
   componentDidMount() {
     /////////////
@@ -143,8 +132,8 @@ export default class HeadToHeadGame extends Component {
     /////////////
 
     // on load fade start button in
-    gsap.from("#gameDiv", { duration: 2, delay: 0.1, opacity: 0 });
-    
+    gsap.from("#smackdownDiv", { duration: 2, delay: 0.1, opacity: 0 });
+
     // axios
     //   .get(`/api/userscore/${this.state.user._id}`)
 
@@ -170,12 +159,10 @@ export default class HeadToHeadGame extends Component {
       if (this.state.gameStarted && response.choices) {
         return response.choices.map(answers => (
           <button
-            disabled={!this.state.enableButton}
             id="answers"
             style={{ backgroundColor: this.state.backgroundColor }}
             onClick={() => {
               this.isCorrectAnswer(answers);
-              
             }}
           >
             {this.decodeHtml(answers)}
@@ -185,31 +172,28 @@ export default class HeadToHeadGame extends Component {
     };
     return (
       <div id="gameDiv">
-          <Sound
-            url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
-            playStatus={Sound.status.PLAYING}
-            loop={true}
-          />
+        <Sound
+          url="https://vgmdownloads.com/soundtracks/pokemon-red-green-blue-yellow/figvtmqo/54%20Final%20Battle%21%20%28Rival%29.mp3"
+          playStatus={Sound.status.PLAYING}
+          loop={true}
+        />
 
-         
-          <div className="gameRow1">
-            <button id="startGame" onClick={this.handleStart}>
-              Start Game
-            </button>
-            <button id="testButton" onClick={this.handleClick}>
-              TEST BUTTON
-            </button>
+        <div className="gameRow1">
+          <button id="startGame" onClick={this.headToHeadGamePlay}>
+            Start Game
+          </button>
+          <button id="testButton" onClick={this.handleClick}>
+            TEST BUTTON
+          </button>
 
-            <button id="endGame" onClick={this.handleStop}>
-              Stop Game{" "}
-            </button>
-          </div>
+          <button id="endGame" onClick={this.handleStop}>
+            Stop Game{" "}
+          </button>
+        </div>
 
-          <div id="gameRow2">
-          
-          </div>
+        <div id="gameRow2"></div>
 
-          <div id="gameRow3">
+        <div id="gameRow3">
           <br></br>
           <p>Category: {response.category}</p>
           <br></br>
@@ -219,22 +203,15 @@ export default class HeadToHeadGame extends Component {
           {renderButtons()}
           <br></br>
           <p id="score">Score: {sessionScore}</p>
-          </div>
+        </div>
 
-          <div id="gameRow4">
+        <div id="gameRow4">
           <Link to="/lobby" className="nav-link">
             <NavigationButton id="gameBackBtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
           </Link>
-
-
-            
-          </div>
-
-          
-
-          
+        </div>
       </div>
     );
   }
