@@ -5,29 +5,23 @@
   align-items: center;
 }
 
-.text {
-  color: #aebd38;
-}
 
 .value {
   font-size: 40px;
   color: #aebd38;
 }
 
-.info {
-  max-width: 360px;
-  margin: 40px auto 0;
-  text-align: center;
-  font-size: 16px;
-}
+
 
 #answers,
 #startGame,
 #endGame,
 p {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   height: 100%;
-  width: 100%;
+  width: 60%;
+  margin: 5px;
   margin-bottom: 2px;
   color: #aebd38;
   border-radius: 35px;
@@ -44,13 +38,23 @@ p {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  border-bottom: 1px dotted #aebd38;
+  /* border-bottom: 1px dotted #aebd38; */
 }
-z #answers:focus {
-  outline: thin dotted #333;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+
+#gameQuestions,#gameCategory,#score{
+  background: transparent;
+  border: none;
+  margin: 5px 0 5px 0;
 }
+
+#startGame,#endGame{
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
 
 #answers:hover,
 #answers:focus {
@@ -66,15 +70,7 @@ z #answers:focus {
 }
 
 #gameDiv {
-  /* background-image: url(../../background_images/purple_question_marks.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
-  position: relative;
-  justify-content: center;
-  background-color: black; */
+
   height: 100%;
   width: 100%;
 }
@@ -82,8 +78,9 @@ z #answers:focus {
 #gameRow1 {
   display: flex;
   justify-content: center;
-  position: absolute;
   margin-top: 10%;
+  width: 100%;
+
 }
 
 #gameRow2 {
@@ -132,7 +129,7 @@ z #answers:focus {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    border-bottom: 1px dotted #aebd38;
+    /* border-bottom: 1px dotted #aebd38; */
   }
   #gameRow1 {
     margin-top: 60%;
@@ -161,7 +158,7 @@ z #answers:focus {
   #startGame,
   #endGame,
   p {
-    display: inline-block;
+    display: flex;
     height: 100%;
     width: 100%;
     margin-bottom: 0;
@@ -194,7 +191,7 @@ z #answers:focus {
   #startGame,
   #endGame,
   p {
-    display: inline-block;
+    display: flex;
     height: 100%;
     width: 100%;
     margin-bottom: 0;
@@ -213,7 +210,7 @@ z #answers:focus {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    border-bottom: 1px dotted #aebd38;
+    /* border-bottom: 1px dotted #aebd38; */
   }
 
   #gameRow1 {

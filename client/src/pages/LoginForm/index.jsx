@@ -41,6 +41,15 @@ export default class LoginForm extends Component {
     });
   }
 
+  failedLogin() {
+    let failed = document.getElementById("wrong");
+    if (failed.style.display === "none") {
+      failed.style.display = "block";
+    } else {
+      failed.style.display = "none";
+    }
+  }
+
   componentDidMount() {
     gsap.from("#LoginForm", { duration: 2, delay: 1, y: "-101%", opacity: 0 });
     gsap.from("#welcomeMessage1", {
@@ -117,6 +126,7 @@ export default class LoginForm extends Component {
                       {/* <GoogleButton /> */}
                       <img src={googleButton} alt="sign into Google Button" />
                     </a>
+                    <div id="wrong">LOGIN FAILED PLEASE TRY AGAIN</div>
                   </Grid>
                 </form>
                 <br></br>

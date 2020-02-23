@@ -1,5 +1,4 @@
-.Lobby,
-html {
+.Lobby, html {
   /* background-image: url(../../background_images/triviamac.png): */
   background-repeat: no-repeat;
   background-position: center 0;
@@ -76,30 +75,11 @@ html {
 .Lobby,
 .row3 {
   top: 5%;
-  /* right: 5%; */
-}
-
-/* .makeStyles-root-1 {
-  position: absolute;
-  top: 45%;
-}
-
-#lobby-nav-link {
-  padding: 0 0 0 0;
-  background-color: #68829e;
-}
-
-#lobbyDiv {
-  background-image: url(../../background_images/yellow_question_mark.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
-  position: relative;
+  display: flex;
   justify-content: center;
-  background-color: black;
-} */
+}
+
+
 #lobbyinstructions2 {
   position: center;
   width: 100%;
@@ -137,5 +117,6 @@ html {
     animation: flicker 4s infinite alternate-reverse;
     top: 5%;
     text-align: center;
+    overflow: auto;
   }
 }
