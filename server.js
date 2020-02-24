@@ -83,25 +83,57 @@ app.use(function(err, req, res, next) {
 io.on("connection", socket => {
   console.log("New client connected"),
     setInterval(() => broadcastQuestion(socket), 1000);
-    broadcastHeadToHeadQuestion(socket);
+  broadcastHeadToHeadQuestion(socket);
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-
-
-
-
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
-
-
-
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Gets fired when someone wants to get the list of rooms. respond with the list of room names.
+ */
+socket.on("getRoomNames", (data, callback) => {
+  const roomNames = [];
+  for (const id in rooms) {
+    const { name } = rooms[id];
+    const room = { name, id };
+    roomNames.push(room);
+  }
+  // callback(roomNames);
+});
+/**
+ * Gets fired when a user wants to create a new room.
+ */
+socket.on("createRoom", (roomName, callback) => {
+  const room = {
+    id: uuid(), // generate a unique id for the new room, that way we don't need to deal with duplicates.
+    name: roomName,
+    sockets: []
+  };
+  rooms[room.id] = room;
+  // have the socket join the room they've just created.
+  joinRoom(socket, room);
+  // callback();
+});
+/**
+ * Gets fired when a player has joined a room.
+ */
+socket.on("joinRoom", (roomId, callback) => {
+  const room = rooms[roomId];
+  joinRoom(socket, room);
+  // callback();
+});
+/**
+ * Gets fired when a player leaves a room.
+ */
+socket.on("leaveRoom", () => {
+  leaveRooms(socket);
+});
+/**
+ * Gets fired when a player disconnects from the server.
+ */
+socket.on("disconnect", () => {
+  console.log("user disconnected");
+  leaveRooms(socket);
+});
 
 // Question Generator
 

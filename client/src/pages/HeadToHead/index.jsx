@@ -29,10 +29,8 @@ export default class HeadToHeadGame extends Component {
       correct_answer: "",
       isPlaying: false,
       isCorrect: false,
-      backgroundColor: "5E91D3",
+      backgroundColor: "5E91D3"
     };
-
-    console.log(this.state)
     this.handleStart = this.handleStart.bind(this);
     // this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
@@ -89,7 +87,7 @@ export default class HeadToHeadGame extends Component {
   handleStop(event) {
     event.preventDefault();
 
-    // Updates user score in MongoDB 
+    // Updates user score in MongoDB
 
     if ("win") {
       axios
@@ -203,6 +201,7 @@ export default class HeadToHeadGame extends Component {
           <br></br>
 
           {renderButtons()}
+
           <br></br>
           <p id="score">Score: {sessionScore}</p>
         </div>

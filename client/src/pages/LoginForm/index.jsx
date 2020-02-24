@@ -15,14 +15,13 @@ import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 import gsap from "gsap";
 
-
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
-      redirectTo: null,
+      redirectTo: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -35,22 +34,18 @@ export default class LoginForm extends Component {
     });
   }
 
-  checkForm = () =>{
-    if (this.state.username === ""){
-      alert("Please fill out the login form completely!")
-    }
-    else if (this.state.password === ""){
-      alert("Please fill out the login form completely")
-    }
-    else{
+  checkForm = () => {
+    if (this.state.username === "") {
+      this.failedLogin();
+    } else if (this.state.password === "") {
+      this.failedLogin();
+    } else {
       this.props._login(this.state.username, this.state.password);
       this.setState({
-
-      redirectTo: "/"
-    })
+        redirectTo: "/"
+      });
     }
-  }
-  
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -61,6 +56,7 @@ export default class LoginForm extends Component {
     let failed = document.getElementById("wrong");
     if (failed.style.display === "none") {
       failed.style.display = "block";
+      gsap.to("#wrong", { duration: 2.5, ease: "bounce.out", y: -440 });
     } else {
       failed.style.display = "none";
     }
@@ -83,7 +79,6 @@ export default class LoginForm extends Component {
   }
 
   render() {
-
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
@@ -139,14 +134,12 @@ export default class LoginForm extends Component {
                     <Button id="loginButton" onClick={this.handleSubmit}>
                       Login
                     </Button>
-                    
                     <a href="/auth/google">
                       {/* <GoogleButton /> */}
                       <img src={googleButton} alt="sign into Google Button" />
                     </a>
-                    <div id="wrong">LOGIN FAILED PLEASE TRY AGAIN</div>
+                    <div id="wrong">PLEASE TRY AGAIN</div>
                   </Grid>
-                  
                 </form>
                 <br></br>
                 <h1>LeaderBoard</h1>

@@ -25,7 +25,6 @@ export default class CreateGame extends Component {
       rooms: [],
       playerWaiting: false
     };
-    console.log(this.state)
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateRoom = this.handleCreateRoom.bind(this);
@@ -37,14 +36,12 @@ export default class CreateGame extends Component {
     });
   }
   handleCreateRoom(event) {
- 
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     this.setState({ roomCreated: true });
-    socket.on("getRoomNames", data => this.setState({ rooms: data }));
+    socket.emit("getRoomNames", data => this.setState({ rooms: data }));
   }
   handleJoinRoom(event) {
-  
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("joinRoom", data => this.setState({ roomJoined: true }));
@@ -55,15 +52,15 @@ export default class CreateGame extends Component {
       if (this.state.roomCreated) {
         return (
           <Link to="/headtohead" className="nav-link">
-          <Button
-            user={this.state}
-            id={this.state.createroomname}
-            onClick={() => {
-              this.handleJoinRoom();
-            }}
-          >
-            {this.state.createroomname}
-          </Button>
+            <Button
+              user={this.state.user}
+              id={this.state.createroomname}
+              onClick={() => {
+                this.handleJoinRoom();
+              }}
+            >
+              {this.state.createroomname}
+            </Button>
           </Link>
         );
       }
@@ -103,7 +100,7 @@ export default class CreateGame extends Component {
                 <Button id="createButton" onClick={this.handleCreateRoom}>
                   Create Room
                 </Button>
-                
+
                 <Container id="roomsAvailable">{renderRoom()}</Container>
               </Grid>
             </form>
