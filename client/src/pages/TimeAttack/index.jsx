@@ -2,14 +2,14 @@
 
 import React, { Component } from "react";
 import axios from "axios";
-import "./game.css";
+import "./style.css";
 import socketIOClient from "socket.io-client";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
 import Sound from "react-sound";
 import { Link } from "react-router-dom";
+import NavigationButton from "../../components/NavigationButton";
 
-export default class Game extends Component {
+export default class TimeAttack extends Component {
   constructor(props) {
     super(props);
 
@@ -28,62 +28,54 @@ export default class Game extends Component {
       sessionScore: 0,
       correct_answer: "",
       isPlaying: false,
-      time: 10,
-      // backgroundColor: "5E91D3"
+      isCorrect: false,
+      backgroundColor: "5E91D3",
     };
+
+    console.log(this.state)
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
-    this.renderTime = this.renderTime.bind(this);
-  }
-
-  renderTime(value) {
-    if (value === 0) {
-      return <div className="timer">Too late...</div>;
-    }
-
-    return (
-      <div className="timer">
-        <div className="text">Remaining</div>
-        <div className="value">{value}</div>
-        <div className="text">seconds</div>
-      </div>
-    );
+    this.headToHeadGamePlay = this.headToHeadGamePlay.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   // //////////////////////////////////////////
 
-  // //////////////////////////////////////////
-
-  handleStart(event) {
-    event.preventDefault();
+  headToHeadGamePlay() {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
 
-    socket.on("marathonGame", data =>
+    socket.on("FromAPI2", data =>
       this.setState({
         //enable the button when data comes in unless...
         enableButton: this.state.enableButton
           ? true
           : //the question has already been answered. else, leave it enabled
           this.state.response.question === data.question
-          ? false
+          ? this.headToHeadGamePlay()
           : true,
         response: data,
-        time:
-          this.state.correct_answer !== data.correct_answer
-            ? 10
-            : this.state.time,
+        isCorrect:
+          this.state.correct_answer !== data.correct_answer ? false : true,
         correct_answer: data.correct_answer,
         isPlaying: true,
-        backgroundColor: this.state.enableButton
-          ? "#505160"
-          : //the question has already been answered. else, leave it enabled
-          this.state.response.question === data.question
-          ? this.state.backgroundColor
-          : "#505160"
+        gameStarted: true
       })
     );
+  }
+
+  // //////////////////////////////////////////
+
+  handleStart(event) {
+    event.preventDefault();
+
+    const { endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
+    socket.on("connectToRoom", function(data) {
+      document.body.innerHTML = "";
+      document.write(data);
+    });
 
     // GAMESTARTED = TRUE
 
@@ -97,20 +89,30 @@ export default class Game extends Component {
   handleStop(event) {
     event.preventDefault();
 
-    // session score
     const score = this.getScore();
 
     // Updates user score in MongoDB (session score + user topScore)
 
-    axios
-      .post(`/api/score/${this.state.user._id}`, {
-        topScore: this.state.user.topScore + score
-      })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    if (this.state.user.timeAttackScore < score){
 
-    // relocates user to Homepage
-    window.location.href = "./";
+        axios
+        .post(`/api/score/${this.state.user._id}`, {
+          timeAttackScore: score
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+  
+      // relocates user to Homepage
+      window.location.href = "./";
+    }
+
+    else {
+        window.location.href = "./";
+    }
+
+   
+    // Updates user score in MongoDB 
+
   }
 
   isCorrectAnswer(choice) {
@@ -123,14 +125,12 @@ export default class Game extends Component {
       if (choice === response.correct_answer) {
         this.setState({
           sessionScore: sessionScore + 1,
-          enableButton: false,
-          backgroundColor: "green"
+          enableButton: false
         });
+        this.headToHeadGamePlay();
       } else {
         this.setState({
-          sessionScore: sessionScore - 1,
-          enableButton: false,
-          backgroundColor: "red"
+          sessionScore: sessionScore - 1
         });
       }
     }
@@ -142,7 +142,7 @@ export default class Game extends Component {
     /////////////
 
     // on load fade start button in
-    gsap.from("#gameDiv", { duration: 2, delay: 0.1, opacity: 0 });
+    gsap.from("#smackdownDiv", { duration: 2, delay: 0.1, opacity: 0 });
 
     axios
       .get(`/api/userscore/${this.state.user._id}`)
@@ -169,12 +169,10 @@ export default class Game extends Component {
       if (this.state.gameStarted && response.choices) {
         return response.choices.map(answers => (
           <button
-            disabled={!this.state.enableButton}
             id="answers"
             style={{ backgroundColor: this.state.backgroundColor }}
             onClick={() => {
               this.isCorrectAnswer(answers);
-              
             }}
           >
             {this.decodeHtml(answers)}
@@ -183,46 +181,30 @@ export default class Game extends Component {
       }
     };
     return (
-      <div id="gameDiv">
-        
+      <div id="smackdownDiv">
         <Sound
-          url="http://23.237.126.42/ost/wii-console-background-music/sopjflrm/Mii%20Channel%20-%20Plaza%20Music.mp3"
+          url="https://vgmdownloads.com/soundtracks/pokemon-red-green-blue-yellow/figvtmqo/54%20Final%20Battle%21%20%28Rival%29.mp3"
           playStatus={Sound.status.PLAYING}
           loop={true}
         />
 
         <div className="gameRow1">
-          <button id="startGame" onClick={this.handleStart}>
+          <button id="startGame" onClick={this.headToHeadGamePlay}>
             Start Game
           </button>
-          <Link to="/" className="nav-link">
+
           <button id="endGame" onClick={this.handleStop}>
-            Leave Game{" "}
+            Stop Game{" "}
           </button>
-          </Link>
         </div>
 
-        <div id="gameRow2">
-          <div className="App">
-            <CountdownCircleTimer
-              className="countdown"
-              key={this.state.correct_answer}
-              isPlaying={this.state.isPlaying}
-              durationSeconds={this.state.time}
-              colors={[["#aebd38", 0.33], ["#d17600", 0.33], ["#c70606"]]}
-              renderTime={this.renderTime}
-              onComplete={() => [true, 0]}
-              trailColor={true}
-              size={160}
-            />
-          </div>
-        </div>
+        <div id="gameRow2"></div>
 
         <div id="gameRow3">
           <br></br>
-          <p id="gameCategory">Category: {response.category}</p>
+          <p>Category: {response.category}</p>
           <br></br>
-          <p id="gameQuestions">{this.decodeHtml(response.question)}</p>
+          <p>{this.decodeHtml(response.question)}</p>
           <br></br>
 
           {renderButtons()}
@@ -231,13 +213,12 @@ export default class Game extends Component {
         </div>
 
         <div id="gameRow4">
-          {/* <Link to="/lobby" className="nav-link">
+          <Link to="/lobby" className="nav-link">
             <NavigationButton id="gameBackBtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
-          </Link> */}
+          </Link>
         </div>
-
       </div>
     );
   }

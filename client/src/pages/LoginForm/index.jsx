@@ -84,17 +84,6 @@ export default class LoginForm extends Component {
 
   render() {
 
-    let {_failedLogin} = this.state;
-
-    const renderModal = () =>{
-      if (_failedLogin === true){
-        return <h3>TRY AGAIN</h3>
-      }
-      else {
-        return null;
-      }
-
-    }
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
@@ -150,7 +139,7 @@ export default class LoginForm extends Component {
                     <Button id="loginButton" onClick={this.handleSubmit}>
                       Login
                     </Button>
-                    {renderModal()}
+                    
                     <a href="/auth/google">
                       {/* <GoogleButton /> */}
                       <img src={googleButton} alt="sign into Google Button" />

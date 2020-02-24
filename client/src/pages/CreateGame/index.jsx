@@ -56,7 +56,7 @@ export default class CreateGame extends Component {
         return (
           <Link to="/headtohead" className="nav-link">
           <Button
-            user={this.state.user}
+            user={this.state}
             id={this.state.createroomname}
             onClick={() => {
               this.handleJoinRoom();

@@ -11,7 +11,8 @@ export default class Home extends Component {
       user: props.user,
       response: false,
       _logout: props._logout,
-      topScore: props.topScore
+      topScore: props.topScore,
+      timeAttackScore: props.timeAttackScore
     };
   }
 

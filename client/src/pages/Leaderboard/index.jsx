@@ -11,7 +11,8 @@ export default class Leaderboard extends Component {
       user: props.user,
       users: [],
       userScores: [],
-      userNames: []
+      userNames: [],
+      timeAttackScores: []
     };
 
     this.loadScores = this.loadScores.bind(this);
@@ -23,6 +24,21 @@ export default class Leaderboard extends Component {
     chartAPI.getUser().then(res => {
       this.setState({
         userScores: res.data.map(item => {
+          return item.topScore;
+        }),
+        userNames: res.data.map(item => {
+          return item.local
+            ? item.local.username
+            : item.firstName + " " + item.lastName;
+        })
+      });
+    });
+  }
+  
+  loadTimeAttackScores() {
+    chartAPI.getUser().then(res => {
+      this.setState({
+        timeAttackScores: res.data.map(item => {
           return item.topScore;
         }),
         userNames: res.data.map(item => {
