@@ -87,7 +87,7 @@ export default function ProfileCard(props) {
               <Typography align="center" variant="h5" gutterBottom>
                 Marathon Score: {profileScore(props.user)}
                 <br></br>
-                Time Attack Score: {timeAttackScore(props.user)}
+                Best Time Attack: {timeAttackScore(props.user)}
               </Typography>
               
             }
