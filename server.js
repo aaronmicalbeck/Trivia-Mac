@@ -348,20 +348,20 @@ const broadcastHeadToHeadQuestion = async socket => {
   }
 };
 
-let roomno = 1;
-io.on("connection", function(socket) {
-  //Increase roomno 2 clients are present in a room.
-  if (
-    io.nsps["/"].adapter.rooms["room-" + roomno] &&
-    io.nsps["/"].adapter.rooms["room-" + roomno].length > 0
-  )
-    roomno++;
-  socket.join("room-" + roomno);
+// let roomno = 1;
+// io.on("connection", function(socket) {
+//   //Increase roomno 2 clients are present in a room.
+//   if (
+//     io.nsps["/"].adapter.rooms["room-" + roomno] &&
+//     io.nsps["/"].adapter.rooms["room-" + roomno].length > 0
+//   )
+//     roomno++;
+//   socket.join("room-" + roomno);
 
-  //Send this event to everyone in the room.
-  io.sockets
-    .in("room-" + roomno)
-    .emit("connectToRoom", "You are in room no. " + roomno);
-});
+//   //Send this event to everyone in the room.
+//   io.sockets
+//     .in("room-" + roomno)
+//     .emit("connectToRoom", "You are in room no. " + roomno);
+// });
 
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));

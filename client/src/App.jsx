@@ -129,7 +129,7 @@ class App extends Component {
           path="/profile"
           render={() => <Profile user={this.state.user} _login={this._login} />}
         />
-        <Route exact path="/lobby" component={Lobby} />
+        <Route exact path="/lobby" component={Lobby} user={this.state.user} />
         <Route exact path="/leaderboard" component={Leaderboard} />
         <Route
           exact

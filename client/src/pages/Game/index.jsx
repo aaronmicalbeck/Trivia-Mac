@@ -196,10 +196,11 @@ export default class Game extends Component {
           <button id="startGame" onClick={this.handleStart}>
             Start Game
           </button>
-
+          <Link to="/" className="nav-link">
           <button id="endGame" onClick={this.handleStop}>
-            Stop Game{" "}
+            Leave Game{" "}
           </button>
+          </Link>
         </div>
 
         <div id="gameRow2">
@@ -231,11 +232,11 @@ export default class Game extends Component {
         </div>
 
         <div id="gameRow4">
-          <Link to="/lobby" className="nav-link">
+          {/* <Link to="/lobby" className="nav-link">
             <NavigationButton id="gameBackBtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
-          </Link>
+          </Link> */}
         </div>
 
       </div>
