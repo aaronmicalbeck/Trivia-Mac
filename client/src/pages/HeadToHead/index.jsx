@@ -19,7 +19,7 @@ export default class HeadToHeadGame extends Component {
         : "127.0.0.1:8080";
 
     this.state = {
-      //   user: props.user,
+      user: props.user,
       response: false,
       endpoint,
       enableButton: true,
@@ -29,8 +29,10 @@ export default class HeadToHeadGame extends Component {
       correct_answer: "",
       isPlaying: false,
       isCorrect: false,
-      backgroundColor: "5E91D3"
+      backgroundColor: "5E91D3",
     };
+
+    console.log(this.state)
     this.handleStart = this.handleStart.bind(this);
     // this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
@@ -67,7 +69,6 @@ export default class HeadToHeadGame extends Component {
 
   handleStart(event) {
     event.preventDefault();
-    // this.headToHeadGamePlay();
 
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
@@ -81,10 +82,14 @@ export default class HeadToHeadGame extends Component {
     this.setState({ gameStarted: true });
   }
 
+  getScore() {
+    return this.state.sessionScore;
+  }
+
   handleStop(event) {
     event.preventDefault();
 
-    // Updates user score in MongoDB (session score + user topScore)
+    // Updates user score in MongoDB 
 
     if ("win") {
       axios
@@ -134,15 +139,15 @@ export default class HeadToHeadGame extends Component {
     // on load fade start button in
     gsap.from("#smackdownDiv", { duration: 2, delay: 0.1, opacity: 0 });
 
-    // axios
-    //   .get(`/api/userscore/${this.state.user._id}`)
+    axios
+      .get(`/api/userscore/${this.state.user._id}`)
 
-    //   .then(res => {
-    //     this.setState({
-    //       user: res.data
-    //     });
-    //   })
-    //   .catch(err => console.log(err));
+      .then(res => {
+        this.setState({
+          user: res.data
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   decodeHtml(html) {
@@ -181,9 +186,6 @@ export default class HeadToHeadGame extends Component {
         <div className="gameRow1">
           <button id="startGame" onClick={this.headToHeadGamePlay}>
             Start Game
-          </button>
-          <button id="testButton" onClick={this.handleClick}>
-            TEST BUTTON
           </button>
 
           <button id="endGame" onClick={this.handleStop}>

@@ -10,26 +10,17 @@ import "./profileCard.css"
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 300
+    maxWidth: 300,
+    width: "100%"
   },
   media: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: "100%", // 16:9
   },
   subheader:{
 
     align: "center"
 
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
   }
 }));
 
@@ -67,7 +58,7 @@ export default function ProfileCard(props) {
   }
 
   return (
-    <div id="container">
+    <div id="profileCardContainer">
       <Grid
         direction="column"
         justify="center"
@@ -78,12 +69,12 @@ export default function ProfileCard(props) {
         <Card className={classes.card}>
           <CardHeader
             title={
-              <Typography align="center" variant="h2" gutterBottom>
+              <Typography align="center" variant="h3" gutterBottom>
                 {user(props.user)}
               </Typography>
             }
             subheader={
-              <Typography align="center" variant="h4" gutterBottom>
+              <Typography align="center" variant="h5" gutterBottom>
                 Top Score: {profileScore(props.user)}
               </Typography>
             }

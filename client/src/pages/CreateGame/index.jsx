@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-import { EditorFormatColorReset } from "material-ui/svg-icons";
 import socketIOClient from "socket.io-client";
 
 export default class CreateGame extends Component {
@@ -26,6 +25,7 @@ export default class CreateGame extends Component {
       rooms: [],
       playerWaiting: false
     };
+    console.log(this.state)
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateRoom = this.handleCreateRoom.bind(this);
@@ -37,25 +37,26 @@ export default class CreateGame extends Component {
     });
   }
   handleCreateRoom(event) {
-    event.preventDefault();
+ 
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("createRoom", data => this.setState({ roomCreated: true }));
+    this.setState({ roomCreated: true });
     socket.on("getRoomNames", data => this.setState({ rooms: data }));
   }
   handleJoinRoom(event) {
-    event.preventDefault();
+  
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("joinRoom", data => this.setState({ roomJoined: true }));
     socket.on("ready", data => this.setState({ playerWaiting: true }));
-    window.location.href = "./headtohead";
   }
   render() {
     const renderRoom = () => {
       if (this.state.roomCreated) {
         return (
+          <Link to="/headtohead" className="nav-link">
           <Button
+            user={this.state.user}
             id={this.state.createroomname}
             onClick={() => {
               this.handleJoinRoom();
@@ -63,6 +64,7 @@ export default class CreateGame extends Component {
           >
             {this.state.createroomname}
           </Button>
+          </Link>
         );
       }
     };
@@ -101,20 +103,7 @@ export default class CreateGame extends Component {
                 <Button id="createButton" onClick={this.handleCreateRoom}>
                   Create Room
                 </Button>
-                {/* <FormControl>
-                  <InputLabel htmlFor="join-input">Join A Room</InputLabel>
-                  <Input
-                    name="joinGame"
-                    type="joinGame"
-                    id="join-input"
-                    value={this.state.joinroomname}
-                    onChange={this.handleChange}
-                    aria-describedby="my-helper-text"
-                  />
-                </FormControl> */}
-                {/* <Button id="joinButton" onClick={this.handleSubmit}>
-                  Join Room
-                </Button> */}
+                
                 <Container id="roomsAvailable">{renderRoom()}</Container>
               </Grid>
             </form>
