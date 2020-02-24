@@ -31,7 +31,7 @@ export default class TimeAttack extends Component {
       isPlaying: false,
       isCorrect: false,
       backgroundColor: "5E91D3",
-      time: 5
+      time: 90
     };
 
     console.log(this.state)
