@@ -8,6 +8,7 @@ const userSchema = new Schema({
 	topScore: {type: Number, default: 0},
 	wins: {type: Number, default: 0},
 	losses: {type: Number, default: 0},
+	timeAttackScore: {type: Number, default: 0},
 	local: {
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }

@@ -57,6 +57,16 @@ export default function ProfileCard(props) {
     }
   }
 
+  function timeAttackScore(player) {
+    if (player.hasOwnProperty("local")) {
+      const profileScore = player.timeAttackScore;
+      return profileScore;
+    } else {
+      const profileScore = player.timeAttackScore;
+      return profileScore;
+    }
+  }
+
   return (
     <div id="profileCardContainer">
       <Grid
@@ -75,14 +85,15 @@ export default function ProfileCard(props) {
             }
             subheader={
               <Typography align="center" variant="h5" gutterBottom>
-                Top Score: {profileScore(props.user)}
+                Marathon Score: {profileScore(props.user)}
+                <br></br>
+                Time Attack Score: {timeAttackScore(props.user)}
               </Typography>
+              
             }
           />
           <CardMedia className={classes.media} image={profilePic(props.user)} />
-          {/* <CardContent>{getScore()}</CardContent> */}
         </Card>
-        {/* <Expand /> */}
       </Grid>
     </div>
   );
