@@ -9,7 +9,7 @@ import Sound from "react-sound";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
 
-export default class HeadToHeadGame extends Component {
+export default class TimeAttack extends Component {
   constructor(props) {
     super(props);
 
@@ -29,10 +29,12 @@ export default class HeadToHeadGame extends Component {
       correct_answer: "",
       isPlaying: false,
       isCorrect: false,
-      backgroundColor: "5E91D3"
+      backgroundColor: "5E91D3",
     };
+
+    console.log(this.state)
     this.handleStart = this.handleStart.bind(this);
-    // this.handleStop = this.handleStop.bind(this);
+    this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
     this.headToHeadGamePlay = this.headToHeadGamePlay.bind(this);
     // this.handleClick = this.handleClick.bind(this);
@@ -87,25 +89,30 @@ export default class HeadToHeadGame extends Component {
   handleStop(event) {
     event.preventDefault();
 
-    // Updates user score in MongoDB
+    const score = this.getScore();
 
-    if ("win") {
-      axios
+    // Updates user score in MongoDB (session score + user topScore)
+
+    if (this.state.user.timeAttackScore < score){
+
+        axios
         .post(`/api/score/${this.state.user._id}`, {
-          wins: this.state.user.wins + 1
+          timeAttackScore: score
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));
-    } else {
-      axios
-        .post(`/api/score/${this.state.user._id}`, {
-          losses: this.state.user.losses + 1
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+  
+      // relocates user to Homepage
+      window.location.href = "./";
     }
-    // relocates user to Homepage
-    window.location.href = "./createGame";
+
+    else {
+        window.location.href = "./";
+    }
+
+   
+    // Updates user score in MongoDB 
+
   }
 
   isCorrectAnswer(choice) {
@@ -201,7 +208,6 @@ export default class HeadToHeadGame extends Component {
           <br></br>
 
           {renderButtons()}
-
           <br></br>
           <p id="score">Score: {sessionScore}</p>
         </div>

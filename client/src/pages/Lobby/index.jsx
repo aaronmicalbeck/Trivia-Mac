@@ -44,9 +44,9 @@ export default class Lobby extends Component {
             </NavigationButton>
           </Link>
 
-          <Link to="/createGame" id="lobby-nav-link" className="nav-link">
+          <Link to="/timeattack" id="lobby-nav-link" className="nav-link">
             <NavigationButton id="lobbyNavBtn1">
-              <span id="homeNavBtnTitle">Head 2 Head</span>
+              <span id="homeNavBtnTitle">Time Attack!</span>
             </NavigationButton>
           </Link>
         </div>

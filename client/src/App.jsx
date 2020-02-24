@@ -10,6 +10,7 @@ import Game from "./pages/Game";
 import QuestionSubmission from "./pages/QuestionSubmission";
 import HeadToHeadGame from "./pages/HeadToHead";
 import CreateGame from "./pages/CreateGame";
+import TimeAttack from "./pages/TimeAttack";
 
 class App extends Component {
   constructor() {
@@ -108,6 +109,11 @@ class App extends Component {
           exact
           path="/headtohead"
           render={() => <HeadToHeadGame user={this.state.user} />}
+        />
+        <Route
+          exact
+          path="/timeattack"
+          render={() => <TimeAttack user={this.state.user} />}
         />
 
         <Route exact path="/signup" component={SignupForm} />

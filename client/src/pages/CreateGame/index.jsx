@@ -25,7 +25,6 @@ export default class CreateGame extends Component {
       rooms: [],
       playerWaiting: false
     };
-    console.log(this.state);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateRoom = this.handleCreateRoom.bind(this);
@@ -37,7 +36,6 @@ export default class CreateGame extends Component {
     });
   }
   handleCreateRoom(event) {
-    event.preventDefault();
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     this.setState({ roomCreated: true });
@@ -102,20 +100,7 @@ export default class CreateGame extends Component {
                 <Button id="createButton" onClick={this.handleCreateRoom}>
                   Create Room
                 </Button>
-                {/* <FormControl>
-                  <InputLabel htmlFor="join-input">Join A Room</InputLabel>
-                  <Input
-                    name="joinGame"
-                    type="joinGame"
-                    id="join-input"
-                    value={this.state.joinroomname}
-                    onChange={this.handleChange}
-                    aria-describedby="my-helper-text"
-                  />
-                </FormControl> */}
-                {/* <Button id="joinButton" onClick={this.handleSubmit}>
-                  Join Room
-                </Button> */}
+
                 <Container id="roomsAvailable">{renderRoom()}</Container>
               </Grid>
             </form>

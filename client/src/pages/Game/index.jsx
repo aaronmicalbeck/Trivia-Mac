@@ -8,7 +8,6 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import gsap from "gsap";
 import Sound from "react-sound";
 import { Link } from "react-router-dom";
-import NavigationButton from "../../components/NavigationButton";
 
 export default class Game extends Component {
   constructor(props) {
@@ -61,7 +60,7 @@ export default class Game extends Component {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
 
-    socket.on("FromAPI", data =>
+    socket.on("marathonGame", data =>
       this.setState({
         //enable the button when data comes in unless...
         enableButton: this.state.enableButton
@@ -196,10 +195,11 @@ export default class Game extends Component {
           <button id="startGame" onClick={this.handleStart}>
             Start Game
           </button>
-
+          <Link to="/" className="nav-link">
           <button id="endGame" onClick={this.handleStop}>
-            Stop Game{" "}
+            Leave Game{" "}
           </button>
+          </Link>
         </div>
 
         <div id="gameRow2">
@@ -231,11 +231,11 @@ export default class Game extends Component {
         </div>
 
         <div id="gameRow4">
-          <Link to="/lobby" className="nav-link">
+          {/* <Link to="/lobby" className="nav-link">
             <NavigationButton id="gameBackBtn">
               <span id="homeNavBtnTitle">Back</span>
             </NavigationButton>
-          </Link>
+          </Link> */}
         </div>
 
       </div>

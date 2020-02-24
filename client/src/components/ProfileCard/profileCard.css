@@ -4,13 +4,13 @@
   .MuiPaper-elevation1
   .MuiPaper-rounded {
   max-width: auto;
-  background-color: #6f72b2;
+  /* background-color: #6f72b2; */
 }
 
-#container {
-  justify-content: center;
-  margin: auto;
+#profileCardContainer {
   display: flex;
+  justify-content: center;
+  /* margin: auto; */
 }
 
 .ProfileCard .MuiGrid-root .MuiGrid-direction-xs-column .MuiGrid-align-items-xs-center .MuiGrid-justify-xs-center{
