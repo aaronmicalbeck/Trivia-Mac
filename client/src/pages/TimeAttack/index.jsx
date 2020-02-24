@@ -8,6 +8,7 @@ import gsap from "gsap";
 import Sound from "react-sound";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 export default class TimeAttack extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class TimeAttack extends Component {
       isPlaying: false,
       isCorrect: false,
       backgroundColor: "5E91D3",
+      time: 5
     };
 
     console.log(this.state)
@@ -37,10 +39,43 @@ export default class TimeAttack extends Component {
     this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
     this.headToHeadGamePlay = this.headToHeadGamePlay.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
+    this.renderTime = this.renderTime.bind(this);
+
   }
 
   // //////////////////////////////////////////
+
+  renderTime(value) {
+    if (value === 0) {
+        const score = this.getScore();
+        // Updates user score in MongoDB (session score + user topScore)
+        if (this.state.user.timeAttackScore < score){
+            axios
+            .post(`/api/score/${this.state.user._id}`, {
+              timeAttackScore: score
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+      
+          // relocates user to Homepage
+          window.location.href = "./";
+        }
+        else {
+            window.location.href = "./";
+        }
+       
+        // Updates user score in MongoDB
+      return <div className="timer">Too late...</div>;
+    }
+    return (
+      <div className="timer">
+        <div className="text">Remaining</div>
+        <div className="value">{value}</div>
+        <div className="text">seconds</div>
+      </div>
+    );
+  }
+
 
   headToHeadGamePlay() {
     const { endpoint } = this.state;
@@ -199,6 +234,20 @@ export default class TimeAttack extends Component {
         </div>
 
         <div id="gameRow2"></div>
+        <div className="App">
+            <CountdownCircleTimer
+              className="countdown"
+              // key={this.state.correct_answer}
+              isPlaying={this.state.isPlaying}
+              durationSeconds={this.state.time}
+              colors={[["#aebd38", 0.33], ["#d17600", 0.33], ["#c70606"]]}
+              renderTime={this.renderTime}
+              onComplete={() => [false, 0]}
+              trailColor={true}
+              size={160}
+            />
+          </div>
+
 
         <div id="gameRow3">
           <br></br>
@@ -213,11 +262,7 @@ export default class TimeAttack extends Component {
         </div>
 
         <div id="gameRow4">
-          <Link to="/lobby" className="nav-link">
-            <NavigationButton id="gameBackBtn">
-              <span id="homeNavBtnTitle">Back</span>
-            </NavigationButton>
-          </Link>
+         
         </div>
       </div>
     );
