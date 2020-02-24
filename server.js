@@ -252,7 +252,7 @@ io.on("connection", socket => {
       const room = { name, id };
       roomNames.push(room);
     }
-    callback(roomNames);
+    // callback(roomNames);
   });
   /**
    * Gets fired when a user wants to create a new room.
@@ -266,7 +266,7 @@ io.on("connection", socket => {
     rooms[room.id] = room;
     // have the socket join the room they've just created.
     joinRoom(socket, room);
-    callback();
+    // callback();
   });
   /**
    * Gets fired when a player has joined a room.
@@ -274,7 +274,7 @@ io.on("connection", socket => {
   socket.on("joinRoom", (roomId, callback) => {
     const room = rooms[roomId];
     joinRoom(socket, room);
-    callback();
+    // callback();
   });
   /**
    * Gets fired when a player leaves a room.

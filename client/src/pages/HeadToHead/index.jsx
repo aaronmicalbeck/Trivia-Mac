@@ -31,6 +31,7 @@ export default class HeadToHeadGame extends Component {
       isCorrect: false,
       backgroundColor: "5E91D3"
     };
+    console.log(this.state);
     this.handleStart = this.handleStart.bind(this);
     // this.handleStop = this.handleStop.bind(this);
     this.isCorrectAnswer = this.isCorrectAnswer.bind(this);
@@ -171,7 +172,7 @@ export default class HeadToHeadGame extends Component {
       }
     };
     return (
-      <div id="gameDiv">
+      <div id="smackdownDiv">
         <Sound
           url="https://vgmdownloads.com/soundtracks/pokemon-red-green-blue-yellow/figvtmqo/54%20Final%20Battle%21%20%28Rival%29.mp3"
           playStatus={Sound.status.PLAYING}
@@ -181,9 +182,6 @@ export default class HeadToHeadGame extends Component {
         <div className="gameRow1">
           <button id="startGame" onClick={this.headToHeadGamePlay}>
             Start Game
-          </button>
-          <button id="testButton" onClick={this.handleClick}>
-            TEST BUTTON
           </button>
 
           <button id="endGame" onClick={this.handleStop}>
@@ -201,6 +199,7 @@ export default class HeadToHeadGame extends Component {
           <br></br>
 
           {renderButtons()}
+
           <br></br>
           <p id="score">Score: {sessionScore}</p>
         </div>

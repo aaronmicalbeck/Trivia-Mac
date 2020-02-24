@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import NavigationButton from "../../components/NavigationButton";
-import { EditorFormatColorReset } from "material-ui/svg-icons";
 import socketIOClient from "socket.io-client";
 
 export default class CreateGame extends Component {
@@ -26,6 +25,7 @@ export default class CreateGame extends Component {
       rooms: [],
       playerWaiting: false
     };
+    console.log(this.state);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateRoom = this.handleCreateRoom.bind(this);
@@ -40,29 +40,30 @@ export default class CreateGame extends Component {
     event.preventDefault();
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
-    socket.on("createRoom", data => this.setState({ roomCreated: true }));
-    socket.on("getRoomNames", data => this.setState({ rooms: data }));
+    this.setState({ roomCreated: true });
+    socket.emit("getRoomNames", data => this.setState({ rooms: data }));
   }
   handleJoinRoom(event) {
-    event.preventDefault();
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("joinRoom", data => this.setState({ roomJoined: true }));
     socket.on("ready", data => this.setState({ playerWaiting: true }));
-    window.location.href = "./headtohead";
   }
   render() {
     const renderRoom = () => {
       if (this.state.roomCreated) {
         return (
-          <Button
-            id={this.state.createroomname}
-            onClick={() => {
-              this.handleJoinRoom();
-            }}
-          >
-            {this.state.createroomname}
-          </Button>
+          <Link to="/headtohead" className="nav-link">
+            <Button
+              user={this.state.user}
+              id={this.state.createroomname}
+              onClick={() => {
+                this.handleJoinRoom();
+              }}
+            >
+              {this.state.createroomname}
+            </Button>
+          </Link>
         );
       }
     };
@@ -90,7 +91,7 @@ export default class CreateGame extends Component {
                 <FormControl>
                   <InputLabel htmlFor="my-input">Create A Room</InputLabel>
                   <Input
-                    name="createGame"
+                    name="createroomname"
                     type="text"
                     id="my-input"
                     value={this.state.createroomname}

@@ -14,7 +14,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "express-session": "^1.15.4",
-    "gsap": "^3.0.5",
+    "gsap": "file:gsap-bonus.tgz",
     "he": "^1.2.0",
     "material-ui": "^0.20.2",
     "moment": "^2.24.0",

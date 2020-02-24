@@ -21,12 +21,10 @@ class App extends Component {
 
     this._login = this._login.bind(this);
     this._logout = this._logout.bind(this);
-    this.failedLogin = this.failedLogin.bind(this);
   }
 
-
-  _failedLogin(){
-    this.setState({failedLogin: true})
+  _failedLogin() {
+    this.setState({ failedLogin: true });
   }
 
   componentDidMount() {
@@ -44,7 +42,7 @@ class App extends Component {
               user: res.data
             });
           })
-          .catch(err => console.log(err))
+          .catch(err => console.log(err));
       } else {
         this.setState({
           loggedIn: false,
@@ -66,15 +64,6 @@ class App extends Component {
     });
   }
 
-  failedLogin() {
-    let failed = document.getElementById("wrong");
-    if (failed.style.display === "none") {
-      failed.style.display = "block";
-    } else {
-      failed.style.display = "none";
-    }
-  }
-
   _login(username, password) {
     axios
       .post("/auth/login", {
@@ -87,8 +76,6 @@ class App extends Component {
             loggedIn: true,
             user: response.data.user
           });
-        } else {
-          this.failedLogin();
         }
       });
   }
@@ -129,7 +116,7 @@ class App extends Component {
           path="/profile"
           render={() => <Profile user={this.state.user} _login={this._login} />}
         />
-        <Route exact path="/lobby" component={Lobby} />
+        <Route exact path="/lobby" component={Lobby} user={this.state.user} />
         <Route exact path="/leaderboard" component={Leaderboard} />
         <Route
           exact
