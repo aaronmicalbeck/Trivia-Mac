@@ -36,7 +36,8 @@ app.use(bodyParser.json());
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb://user1:password1@ds335648.mlab.com:35648/heroku_0zg2r9s7",
+    "mongodb+srv://admin:adminadmin@cluster0.vqvur.mongodb.net/sample_mflix?retryWrites=true&w=majority
+",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
